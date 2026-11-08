@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 import { sql } from 'drizzle-orm';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { formHiddenOnly, formParamUrl, formQuestionAllowed } from '@bines/shared';
+import { formIsRelation, formParamUrl, formQuestionAllowed } from '@bines/shared';
 import { createTestContext, OWNER_EMAIL, WEB_ORIGIN, type TestContext } from './helpers';
 import { answerFromCell, answerFromParam } from '../src/modules/forms/forms.values';
 
@@ -122,8 +122,8 @@ beforeAll(async () => {
 afterAll(() => t.close());
 
 describe('helpers', () => {
-  it('connect boards is a hidden-only question; link params and source cells become answers', () => {
-    expect(formHiddenOnly('board_relation')).toBe(true);
+  it('connect boards is a question; link params and source cells become answers', () => {
+    expect(formIsRelation('board_relation')).toBe(true);
     expect(formQuestionAllowed('board_relation')).toBe(true);
     expect(formQuestionAllowed('formula')).toBe(false);
     expect(formParamUrl('https://x.test/f/abc', 'ref', 'a b')).toBe('https://x.test/f/abc?ref=a%20b');
@@ -158,7 +158,7 @@ describe('manual and picked values', () => {
     expect(item.cells.owner.value.persons_and_teams).toEqual([{ id: miaId, kind: 'person' }]);
   });
 
-  it('refuses a person who is not in the account, a typed connect-boards value and a visible one', async () => {
+  it('refuses a person who is not in the account and a typed connect-boards value', async () => {
     const bad = await save({
       questions: [
         nameQ,
@@ -168,8 +168,13 @@ describe('manual and picked values', () => {
     expect((await body(bad)).error.details.reason).toBe('invalid_default');
     const typed = await save({ questions: [nameQ, { id: 'qcli0001', column_key: 'client', hidden: true }] });
     expect((await body(typed)).error.details.reason).toBe('invalid_source');
+    // A visible connect-boards question is fine; "who sees the list" only on such a question.
     const shown = await save({ questions: [nameQ, { id: 'qcli0001', column_key: 'client' }] });
-    expect((await body(shown)).error.details.reason).toBe('hidden_only');
+    expect(shown.status).toBe(200);
+    const listOnText = await save({
+      questions: [nameQ, { id: 'qref0001', column_key: 'ref', relation_list: 'everyone' }],
+    });
+    expect((await body(listOnText)).error.details.reason).toBe('invalid_relation_list');
     const missing = await save({
       questions: [nameQ, { id: 'qref0001', column_key: 'ref', hidden: true, hidden_source: 'url' }],
     });

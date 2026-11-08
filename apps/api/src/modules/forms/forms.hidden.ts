@@ -26,12 +26,25 @@ export const formActor = async (
   account: AccountRow,
   requestId: string,
 ): Promise<Actor> => {
-  const userId = form.createdBy;
+  const a = await memberActor(db, account, form.createdBy, requestId);
+  if (!a || a.ctx.role === 'viewer') throw new AppError('not_found', 'form_unavailable');
+  return a;
+};
+
+/**
+ * An active member of the account as an actor (their own rights), or null. The form's creator (`formActor`), and
+ * the signed-in person filling a form whose connect-boards list is for members.
+ */
+export const memberActor = async (
+  db: Db,
+  account: AccountRow,
+  userId: string | null | undefined,
+  requestId: string,
+): Promise<Actor | null> => {
   const [membership, user] = userId
-    ? await Promise.all([findMembership(db, form.accountId, userId), findUserById(db, userId)])
+    ? await Promise.all([findMembership(db, account.id, userId), findUserById(db, userId)])
     : [undefined, undefined];
-  if (!membership || membership.status !== 'active' || !user || membership.role === 'viewer')
-    throw new AppError('not_found', 'form_unavailable');
+  if (!membership || membership.status !== 'active' || !user) return null;
   return {
     ctx: { account, accountId: account.id, role: membership.role, membershipId: membership.id },
     user: {
@@ -58,7 +71,7 @@ export const relationBoards = (column: Pick<ColumnRow, 'settings'>) =>
   (column.settings as { board_ids?: string[] } | null)?.board_ids ?? [];
 
 /** Can this actor read the item (a 404 for them otherwise)? */
-const readable = async (db: Db, a: Actor, itemId: string) => {
+export const readable = async (db: Db, a: Actor, itemId: string) => {
   try {
     return (await loadItem(db, a, itemId)).item;
   } catch {

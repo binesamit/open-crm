@@ -1351,6 +1351,10 @@ export const DESCRIPTIONS: Record<string, readonly [title: string, description: 
     'Upload a file for a form',
     'Starts an upload for a file question: checks the question’s size and type limits and returns a presigned PUT. Send the returned `upload_id` with the answers. Rate-limited per client address.',
   ],
+  'GET /public/forms/{token}/questions/{questionId}/options': [
+    'List the items of a connect-boards question',
+    'One page (30) of the items a connect-boards question offers, by name (`q`), from one of its linked boards (`board`, an index; `offset` for the next page). Only each item’s id and name. A list for members needs a signed-in member who may read the linked board; otherwise 404. Rate-limited per client address.',
+  ],
   'POST /public/forms/{token}/submit': [
     'Submit a form',
     'Validates every answer on the server (required, conditions, column types, files) and creates an item on the board through the normal items service, so automations and webhooks fire. Rate-limited per client address and per form; honeypot and optional Turnstile.',

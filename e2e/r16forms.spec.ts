@@ -92,10 +92,12 @@ test('hidden values: from the link, picked from the column, and an item of the l
   await stage.getByTestId('form-hidden-source-choice').click();
   await stage.getByTestId('form-hidden-choice').getByRole('radio', { name: 'דחוף' }).click();
 
-  // 3. "Client" (connect boards): hidden by itself; an item of the linked board, found by search.
+  // 3. "Client" (connect boards): "who sees the list" → hidden; an item of the linked board, found by search.
   await page.getByTestId('form-add-question').click();
   await page.getByTestId('form-add-column-client').click();
   const client = page.locator('[data-testid="form-question"][data-column="client"]');
+  await expect(client.getByTestId('form-relation-list-members')).toHaveAttribute('aria-checked', 'true');
+  await client.getByTestId('form-relation-list-hidden').click();
   await expect(client.getByTestId('form-hidden-source-item')).toHaveAttribute('aria-checked', 'true');
   await client.getByTestId('form-hidden-item-search').fill(b.clientName);
   await client.getByTestId('form-hidden-item-option').filter({ hasText: b.clientName }).click();
@@ -158,4 +160,79 @@ test('hidden values: from the link, picked from the column, and an item of the l
   await bad.getByTestId('public-form-submit').click();
   await expect(bad.getByTestId('public-form-error')).toHaveAttribute('data-reason', 'link');
   await expect(bad.getByTestId('public-form-done')).toHaveCount(0);
+});
+
+/**
+ * A visible connect-boards question. By default its list is for signed-in members (a badge says so
+ * on a public form, and an anonymous visitor does not see it); opened to everyone, the visitor searches the linked
+ * board's items by name, picks one, and the new item is linked to it.
+ */
+test('connect boards: the person picks an item; who sees the list', async ({ page, browser }) => {
+  forbidNativeDialogs(page);
+  await signIn(page);
+  const suffix = Date.now().toString(36);
+  const b = await makeBoards(page, suffix);
+  await page.goto(`/a/demo/b/${b.boardId}`);
+
+  await page.getByTestId('view-add').click();
+  await page.getByTestId('view-add-form').click();
+  await page.getByRole('dialog').getByRole('textbox').fill('טופס לקוח');
+  await page.getByRole('dialog').getByRole('button', { name: 'אישור' }).click();
+  await expect(page.getByTestId('form-view')).toBeVisible();
+
+  await page.getByTestId('form-add-question').click();
+  await page.getByTestId('form-add-column-client').click();
+  const client = page.locator('[data-testid="form-question"][data-column="client"]');
+  await expect(client.getByTestId('form-relation-list-members')).toHaveAttribute('aria-checked', 'true');
+  await expect(client.getByText('רק למשתמשי החשבון')).toBeVisible();
+  await expect
+    .poll(async () => (await formOf(page, b.boardId, b.headers)).questions.some((q) => q.column_key === 'client'), {
+      timeout: 10_000,
+    })
+    .toBe(true);
+
+  const link = await page.getByTestId('form-link').inputValue();
+  const visitor = await browser.newContext({ baseURL: WEB_URL, locale: 'he-IL' });
+  page.on('close', () => void visitor.close().catch(() => undefined));
+  // Anonymous + members only: just the name is asked.
+  const anon = await visitor.newPage();
+  forbidNativeDialogs(anon);
+  await anon.goto(link);
+  await expect(anon.getByTestId('public-form')).toBeVisible();
+  await expect(anon.locator('[data-testid^="form-question-"]')).toHaveCount(1);
+
+  // Open the list to everyone.
+  await client.getByTestId('form-relation-list-everyone').click();
+  await expect
+    .poll(
+      async () =>
+        (
+          (await formOf(page, b.boardId, b.headers)).questions.find((q) => q.column_key === 'client') as {
+            relation_list?: string;
+          }
+        )?.relation_list,
+      { timeout: 10_000 },
+    )
+    .toBe('everyone');
+
+  const pub = await visitor.newPage();
+  forbidNativeDialogs(pub);
+  await pub.goto(link);
+  await expect(pub.locator('[data-testid^="form-question-"]')).toHaveCount(2);
+  await pub.locator('[data-testid^="form-question-"]').first().getByRole('textbox').fill('פנייה עם לקוח');
+  const search = pub.locator('[data-testid^="form-relation-search-"]');
+  await search.fill(b.clientName);
+  await pub.locator('[data-testid^="form-relation-option-"]').filter({ hasText: b.clientName }).click();
+  await expect(pub.locator('[data-testid^="form-relation-option-"]').filter({ hasText: b.clientName })).toHaveAttribute(
+    'aria-checked',
+    'true',
+  );
+  await pub.getByTestId('public-form-submit').click();
+  await expect(pub.getByTestId('public-form-done')).toBeVisible();
+
+  const items = await json<{ data: { name: string; cells: Record<string, { value: unknown }> }[] }>(
+    await page.request.get(`/api/v1/boards/${b.boardId}/items`, { headers: b.headers }),
+  );
+  const item = items.data.find((i) => i.name === 'פנייה עם לקוח')!;
+  expect((item.cells.client!.value as { item_ids: string[] }).item_ids).toEqual([b.clientId]);
 });

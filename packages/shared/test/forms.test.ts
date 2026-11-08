@@ -17,7 +17,8 @@ describe('public forms (M11)', () => {
     expect(formInputOf('file')).toBe('files');
     expect(formUnsupportedReason('mirror')).toBe('computed');
     expect(formUnsupportedReason('creation_log')).toBe('computed');
-    expect(formUnsupportedReason('board_relation')).toBe('relation');
+    expect(formUnsupportedReason('board_relation')).toBeNull();
+    expect(formInputOf('board_relation')).toBe('relation');
     expect(formUnsupportedReason('tags')).toBe('not_supported');
   });
 

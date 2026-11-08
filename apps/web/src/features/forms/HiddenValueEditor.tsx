@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import {
   FORM_PARAM_RE,
-  formHiddenOnly,
+  formIsRelation,
   formInputOf,
   formParamUrl,
   getLocale,
@@ -33,7 +33,7 @@ const PICKER_INPUTS = new Set(['choice', 'multi_choice', 'people', 'date', 'chec
 
 /** The sources a hidden question on this column can take its value from, in the order the editor shows them. */
 export const hiddenSourcesFor = (column: Column): FormHiddenSource[] => {
-  if (formHiddenOnly(column.type)) return ['item', 'url'];
+  if (formIsRelation(column.type)) return ['item', 'url'];
   const input = formInputOf(column.type);
   if (input === 'people') return ['choice', 'item', 'url'];
   return PICKER_INPUTS.has(input ?? '') ? ['manual', 'choice', 'item', 'url'] : ['manual', 'item', 'url'];
@@ -50,7 +50,7 @@ export const hiddenSourceOf = (q: FormQuestion, column: Column): FormHiddenSourc
 
 /** The patch that switches a hidden question to a source (with what that source needs to start). */
 const switchTo = (source: FormHiddenSource, q: FormQuestion, column: Column): Partial<FormQuestion> => {
-  const relation = formHiddenOnly(column.type);
+  const relation = formIsRelation(column.type);
   return {
     hidden_source: source,
     hidden_item: source === 'item' ? (q.hidden_item ?? null) : null,
@@ -88,7 +88,7 @@ export const HiddenValueEditor = ({
   onChange: (patch: Partial<FormQuestion>) => void;
 }) => {
   const source = hiddenSourceOf(q, column);
-  const relation = formHiddenOnly(column.type);
+  const relation = formIsRelation(column.type);
   const sources = hiddenSourcesFor(column);
   return (
     <div className="space-y-3 rounded-[10px] bg-surface-3 p-2.5" data-testid="form-hidden-value">
@@ -275,7 +275,7 @@ const ItemSource = ({
   disabled: boolean;
   onChange: (v: FormHiddenItem | null) => void;
 }) => {
-  const relation = formHiddenOnly(column.type);
+  const relation = formIsRelation(column.type);
   const linked = (column.settings.board_ids as string[] | undefined) ?? [];
   // The board being browsed; the source is saved once an item of it is picked.
   const [boardId, setBoardId] = useState(value?.board_id ?? (relation ? (linked[0] ?? '') : board.id));
@@ -567,7 +567,7 @@ const ParamSource = ({
   disabled: boolean;
   onChange: (patch: Partial<FormQuestion>) => void;
 }) => {
-  const relation = formHiddenOnly(column.type);
+  const relation = formIsRelation(column.type);
   const param = q.hidden_param ?? { name: 'ref', fallback: !relation };
   // The name being typed: saved only once it is a valid parameter name.
   const [name, setName] = useState(param.name);

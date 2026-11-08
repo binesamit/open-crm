@@ -6,7 +6,7 @@ import { CSS } from '@dnd-kit/utilities';
 import {
   FILE_KINDS,
   formFileLimitsSchema,
-  formHiddenOnly,
+  formIsRelation,
   formInputOf,
   formQuestionAllowed,
   formUnsupportedReason,
@@ -17,8 +17,10 @@ import {
   type Column,
   type FormAccess,
   type FormQuestion,
+  type FormRelationList,
   type MessageKey,
   type PublicQuestion,
+  relationListOf,
   tDynamic,
 } from '@bines/shared';
 import { Badge, Button, cn, Field, Input, Menu, Picker, Switch, useActionMenu } from '@bines/ui';
@@ -116,8 +118,9 @@ export const QuestionList = ({
       hidden: false,
       condition: null,
       ...(formInputOf(c.type) === 'files' ? { files: formFileLimitsSchema.parse({}) } : {}),
-      // Connect boards is a hidden question: the new item is linked to an item picked here.
-      ...(formHiddenOnly(c.type) ? { hidden: true, hidden_source: 'item' as const, hidden_item: null } : {}),
+      // Connect boards: the person picks the item; the list is for signed-in members until the
+      // editor opens it to everyone (or hides the question).
+      ...(formIsRelation(c.type) ? { relation_list: 'members' as const } : {}),
     };
     onChange([...questions, q]);
     setOpen(q.id);
@@ -161,7 +164,11 @@ export const QuestionList = ({
                   formUrl={formUrl}
                   q={q}
                   column={column}
-                  earlier={questions.slice(0, i).filter((x) => !x.hidden && byKey.has(x.column_key))}
+                  earlier={questions.slice(0, i).filter((x) => {
+                    const input = formInputOf(byKey.get(x.column_key)?.type ?? '');
+                    // Linked items and secrets never decide what else shows.
+                    return !x.hidden && !!input && input !== 'relation' && input !== 'secret';
+                  })}
                   columns={byKey}
                   access={access}
                   open={open === q.id}
@@ -232,10 +239,10 @@ const QuestionRow = ({
   const input = column ? formInputOf(column.type) : null;
   const isName = column?.type === 'name';
   const preview = column && input ? previewQuestion(q, column) : null;
-  // Uploads come from the person; connect boards is always hidden (its switch is locked on).
-  const hiddenOnly = column ? formHiddenOnly(column.type) : false;
+  // Connect boards: "who sees the list" (members / everyone / hidden) replaces the hidden switch.
+  const relation = input === 'relation';
   // Uploads and secrets come only from the person filling the form.
-  const canHide = input !== 'files' && input !== 'secret' && !hiddenOnly;
+  const canHide = input !== 'files' && input !== 'secret' && !relation;
   return (
     <li
       ref={setNodeRef}
@@ -268,8 +275,11 @@ const QuestionRow = ({
           </span>
           {q.hidden ? <Badge>{t('forms.editor.hiddenBadge')}</Badge> : null}
           {q.condition ? <Badge tone="info">{t('forms.editor.conditionBadge')}</Badge> : null}
-          {input === 'people' && access === 'public' && !q.hidden ? (
+          {(input === 'people' || (relation && relationListOf(q) === 'members')) && access === 'public' && !q.hidden ? (
             <Badge tone="warn">{t('forms.editor.membersOnlyBadge')}</Badge>
+          ) : null}
+          {relation && !q.hidden && relationListOf(q) === 'everyone' ? (
+            <Badge tone="info">{t('forms.editor.relationList.everyoneBadge')}</Badge>
           ) : null}
         </button>
         <button
@@ -341,6 +351,7 @@ const QuestionRow = ({
               </label>
             ) : null}
           </div>
+          {relation ? <RelationListEditor q={q} disabled={disabled} onChange={onChange} /> : null}
           {q.hidden ? (
             <HiddenValueEditor
               accountId={accountId}
@@ -359,6 +370,84 @@ const QuestionRow = ({
         </div>
       ) : null}
     </li>
+  );
+};
+
+/** What a connect-boards question's list choice means as a patch of the question. */
+const RELATION_CHOICES = ['members', 'everyone', 'hidden'] as const;
+type RelationChoice = (typeof RELATION_CHOICES)[number];
+const relationPatch = (choice: RelationChoice): Partial<FormQuestion> =>
+  choice === 'hidden'
+    ? {
+        hidden: true,
+        relation_list: undefined,
+        hidden_source: 'item',
+        hidden_item: null,
+        hidden_param: null,
+        required: false,
+        condition: null,
+      }
+    : {
+        hidden: false,
+        relation_list: choice as FormRelationList,
+        hidden_source: undefined,
+        hidden_item: undefined,
+        hidden_param: undefined,
+        default_value: undefined,
+      };
+
+/**
+ * Who sees a connect-boards question's item list — signed-in members who may read the linked board,
+ * everyone who opens the form, or nobody (a hidden question that links a fixed item / the link's item).
+ */
+const RelationListEditor = ({
+  q,
+  disabled,
+  onChange,
+}: {
+  q: FormQuestion;
+  disabled: boolean;
+  onChange: (patch: Partial<FormQuestion>) => void;
+}) => {
+  const current: RelationChoice = q.hidden ? 'hidden' : relationListOf(q);
+  return (
+    <div className="space-y-2 rounded-[10px] bg-surface-3 p-2.5" data-testid="form-relation-list">
+      <span className="block text-xs font-semibold text-fg-2">{t('forms.editor.relationList')}</span>
+      <div role="radiogroup" aria-label={t('forms.editor.relationList')} className="grid gap-1.5">
+        {RELATION_CHOICES.map((c) => {
+          const on = c === current;
+          return (
+            <button
+              key={c}
+              type="button"
+              role="radio"
+              aria-checked={on}
+              disabled={disabled}
+              onClick={() => !on && onChange(relationPatch(c))}
+              data-testid={`form-relation-list-${c}`}
+              className={cn(
+                'flex items-start gap-2 rounded-[10px] border bg-surface px-2.5 py-2 text-start disabled:opacity-60',
+                on ? 'border-primary ring-2 ring-[var(--accent-soft)]' : 'border-line hover:border-line-strong',
+              )}
+            >
+              <span
+                aria-hidden
+                className={cn(
+                  'mt-0.5 grid size-4 shrink-0 place-items-center rounded-full border-2',
+                  on ? 'border-primary' : 'border-line-strong',
+                )}
+              >
+                {on ? <span className="size-2 rounded-full bg-primary" /> : null}
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm text-fg">{t(`forms.editor.relationList.${c}`)}</span>
+                <span className="block text-xs text-muted">{t(`forms.editor.relationList.${c}.help`)}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

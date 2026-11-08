@@ -130,7 +130,7 @@ describe('the form editor', () => {
   it('saves questions, texts and the target group; refuses unsupported columns and bad conditions', async () => {
     expect(formUnsupportedReason('timeline')).toBe('not_supported');
     expect(formUnsupportedReason('formula')).toBe('computed');
-    expect(formUnsupportedReason('board_relation')).toBe('relation');
+    expect(formUnsupportedReason('board_relation')).toBeNull();
     expect(formUnsupportedReason('status')).toBeNull();
 
     const bad = await save({ questions: [...baseQuestions, { id: 'qspan001', column_key: 'span' }] });

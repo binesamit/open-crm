@@ -4,7 +4,7 @@ import {
   AppError,
   canBoard,
   type Form,
-  formHiddenOnly,
+  formIsRelation,
   formVisibleOnly,
   formInputOf,
   formQuestionAllowed,
@@ -188,15 +188,16 @@ const checkQuestions = async (
     if (saver && !previousKeys.has(q.column_key) && !columnAllowed(saver.access, column!.restrictedEdit))
       fail(i, 'column_not_editable');
     const input = formInputOf(column!.type);
-    const relation = formHiddenOnly(column!.type);
-    // Uploads come from the person filling the form; they cannot be prefilled. Connect boards is hidden only.
+    const relation = formIsRelation(column!.type);
+    // Uploads come from the person filling the form; they cannot be prefilled.
     if (q.hidden && input === 'files') fail(i, 'cannot_hide');
     // a secret comes only from the person — never hidden, prefilled or a link's value.
     if (formVisibleOnly(column!.type) && q.hidden) fail(i, 'cannot_hide');
-    if (relation && !q.hidden) fail(i, 'hidden_only');
+    // Who sees a connect-boards list is a setting of a visible connect-boards question only.
+    if (q.relation_list && (!relation || q.hidden)) fail(i, 'invalid_relation_list');
     if (q.hidden && q.required) fail(i, 'hidden_required');
     const source = q.hidden ? hiddenSourceOf(q) : 'manual';
-    if (relation && source !== 'item' && source !== 'url') fail(i, 'invalid_source');
+    if (relation && q.hidden && source !== 'item' && source !== 'url') fail(i, 'invalid_source');
     // An item not picked yet is no value (like an empty fixed value) — the editor saves as the person goes.
     if (source === 'item' && q.hidden_item) {
       const reason = await checkHiddenItem(db, a, creator, column!, q.hidden_item);
@@ -214,8 +215,9 @@ const checkQuestions = async (
     // A condition depends on an earlier question that is shown (one condition per question).
     if (q.condition) {
       const target = before.get(q.condition.question_id);
-      // A secret's answer never decides what else shows (the page would have to compare it).
-      if (!target || target.hidden || formInputOf(byKey.get(target.column_key)?.type ?? '') === 'secret')
+      // A secret's answer never decides what else shows (the page would have to compare it); nor do linked items.
+      const targetInput = formInputOf(byKey.get(target?.column_key ?? '')?.type ?? '');
+      if (!target || target.hidden || targetInput === 'secret' || targetInput === 'relation')
         fail(i, 'invalid_condition');
     }
     before.set(q.id, q);

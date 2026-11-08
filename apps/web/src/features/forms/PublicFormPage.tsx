@@ -15,7 +15,7 @@ import {
 } from '@bines/shared';
 import { Button, Notice, SkeletonRows } from '@bines/ui';
 import { Icon } from '../../lib/icons';
-import { fetchPublicForm, formKeys, submitPublicForm, uploadFormFile } from './forms-api';
+import { fetchPublicForm, fetchRelationOptions, formKeys, submitPublicForm, uploadFormFile } from './forms-api';
 import { FormFieldInput, ft, type UploadedFormFile } from './FormFields';
 import { useTurnstile } from './turnstile';
 import { LegalLinks } from '../legal/legal-links';
@@ -263,6 +263,7 @@ const FormBody = ({ token, form }: { token: string; form: PublicForm }) => {
                 lang={lang}
                 invalid={!!err}
                 upload={(file) => uploadFormFile(token, q.id, file)}
+                relationOptions={(query) => fetchRelationOptions(token, q.id, query)}
                 files={files[q.id]}
                 onFiles={(list) => setFiles((f) => ({ ...f, [q.id]: list }))}
               />

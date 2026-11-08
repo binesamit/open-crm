@@ -8,7 +8,8 @@ import { itemTemplateVarKeySchema } from './item-templates';
 /**
  * Public forms (M11): a `form` view on a board whose questions are the board's columns.
  * Everything is configured in the form editor (the view); the public page `/f/<token>` shows only the configured
- * questions and labels — never column keys, item ids or other account data.
+ * questions and labels — never column keys or other account data (a connect-boards question offers the ids and
+ * names of the items it lists, nothing else of them).
  */
 
 /** The input a question shows, by the column type it fills. Types not listed here cannot be form questions. */
@@ -33,6 +34,11 @@ export const FORM_INPUTS = {
    * notifications or webhooks). A visible question only (no prefill: a secret never travels in a link).
    */
   secret: 'secret',
+  /**
+   * Connect boards — the person picks item(s) of the linked board(s). Who sees the list is the
+   * question's `relation_list`; a hidden question links a fixed item / a link's item as before.
+   */
+  board_relation: 'relation',
 } as const;
 export type FormInput = (typeof FORM_INPUTS)[keyof typeof FORM_INPUTS];
 
@@ -50,17 +56,26 @@ export const formUnsupportedReason = (type: string): FormUnsupportedReason | nul
   return 'not_supported';
 };
 
+/** Connect boards: a visible question lists the linked board's items; a hidden one links a fixed / link item. */
+export const formIsRelation = (type: string) => type === 'board_relation';
+
 /**
- * Columns that can be a question only when it is hidden (its value comes from the form's setup, never from the
- * person): connect boards — the new item is linked to an item of the linked board.
+ * Who sees the item list of a visible connect-boards question —
+ * - `members`: only a signed-in member of the account who may read the linked board (others never see the question);
+ * - `everyone`: anyone who opens the form (only the items' names are shown; the form's creator's access decides
+ *   which items).
+ * A hidden question shows no list (`hidden`).
  */
-export const formHiddenOnly = (type: string) => type === 'board_relation';
+export const FORM_RELATION_LISTS = ['members', 'everyone'] as const;
+export type FormRelationList = (typeof FORM_RELATION_LISTS)[number];
+export const relationListOf = (q: { relation_list?: FormRelationList | null }): FormRelationList =>
+  q.relation_list ?? 'members';
 
 /** columns that are never a hidden question (their value comes only from the person). */
 export const formVisibleOnly = (type: string) => type === 'secret';
 
-/** A column a form question may fill: a visible-or-hidden question, or a hidden-only one. */
-export const formQuestionAllowed = (type: string) => !formUnsupportedReason(type) || formHiddenOnly(type);
+/** A column a form question may fill. */
+export const formQuestionAllowed = (type: string) => !formUnsupportedReason(type);
 
 /** A raw answer as the page sends it (and a hidden question's default value). */
 export const formAnswerSchema = z.union([
@@ -144,6 +159,8 @@ export const formQuestionSchema = z.object({
   condition: formConditionSchema.nullable().default(null),
   /** File questions only. */
   files: formFileLimitsSchema.optional(),
+  /** Visible connect-boards questions: who sees the item list (absent = `members`). */
+  relation_list: z.enum(FORM_RELATION_LISTS).optional(),
 });
 export type FormQuestion = z.infer<typeof formQuestionSchema>;
 
@@ -271,6 +288,12 @@ export const publicQuestionSchema = z.object({
   files: formFileLimitsSchema.optional(),
   /** a secret question — one line, several lines or a check box (the column's kind). */
   secret: z.enum(['text', 'multiline', 'checkbox']).optional(),
+  /**
+   * A connect-boards question — its items come page by page from
+   * `GET /public/forms/:token/questions/:id/options` (`board` = an index into `boards`). `boards`: the linked boards'
+   * names, only when there are several.
+   */
+  relation: z.object({ boards: z.array(z.string()) }).optional(),
 });
 export type PublicQuestion = z.infer<typeof publicQuestionSchema>;
 
@@ -315,6 +338,18 @@ export const publicSubmitResultSchema = z.object({
   message: z.string(),
   redirect_url: z.string().nullable(),
 });
+
+/** One page of a connect-boards question's items (only id and name). */
+export const publicRelationOptionsQuerySchema = z.object({
+  q: z.string().max(100).default(''),
+  board: z.coerce.number().int().min(0).max(20).default(0),
+  offset: z.coerce.number().int().min(0).max(100_000).default(0),
+});
+export const publicRelationOptionsSchema = z.object({
+  data: z.array(z.object({ value: z.string(), label: z.string() })),
+  next_offset: z.number().int().nullable(),
+});
+export type PublicRelationOptions = z.infer<typeof publicRelationOptionsSchema>;
 
 export const publicUploadSchema = z.object({
   question_id: z.string().max(24),

@@ -4,6 +4,8 @@ import {
   AppError,
   formSchema,
   publicFormSchema,
+  publicRelationOptionsQuerySchema,
+  publicRelationOptionsSchema,
   publicSubmitResultSchema,
   publicSubmitSchema,
   publicUploadResultSchema,
@@ -17,7 +19,7 @@ import { ipBucket } from '../../lib/client-ip';
 import { RateLimiter } from '../../lib/rate-limit';
 import type { AppDeps, AppEnv } from '../../types';
 import * as svc from './forms.service';
-import { getPublicForm, presignFormUpload, submitForm, type Visitor } from './forms.public';
+import { getPublicForm, getRelationOptions, presignFormUpload, submitForm, type Visitor } from './forms.public';
 
 const tokenParam = z.object({ token: z.string().openapi({ param: { name: 'token', in: 'path' } }) });
 const common = errors(400, 401, 403, 404, 409, 422);
@@ -28,6 +30,8 @@ export const FORM_LIMITS = {
   submitPerIp: { limit: 10, windowMs: 10 * 60_000 },
   submitPerForm: { limit: 500, windowMs: 60 * 60_000 },
   uploadPerIp: { limit: 40, windowMs: 10 * 60_000 },
+  /** Pages of a connect-boards list (search as the person types). */
+  optionsPerIp: { limit: 300, windowMs: 10 * 60_000 },
 };
 
 /**
@@ -45,6 +49,7 @@ export const formRoutes = (deps: AppDeps) => {
   const submitPerIp = new RateLimiter(FORM_LIMITS.submitPerIp.limit, FORM_LIMITS.submitPerIp.windowMs);
   const submitPerForm = new RateLimiter(FORM_LIMITS.submitPerForm.limit, FORM_LIMITS.submitPerForm.windowMs);
   const uploadPerIp = new RateLimiter(FORM_LIMITS.uploadPerIp.limit, FORM_LIMITS.uploadPerIp.windowMs);
+  const optionsPerIp = new RateLimiter(FORM_LIMITS.optionsPerIp.limit, FORM_LIMITS.optionsPerIp.windowMs);
   const charge = (c: Context<AppEnv>, ...hits: [RateLimiter, string][]) => {
     for (const [limiter, key] of hits) {
       const waitMs = limiter.hit(key);
@@ -123,6 +128,31 @@ export const formRoutes = (deps: AppDeps) => {
       const { token } = c.req.valid('param');
       charge(c, [uploadPerIp, `${token}|${ipBucket(c.get('clientIp'))}`]);
       return c.json(await presignFormUpload(deps, token, visitor(c), c.req.valid('json')), 200);
+    },
+  );
+  r.openapi(
+    createRoute({
+      method: 'get',
+      path: '/public/forms/{token}/questions/{questionId}/options',
+      tags: ['forms'],
+      summary: "One page of a connect-boards question's items (names only), by name",
+      security: [],
+      request: {
+        params: tokenParam.extend({
+          questionId: z
+            .string()
+            .max(24)
+            .openapi({ param: { name: 'questionId', in: 'path' } }),
+        }),
+        query: publicRelationOptionsQuerySchema,
+      },
+      responses: { 200: json(publicRelationOptionsSchema, 'Items'), ...publicErrors },
+    }),
+    async (c) => {
+      const { token, questionId } = c.req.valid('param');
+      charge(c, [optionsPerIp, `${token}|${ipBucket(c.get('clientIp'))}`]);
+      c.header('Cache-Control', 'no-store');
+      return c.json(await getRelationOptions(deps, token, visitor(c), questionId, c.req.valid('query')), 200);
     },
   );
   r.openapi(

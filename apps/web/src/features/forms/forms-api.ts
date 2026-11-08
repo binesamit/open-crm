@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type { Form, PublicForm, PublicSubmitInput, UpdateFormInput } from '@bines/shared';
+import type { Form, PublicForm, PublicRelationOptions, PublicSubmitInput, UpdateFormInput } from '@bines/shared';
 import { api } from '../../lib/api';
 import { publicWebOrigin } from '../../lib/public-address';
 
@@ -37,6 +37,20 @@ export const fetchPublicForm = (token: string) => api().get<PublicForm>(`/public
 
 export const submitPublicForm = (token: string, input: PublicSubmitInput) =>
   api().post<{ ok: true; message: string; redirect_url: string | null }>(`/public/forms/${token}/submit`, input);
+
+/** One page of a connect-boards question's items (names only). */
+export const fetchRelationOptions = (
+  token: string,
+  questionId: string,
+  query: { q: string; board: number; offset: number },
+) =>
+  api().get<PublicRelationOptions>(
+    `/public/forms/${token}/questions/${questionId}/options?${new URLSearchParams({
+      q: query.q,
+      board: String(query.board),
+      offset: String(query.offset),
+    })}`,
+  );
 
 /** presign → PUT straight to storage (bytes never pass through our API); the id goes with the answers. */
 export const uploadFormFile = async (token: string, questionId: string, file: File): Promise<string> => {

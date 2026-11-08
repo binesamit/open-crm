@@ -28,6 +28,14 @@ import { runInActivityScope } from '../../lib/activity-scope';
 import { imageLink, isInlineSafeMime } from '../../lib/storage';
 import { findAccountById, findMembership, type AccountRow } from '../accounts/accounts.repo';
 import { formActor, hiddenSourceOf, linkableItems, resolveHidden } from './forms.hidden';
+import {
+  type RelationCtx,
+  relationAnswerAllowed,
+  relationBoardNames,
+  relationBoardsFor,
+  relationContext,
+  relationOptions,
+} from './forms.relation';
 import { listColumns, type ColumnRow } from '../boards/boards.repo';
 import { assetsByIds, findAsset, insertAsset, itemsHoldingAsset, markUploaded } from '../files/files.repo';
 import { attachToCell, safeName } from '../files/files.service';
@@ -90,26 +98,52 @@ const columnMap = async (db: Db, form: FormRow) =>
  * The questions this visitor may answer, each with its column: hidden ones drop out (their defaults are applied on
  * submit); people questions exist only on members-only forms; a question whose column is gone drops out. A
  * condition on a hidden question is decided here with its default, so the page never needs hidden values.
+ * Connect-boards questions show only when the visitor's list has a board (`rc`; none = dropped),
+ * with those boards.
  */
-const visibleQuestions = (form: FormRow, columns: Map<string, ColumnRow>) => {
+const visibleQuestions = async (db: Db, form: FormRow, columns: Map<string, ColumnRow>, rc: RelationCtx | null) => {
   const all = questionsOf(form).filter((q) => columns.has(q.column_key));
   const hidden = new Map(all.filter((q) => q.hidden).map((q) => [q.id, q]));
-  const out: { q: FormQuestion; column: ColumnRow }[] = [];
+  const out: { q: FormQuestion; column: ColumnRow; boards?: string[] }[] = [];
   for (const q of all) {
     if (q.hidden) continue;
     const column = columns.get(q.column_key)!;
-    // Hidden-only columns (connect boards) are never asked.
-    if (!formInputOf(column.type)) continue;
-    if (formInputOf(column.type) === 'people' && !form.requireLogin) continue;
+    const input = formInputOf(column.type);
+    if (!input) continue;
+    if (input === 'people' && !form.requireLogin) continue;
+    let boards: string[] | undefined;
+    if (input === 'relation') {
+      boards = rc ? await relationBoardsFor(db, q, column, rc) : [];
+      if (!boards.length) continue;
+    }
     let condition = q.condition;
     const target = condition ? hidden.get(condition.question_id) : undefined;
     if (condition && target) {
       if (!conditionMet(condition, target.default_value)) continue;
       condition = null;
     }
-    out.push({ q: { ...q, condition }, column });
+    out.push({ q: { ...q, condition }, column, ...(boards ? { boards } : {}) });
   }
   return out;
+};
+
+/** The relation context of a form for this visitor, or null when the form has no visible connect-boards question. */
+const relationCtxOf = async (
+  db: Db,
+  form: FormRow,
+  account: AccountRow,
+  columns: Map<string, ColumnRow>,
+  memberId: string | null,
+  creator?: Awaited<ReturnType<typeof formActor>>,
+): Promise<RelationCtx | null> => {
+  const any = questionsOf(form).some((q) => !q.hidden && columns.get(q.column_key)?.type === 'board_relation');
+  if (!any) return null;
+  try {
+    return await relationContext(db, account, creator ?? (await formActor(db, form, account, 'form')), memberId);
+  } catch {
+    // The creator cannot act: the form takes no submissions anyway.
+    return null;
+  }
 };
 
 type Labels = { labels?: { id: number; label: string; color?: string; index?: number; is_deactivated?: boolean }[] };
@@ -118,6 +152,7 @@ const publicQuestion = (
   q: FormQuestion,
   column: ColumnRow,
   members: { id: string; name: string; email: string }[] | null,
+  boardNames: string[] = [],
 ): PublicQuestion => {
   const input = formInputOf(column.type)!;
   const base: PublicQuestion = {
@@ -149,6 +184,12 @@ const publicQuestion = (
       multiple: true,
       choices: (members ?? []).map((m) => ({ value: m.id, label: m.name || m.email })),
     };
+  if (input === 'relation')
+    return {
+      ...base,
+      multiple: (column.settings as { allow_multiple?: boolean } | null)?.allow_multiple !== false,
+      relation: { boards: boardNames },
+    };
   if (input === 'rating') return { ...base, rating_max: (column.settings as { max?: number } | null)?.max ?? 5 };
   if (input === 'files') return { ...base, files: q.files ?? formFileLimitsSchema.parse({}) };
   return base;
@@ -170,9 +211,10 @@ const brandOf = async (deps: Deps, account: AccountRow) => ({
 
 /** GET /public/forms/:token */
 export const getPublicForm = async (deps: Deps, token: string, visitor: Visitor): Promise<PublicForm> => {
-  const { form, account, settings } = await loadForm(deps.db, token, visitor);
+  const { form, account, settings, memberId } = await loadForm(deps.db, token, visitor);
   const columns = await columnMap(deps.db, form);
-  const questions = visibleQuestions(form, columns);
+  const rc = await relationCtxOf(deps.db, form, account, columns, memberId);
+  const questions = await visibleQuestions(deps.db, form, columns, rc);
   const members = questions.some(({ column }) => formInputOf(column.type) === 'people')
     ? await activeMemberNames(deps.db, form.accountId)
     : null;
@@ -185,11 +227,31 @@ export const getPublicForm = async (deps: Deps, token: string, visitor: Visitor)
     logo_url: await imageUrl(deps, form.accountId, settings.logo_asset_id),
     cover_url: await imageUrl(deps, form.accountId, settings.cover_asset_id),
     account: settings.show_account_branding ? await brandOf(deps, account) : null,
-    questions: questions.map(({ q, column }) => publicQuestion(q, column, members)),
+    questions: await Promise.all(
+      questions.map(async ({ q, column, boards }) =>
+        publicQuestion(q, column, members, boards ? await relationBoardNames(deps.db, form.accountId, boards) : []),
+      ),
+    ),
     submit_label: settings.submit_label,
     privacy_notice: settings.privacy_notice ?? '',
     turnstile_site_key: captcha?.site_key ?? null,
   };
+};
+
+/** GET /public/forms/:token/questions/:id/options — one page of a connect-boards question's items. */
+export const getRelationOptions = async (
+  deps: Deps,
+  token: string,
+  visitor: Visitor,
+  questionId: string,
+  input: { q: string; board: number; offset: number },
+) => {
+  const { form, account, memberId } = await loadForm(deps.db, token, visitor);
+  const columns = await columnMap(deps.db, form);
+  const rc = await relationCtxOf(deps.db, form, account, columns, memberId);
+  const hit = (await visibleQuestions(deps.db, form, columns, rc)).find(({ q }) => q.id === questionId);
+  if (!rc || !hit || formInputOf(hit.column.type) !== 'relation') throw new AppError('not_found', 'Question not found');
+  return relationOptions(deps.db, form, hit.q, hit.column, rc, input);
 };
 
 /** Where a form's uploads live in storage: the prefix proves an upload was made for this form. */
@@ -207,7 +269,7 @@ export const presignFormUpload = async (
 ) => {
   const { form, account } = await loadForm(deps.db, token, visitor);
   const columns = await columnMap(deps.db, form);
-  const hit = visibleQuestions(form, columns).find(({ q }) => q.id === input.question_id);
+  const hit = (await visibleQuestions(deps.db, form, columns, null)).find(({ q }) => q.id === input.question_id);
   if (!hit || formInputOf(hit.column.type) !== 'files') throw new AppError('not_found', 'Question not found');
   const limits = hit.q.files ?? formFileLimitsSchema.parse({});
   if (input.size > limits.max_mb * 1024 * 1024)
@@ -290,7 +352,9 @@ export const submitForm = async (deps: Deps, token: string, visitor: Visitor, in
 
   const columns = await columnMap(db, form);
   const all = questionsOf(form).filter((q) => columns.has(q.column_key));
-  const visible = new Set(visibleQuestions(form, columns).map(({ q }) => q.id));
+  const actor = await formActor(db, form, account, `form:${form.id}`);
+  const rc = await relationCtxOf(db, form, account, columns, memberId, actor);
+  const visible = new Set((await visibleQuestions(db, form, columns, rc)).map(({ q }) => q.id));
   // What the page sent counts only for questions it shows; hidden questions take their value from the form's setup.
   const merged: Record<string, FormAnswer | undefined> = {};
   for (const q of all) merged[q.id] = q.hidden || !visible.has(q.id) ? undefined : input.answers[q.id];
@@ -299,7 +363,6 @@ export const submitForm = async (deps: Deps, token: string, visitor: Visitor, in
     all.filter((q) => q.hidden || visible.has(q.id)),
     merged,
   );
-  const actor = await formActor(db, form, account, `form:${form.id}`);
 
   const errors: Record<string, QuestionError> = {};
   let linkError = false;
@@ -357,8 +420,12 @@ export const submitForm = async (deps: Deps, token: string, visitor: Visitor, in
       if ((!q.hidden && !memberId) || !(await isAccountMember(db, form.accountId, c.ids))) invalid(q);
       else if (c.ids.length) cells[column.key] = { persons_and_teams: c.ids.map((id) => ({ id, kind: 'person' })) };
     } else if (c.kind === 'links') {
-      // Connect boards (hidden only): items the form's creator can read, on the column's boards.
-      if (!q.hidden || !(await linkableItems(db, actor, column, c.ids))) invalid(q);
+      // Connect boards: a hidden value — items the form's creator can read, on the column's boards; a person's
+      // answer — only items their list offers.
+      const ok = q.hidden
+        ? await linkableItems(db, actor, column, c.ids)
+        : !!rc && (await relationAnswerAllowed(db, form, q, column, rc, c.ids));
+      if (!ok) invalid(q);
       else if (c.ids.length) cells[column.key] = { item_ids: c.ids };
     } else {
       const limits = q.files ?? formFileLimitsSchema.parse({});

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   t,
   type FormAnswer,
@@ -7,6 +7,7 @@ import {
   type Locale,
   type MessageKey,
   type PublicQuestion,
+  type PublicRelationOptions,
 } from '@bines/shared';
 import { Calendar, cn, formatIsoDate, Input } from '@bines/ui';
 import { Popover } from '../board/cells/Popover';
@@ -34,6 +35,8 @@ type Props = {
   upload?: (file: File) => Promise<string>;
   files?: UploadedFormFile[];
   onFiles?: (files: UploadedFormFile[]) => void;
+  /** Connect-boards questions: one page of the question's items. */
+  relationOptions?: (query: { q: string; board: number; offset: number }) => Promise<PublicRelationOptions>;
 };
 
 /** The input of one question, by its kind (text, choice, date …) — our own controls, never a native picker. */
@@ -162,6 +165,8 @@ export const FormFieldInput = (p: Props) => {
       return <DateField id={id} value={str} onChange={onChange} lang={lang} invalid={invalid} testId={q.id} />;
     case 'files':
       return <FilesField {...p} />;
+    case 'relation':
+      return <RelationField {...p} />;
     default:
       return null;
   }
@@ -217,6 +222,155 @@ const ChipList = ({
           );
         })}
       </div>
+    </div>
+  );
+};
+
+type RelationOption = PublicRelationOptions['data'][number];
+
+/**
+ * A connect-boards question — the linked board's items by name, searched as the person types and
+ * loaded 30 at a time; one item or several (the column decides). Several linked boards get a switch.
+ */
+const RelationField = ({ question: q, value, onChange, lang, invalid, relationOptions }: Props) => {
+  const boards = q.relation?.boards ?? [];
+  const [board, setBoard] = useState(0);
+  const [search, setSearch] = useState('');
+  const [items, setItems] = useState<RelationOption[]>([]);
+  const [next, setNext] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [failed, setFailed] = useState(false);
+  // The names of picked items (they may be on another page or board than the one shown).
+  const [names, setNames] = useState<Record<string, string>>({});
+  const seq = useRef(0);
+  const picked = (Array.isArray(value) ? value : []).map(String);
+
+  const load = async (offset: number) => {
+    if (!relationOptions) return;
+    const mine = ++seq.current;
+    setLoading(true);
+    setFailed(false);
+    try {
+      const page = await relationOptions({ q: search.trim(), board, offset });
+      if (mine !== seq.current) return;
+      setItems((prev) => (offset ? [...prev, ...page.data] : page.data));
+      setNext(page.next_offset);
+    } catch {
+      if (mine === seq.current) setFailed(true);
+    } finally {
+      if (mine === seq.current) setLoading(false);
+    }
+  };
+  useEffect(() => {
+    const timer = setTimeout(() => void load(0), search ? 250 : 0);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reload on a new search or board only
+  }, [search, board]);
+
+  const toggle = (o: RelationOption) => {
+    setNames((n) => ({ ...n, [o.value]: o.label }));
+    const on = picked.includes(o.value);
+    if (q.multiple) onChange(on ? picked.filter((x) => x !== o.value) : [...picked, o.value]);
+    else onChange(on ? [] : [o.value]);
+  };
+
+  return (
+    <div className="space-y-2" data-testid={`form-relation-${q.id}`}>
+      {picked.length ? (
+        <ul className="flex flex-wrap gap-1.5" aria-label={ft(lang, 'relation.picked')}>
+          {picked.map((id) => (
+            <li
+              key={id}
+              className="inline-flex min-h-9 items-center gap-1 rounded-full bg-primary-soft ps-3 pe-1 text-sm text-heading"
+            >
+              <span className="max-w-60 truncate">{names[id] ?? items.find((i) => i.value === id)?.label ?? '…'}</span>
+              <button
+                type="button"
+                onClick={() => onChange(picked.filter((x) => x !== id))}
+                aria-label={ft(lang, 'remove')}
+                title={ft(lang, 'remove')}
+                className="grid size-7 place-items-center rounded-full text-muted hover:bg-surface"
+                data-testid={`form-relation-remove-${q.id}`}
+              >
+                <Icon name="x" size={13} />
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {boards.length > 1 ? (
+        <div role="tablist" aria-label={ft(lang, 'relation.board')} className="flex flex-wrap gap-1.5">
+          {boards.map((name, i) => (
+            <button
+              key={i}
+              type="button"
+              role="tab"
+              aria-selected={board === i}
+              onClick={() => setBoard(i)}
+              className={cn(
+                'press min-h-9 rounded-full border px-3 text-sm',
+                board === i ? 'border-primary bg-primary text-on-primary' : 'border-line-strong bg-surface text-fg',
+              )}
+            >
+              {name}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      <Input
+        id={`q-${q.id}`}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder={ft(lang, 'search')}
+        aria-label={ft(lang, 'search')}
+        aria-invalid={invalid || undefined}
+        maxLength={100}
+        className={cn('h-10', invalid && 'border-danger')}
+        data-testid={`form-relation-search-${q.id}`}
+      />
+      <div
+        role="group"
+        aria-labelledby={`q-${q.id}-label`}
+        aria-busy={loading || undefined}
+        className="flex max-h-64 flex-wrap gap-2 overflow-y-auto"
+      >
+        {items.map((o) => {
+          const on = picked.includes(o.value);
+          return (
+            <button
+              key={o.value}
+              type="button"
+              role={q.multiple ? 'checkbox' : 'radio'}
+              aria-checked={on}
+              onClick={() => toggle(o)}
+              data-testid={`form-relation-option-${q.id}`}
+              className={cn(
+                'press inline-flex min-h-10 max-w-full items-center gap-1.5 rounded-full border px-3.5 text-sm',
+                on ? 'border-primary bg-primary-soft text-heading' : 'border-line-strong bg-surface text-fg',
+              )}
+            >
+              {on ? <Icon name="check" size={14} strokeWidth={2.5} /> : null}
+              <span className="truncate">{o.label}</span>
+            </button>
+          );
+        })}
+      </div>
+      {failed ? (
+        <p className="text-xs text-danger-fg">{ft(lang, 'relation.failed')}</p>
+      ) : !loading && !items.length ? (
+        <p className="text-xs text-muted">{ft(lang, 'relation.empty')}</p>
+      ) : null}
+      {next !== null ? (
+        <button
+          type="button"
+          disabled={loading}
+          onClick={() => void load(next)}
+          className="text-sm text-primary disabled:opacity-50"
+          data-testid={`form-relation-more-${q.id}`}
+        >
+          {loading ? ft(lang, 'relation.loading') : ft(lang, 'relation.more')}
+        </button>
+      ) : null}
     </div>
   );
 };
