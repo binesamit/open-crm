@@ -1,0 +1,49 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board of the parent items",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "column_id",
+          "label": "Column",
+          "type": "select",
+          "required": true,
+          "options": {
+            "store": "rpc://listColumns?subitems=true",
+            "nested": [
+              {
+                "name": "choice",
+                "label": "Value (pick)",
+                "type": "select",
+                "help": "Pick one of the column values — or leave empty and type the value below.",
+                "options": "rpc://listValues?purpose=find&subitems=true"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  { "name": "value", "label": "Value", "type": "text", "help": "Used when nothing is picked above." },
+  {
+    "name": "match",
+    "label": "Match",
+    "type": "select",
+    "default": "exact",
+    "options": [
+      { "label": "Exact", "value": "exact" },
+      { "label": "Contains", "value": "contains" }
+    ]
+  },
+  {
+    "name": "limit",
+    "label": "Limit",
+    "type": "uinteger",
+    "default": 10,
+    "help": "The most results this module returns in one run."
+  }
+]

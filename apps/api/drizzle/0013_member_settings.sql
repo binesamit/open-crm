@@ -1,0 +1,1 @@
+ALTER TABLE "account_members" ADD COLUMN "settings" jsonb DEFAULT '{}'::jsonb NOT NULL;

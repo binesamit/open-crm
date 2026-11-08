@@ -1,0 +1,4 @@
+[
+  { "name": "itemId", "label": "Item ID", "type": "text", "required": true },
+  { "name": "withUpdates", "label": "With updates", "type": "boolean", "default": false }
+]

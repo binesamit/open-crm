@@ -1,0 +1,1 @@
+[{ "name": "boardId", "type": "text", "label": "Board", "required": true }]

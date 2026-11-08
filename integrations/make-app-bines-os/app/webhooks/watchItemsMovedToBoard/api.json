@@ -1,0 +1,9 @@
+{
+  "verification": {
+    "condition": "{{if(body.challenge, true, false)}}",
+    "respond": { "status": 200, "type": "json", "body": { "challenge": "{{body.challenge}}" } }
+  },
+  "condition": "{{if(parameters.verifySignature == false, true, ifempty(parameters.secret, webhook.secret) && ifempty(ifempty(get(headers, 'x-bines-timestamp'), get(headers, 'X-Bines-Timestamp')), body.timestamp) && ifempty(ifempty(get(headers, 'x-bines-delivery'), get(headers, 'X-Bines-Delivery')), body.event.deliveryId) && abs(parseNumber(formatDate(now, 'x')) - parseNumber(ifempty(ifempty(get(headers, 'x-bines-timestamp'), get(headers, 'X-Bines-Timestamp')), body.timestamp))) <= 600000 && ifempty(ifempty(get(headers, 'x-bines-signature-lite'), get(headers, 'X-Bines-Signature-Lite')), body.signatureLite) == 'sha256=' + sha256(ifempty(ifempty(get(headers, 'x-bines-timestamp'), get(headers, 'X-Bines-Timestamp')), body.timestamp) + '.' + ifempty(ifempty(get(headers, 'x-bines-delivery'), get(headers, 'X-Bines-Delivery')), body.event.deliveryId), 'hex', ifempty(parameters.secret, webhook.secret)))}}",
+  "respond": { "status": 200, "type": "json", "body": { "ok": true } },
+  "output": "{{body.event}}"
+}

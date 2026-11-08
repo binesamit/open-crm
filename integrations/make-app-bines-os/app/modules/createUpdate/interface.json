@@ -1,0 +1,6 @@
+[
+  { "name": "id", "label": "Update ID", "type": "text" },
+  { "name": "item_id", "label": "Item ID", "type": "text" },
+  { "name": "body", "label": "Text", "type": "text" },
+  { "name": "created_at", "label": "Created at", "type": "date" }
+]

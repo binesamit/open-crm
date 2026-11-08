@@ -1,0 +1,33 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "templateId",
+          "label": "Template",
+          "type": "select",
+          "required": true,
+          "options": "rpc://listItemTemplates"
+        },
+        { "name": "groupId", "label": "Group", "type": "select", "required": false, "options": "rpc://listGroups" }
+      ]
+    }
+  },
+  {
+    "name": "parentItemId",
+    "label": "Under item ID",
+    "type": "text",
+    "help": "Optional: add the template’s subitems under this item instead."
+  },
+  {
+    "name": "variables",
+    "label": "Variables",
+    "type": "any",
+    "help": "Answers to the template’s variables by key, e.g. {\"name\": \"Acme\"}."
+  }
+]

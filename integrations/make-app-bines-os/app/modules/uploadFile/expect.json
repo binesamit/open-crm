@@ -1,0 +1,30 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "columnId",
+          "label": "Files column",
+          "type": "select",
+          "required": true,
+          "options": "rpc://listColumns?kind=files"
+        }
+      ]
+    }
+  },
+  { "name": "itemId", "label": "Item ID", "type": "text", "required": true },
+  { "name": "fileName", "label": "File name", "type": "filename", "required": true, "semantic": "file:name" },
+  { "name": "data", "label": "Data", "type": "buffer", "required": true, "semantic": "file:data" },
+  {
+    "name": "mime",
+    "label": "Content type",
+    "type": "text",
+    "advanced": true,
+    "help": "e.g. application/pdf (default application/octet-stream)"
+  }
+]

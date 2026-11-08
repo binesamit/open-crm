@@ -1,0 +1,10 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": { "store": "rpc://listBoards", "nested": [] }
+  },
+  { "name": "title", "label": "Title", "type": "text", "required": true }
+]

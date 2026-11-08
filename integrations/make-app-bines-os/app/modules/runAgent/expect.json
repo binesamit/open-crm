@@ -1,0 +1,19 @@
+[
+  { "name": "agentId", "label": "Agent", "type": "select", "required": true, "options": "rpc://listAgents" },
+  {
+    "name": "prompt",
+    "label": "Prompt",
+    "type": "text",
+    "required": true,
+    "multiline": true,
+    "help": "What the agent should do now."
+  },
+  { "name": "itemId", "label": "Item ID", "type": "text", "help": "Optional: an item the run is about." },
+  {
+    "name": "dryRun",
+    "label": "Dry run",
+    "type": "boolean",
+    "default": false,
+    "help": "Write tools only say what they would do."
+  }
+]

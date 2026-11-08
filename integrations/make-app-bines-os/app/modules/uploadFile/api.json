@@ -1,0 +1,32 @@
+[
+  {
+    "url": "/files/presign",
+    "method": "POST",
+    "body": {
+      "name": "{{ifempty(parameters.fileName, 'file')}}",
+      "size": "{{length(parameters.data)}}",
+      "mime": "{{ifempty(parameters.mime, 'application/octet-stream')}}"
+    },
+    "response": { "temp": { "presigned": "{{body}}" } }
+  },
+  {
+    "url": "{{if(substring(temp.presigned.upload_url, 0, 1) == '/', replace(replace(trim(connection.baseUrl), '/[/]+$/', ''), '/[/]api[/]v1$/', '') + temp.presigned.upload_url, temp.presigned.upload_url)}}",
+    "method": "PUT",
+    "headers": "{{temp.presigned.headers}}",
+    "type": "binary",
+    "body": "{{parameters.data}}",
+    "response": { "type": "text" }
+  },
+  {
+    "url": "/files/{{temp.presigned.file_id}}/complete",
+    "method": "POST",
+    "body": {},
+    "response": { "temp": { "file": "{{body}}" } }
+  },
+  {
+    "url": "/items/{{parameters.itemId}}/cells/{{parameters.columnId}}/files",
+    "method": "POST",
+    "body": { "file_ids": ["{{temp.presigned.file_id}}"] },
+    "response": { "output": "{{temp.file}}" }
+  }
+]

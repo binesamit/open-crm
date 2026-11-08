@@ -1,0 +1,16 @@
+[
+  {
+    "name": "baseUrl",
+    "label": "Instance URL",
+    "type": "url",
+    "required": true,
+    "help": "The address you open Bines OS at, e.g. https://crm.example.com (with or without /api/v1)."
+  },
+  {
+    "name": "apiToken",
+    "label": "API token",
+    "type": "password",
+    "required": true,
+    "help": "A personal API token (bos_pat_…) from Bines OS → profile menu → API tokens. Give it the scopes your scenarios need: boards:read, items:write, updates:write, webhooks (instant triggers), users:read, boards:write (groups), agents:run (AI agents)."
+  }
+]

@@ -1,0 +1,6 @@
+[
+  { "name": "item_id", "label": "Item ID", "type": "text" },
+  { "name": "created", "label": "Items made", "type": "number" },
+  { "name": "batch_id", "label": "Undo batch ID", "type": "text" },
+  { "name": "skipped", "label": "Values not set", "type": "array" }
+]

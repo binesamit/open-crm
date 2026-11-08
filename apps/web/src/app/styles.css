@@ -1,0 +1,1251 @@
+@import 'tailwindcss';
+@import '@bines/ui/tokens.css';
+@import '@bines/ui/layers.css';
+@source '../../../../packages/ui/src';
+
+@theme inline {
+  /* Product decision: regular weight everywhere; only titles (font-extrabold: page, board, group, card) stay bold.
+     Bold inside rich text (<strong>) is content and keeps the browser's weight. */
+  --font-weight-medium: 400;
+  --font-weight-semibold: 400;
+  --font-weight-bold: 400;
+  --color-bg: var(--bg);
+  --color-shell: var(--shell);
+  --color-shell-fg: var(--shell-fg);
+  --color-shell-muted: var(--shell-muted);
+  --color-shell-strong: var(--shell-strong);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-heading: var(--heading);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+  --color-danger-fg: var(--danger-fg);
+  --color-danger-soft: var(--danger-soft);
+  --color-ok: var(--ok);
+  --color-ok-fg: var(--ok-fg);
+  --color-ok-soft: var(--ok-soft);
+  --color-info: var(--info);
+  --color-info-fg: var(--info-fg);
+  --color-violet-soft: var(--violet-soft);
+  --color-violet-fg: var(--violet-fg);
+  --color-row-alt: var(--row-alt);
+  --color-check: var(--check);
+  --color-info-soft: var(--info-soft);
+  /* F4: the UI's base size is 13px (canvas); text-sm is that size, text-xs stays 12. */
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.45;
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* icon styles (lib/icons.tsx): the tint of an icon's main shape in `duo` (its accent part stronger) and the
+   amber of the accent part in `accent` — as on the approved canvas, in both themes. */
+:root {
+  --icon-tint: 0.2;
+  --icon-tint-strong: 0.42;
+  --icon-accent: #e08f00;
+}
+[data-theme='dark'] {
+  --icon-accent: #ffb020;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --icon-accent: #ffb020;
+  }
+}
+/* packages/ui can't use the web Icon: its few icons mark their main shape with data-icon-part="b". */
+:root[data-icon-style='duo'] [data-icon-part='b'] {
+  fill: currentColor;
+  fill-opacity: var(--icon-tint);
+}
+:root[data-icon-style='solid'] [data-icon-part='b'] {
+  fill: currentColor;
+  fill-opacity: var(--icon-tint-strong);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+}
+
+/*
+ * Round 13: the user's text size (lib/appearance.ts) scales the root font size — every rem (text, spacing, controls,
+ * icons) follows: small 90%, normal, large 112%, extra large 125% of the browser's own size.
+ */
+:root {
+  font-size: calc(100% * var(--ui-scale, 1));
+}
+
+/* 13px body text (F4) at the normal size; on <body>, not <html>, so rem-based sizes keep their scale. */
+body {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+/* Headings use the display face (Heebo 800) in the heading ink. */
+:where(h1, h2, h3) {
+  color: var(--heading);
+}
+
+/* Update bodies are server-rendered HTML (renderUpdateBody): mention chips and links only. */
+.update-body .mention,
+.rich-content .mention {
+  color: var(--info-fg);
+  font-weight: 600;
+}
+.update-body a,
+.rich-content a {
+  color: var(--primary);
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+/* Fix: a files-only update has no text — no empty block (and no gap) above its attachments. */
+.update-body:empty {
+  display: none;
+}
+
+/* Rich updates (M1.1 #7): the same look in the editor and in the rendered thread. Logical properties only.
+   Fix: (product owner: "the updates' text is squashed, hard to read"): every Enter is its own paragraph with air
+   between paragraphs, comfortable line height, and an empty paragraph (Enter twice) keeps a full blank line —
+   in the editor and in the thread alike. Plain-text updates (API, imports) arrive as lines with <br>. */
+@layer components {
+  /* A layer, so a view's own leading-* / text-* utility still sets the size it wants. */
+  .rich-content {
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Accessibility (WCAG 1.4.11): a text field drawn with the light line (`border-line-strong`) gets the
+   3:1 control edge instead — the field is found by its edge. One rule for every raw <input> / <textarea> / <select>
+   of the app; the shared Input / Select / Switch use `--control-line` directly. (0,1,1) beats the plain utility, and
+   `focus:` / `hover:` borders (0,2,0) still win. Cards and dividers keep the light line. */
+@layer utilities {
+  :is(input, textarea, select).border-line-strong {
+    border-color: var(--control-line);
+  }
+}
+
+/* A label (a status in a picker, a coloured option, a filter chip, a card / calendar / kanban badge)
+   ("ג2"): a strong tint of the label's colour with its text in a deep shade of it, regular weight (400), centred
+   (`--tag-soft` / `--tag-ink` = `--c-<key>-soft` / `-ink`, set by `tagVars`). The status CELL itself is the same tint,
+   edge to edge (cells/index.tsx). `--tag` stays the vivid colour (bars, dots). None = the empty status. In a layer, so
+   a cell's own size / padding utilities win. */
+@layer components {
+  .label-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    min-width: 0;
+    max-width: 100%;
+    border-radius: 0.375rem;
+    padding-inline: 0.5rem;
+    background-color: var(--tag-soft, var(--status-empty));
+    color: var(--tag-ink, var(--fg));
+    font-weight: 400;
+  }
+}
+.rich-content > * + * {
+  margin-block-start: 0.6em;
+}
+.rich-content p:empty::before {
+  content: '\200b';
+}
+.rich-content li + li {
+  margin-block-start: 0.25em;
+}
+.rich-content li > * + * {
+  margin-block-start: 0.25em;
+}
+.rich-content h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.rich-content h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+/* Fix: (product decision): lists follow their own direction — a Hebrew list has its numbers, bullets and check boxes
+   on the right, an English one on the left (`data-dir` from the editor's ListDirection, `dir` on rendered HTML).
+   The indent is on the item (its own start side), so a mixed list keeps every marker next to its text. */
+.rich-content [data-dir='rtl'] {
+  direction: rtl;
+}
+.rich-content [data-dir='ltr'] {
+  direction: ltr;
+}
+.rich-content ul,
+.rich-content ol {
+  padding-inline-start: 0;
+}
+.rich-content :is(ul, ol) > li {
+  margin-inline-start: 1.5em;
+}
+.rich-content li::marker {
+  color: var(--fg-2);
+}
+.rich-content ul {
+  list-style: disc;
+}
+.rich-content ol {
+  list-style: decimal;
+}
+/* Nested levels (Tab, as in Word): 1. → a. → i. and • → ◦ → ▪, each level indented further. */
+.rich-content :is(ul, ol) ol {
+  list-style-type: lower-alpha;
+}
+.rich-content :is(ul, ol) :is(ul, ol) ol {
+  list-style-type: lower-roman;
+}
+.rich-content :is(ul, ol) :is(ul, ol) :is(ul, ol) ol {
+  list-style-type: decimal;
+}
+.rich-content :is(ul, ol) ul {
+  list-style-type: circle;
+}
+.rich-content :is(ul, ol) :is(ul, ol) ul {
+  list-style-type: square;
+}
+.rich-content :is(ul, ol) :is(ul, ol) :is(ul, ol) ul {
+  list-style-type: disc;
+}
+.rich-content li > :is(ul, ol) {
+  margin-block-start: 0.25em;
+}
+/* Check lists: the box on the same line as its text (centred on the first line), at the item's start side. */
+.rich-content ul[data-type='taskList'] {
+  list-style: none;
+}
+.rich-content ul[data-type='taskList'] > li {
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-start;
+  margin-inline-start: 0.15em;
+}
+.rich-content ul[data-type='taskList'] > li > label {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 1lh;
+  margin: 0;
+  user-select: none;
+}
+/* A rendered update has the bare box (no label). */
+.rich-content ul[data-type='taskList'] > li > input {
+  flex-shrink: 0;
+  margin: 0;
+  margin-block-start: calc((1lh - 1.05em) / 2);
+}
+.rich-content ul[data-type='taskList'] input[type='checkbox'] {
+  width: 1.05em;
+  height: 1.05em;
+  margin: 0;
+  accent-color: var(--primary);
+}
+.rich-content ul[data-type='taskList'] input[type='checkbox']:enabled {
+  cursor: pointer;
+}
+.rich-content ul[data-type='taskList'] > li > div {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+.rich-content ul[data-type='taskList'] > li[data-checked='true'] > div > :is(p, h1, h2, h3) {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.rich-content blockquote {
+  border-inline-start: 3px solid var(--line);
+  padding-inline-start: 0.75em;
+  color: var(--muted);
+}
+.rich-content code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding-inline: 0.3em;
+}
+.rich-content pre {
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 0.6em 0.8em;
+  overflow-x: auto;
+  direction: ltr;
+}
+.rich-content pre code {
+  background: none;
+  padding: 0;
+}
+/* The doc's code block (r15): a bar (language, copy) over the code; highlight.js classes coloured from the theme's
+   own inks, so dark mode follows. Always LTR, monospace. */
+.doc-code {
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+}
+.rich-content .doc-code pre {
+  margin: 0;
+  background: none;
+  padding-block: 0.2em 0.7em;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+.doc-code .hljs-comment,
+.doc-code .hljs-quote {
+  color: var(--muted);
+  font-style: italic;
+}
+.doc-code .hljs-keyword,
+.doc-code .hljs-selector-tag,
+.doc-code .hljs-built_in,
+.doc-code .hljs-type {
+  color: var(--info-fg);
+}
+.doc-code .hljs-string,
+.doc-code .hljs-regexp,
+.doc-code .hljs-addition,
+.doc-code .hljs-symbol {
+  color: var(--ok-fg);
+}
+.doc-code .hljs-number,
+.doc-code .hljs-literal,
+.doc-code .hljs-meta {
+  color: var(--accent-fg);
+}
+.doc-code .hljs-title,
+.doc-code .hljs-section,
+.doc-code .hljs-function,
+.doc-code .hljs-selector-class,
+.doc-code .hljs-selector-id {
+  color: var(--violet-fg);
+}
+.doc-code .hljs-attr,
+.doc-code .hljs-attribute,
+.doc-code .hljs-name,
+.doc-code .hljs-tag,
+.doc-code .hljs-variable,
+.doc-code .hljs-template-variable,
+.doc-code .hljs-deletion {
+  color: var(--danger-fg);
+}
+.doc-code .hljs-emphasis {
+  font-style: italic;
+}
+.doc-code .hljs-strong {
+  font-weight: 700;
+}
+.rich-content mark {
+  background: #ffe58f;
+  color: inherit;
+  border-radius: 2px;
+}
+.rich-content hr {
+  border: none;
+  border-block-start: 1px solid var(--line);
+  margin-block: 0.75em;
+}
+/* kb-import: an image of a help article (readers and the article editor). */
+.rich-content figure.rich-image {
+  margin: 0.5em 0;
+}
+.rich-content figure.rich-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.rich-content figure.rich-image.ProseMirror-selectednode img {
+  outline: 2px solid var(--primary, currentColor);
+  outline-offset: 2px;
+}
+/* The closed update box says only "write an update…"; the open box keeps its full hint. */
+[data-testid='rich-editor'][data-collapsed='true'] .rich-content p.is-editor-empty:first-child::before {
+  content: var(--idle-placeholder, attr(data-placeholder));
+}
+.rich-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted);
+  float: inline-start;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Tables (sync-ai): Markdown tables from AI writers, in updates and the assistant. Logical properties; the theme's
+   lines and surfaces, so both themes follow. A wide table scrolls inside its own box. */
+.rich-content .rich-table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.rich-content table {
+  border-collapse: collapse;
+  font-size: 0.95em;
+  min-width: 50%;
+}
+.rich-content :is(th, td) {
+  border: 1px solid var(--line);
+  padding: 0.3em 0.6em;
+  text-align: start;
+  vertical-align: top;
+  unicode-bidi: plaintext;
+}
+.rich-content th {
+  background: var(--surface-2);
+  font-weight: 600;
+}
+/* AI text in the assistant / run views: tighter than a full update. */
+.ai-markdown > * + * {
+  margin-block-start: 0.45em;
+}
+.ai-markdown h2 {
+  font-size: 1.1rem;
+}
+.ai-markdown h3 {
+  font-size: 1rem;
+}
+
+/* Top-level paragraphs take their direction from their own text (an English line in a Hebrew update aligns
+   left); list items keep the list direction so a checkbox stays next to its text. */
+.rich-content > :is(p, h2, h3, blockquote) {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+/* Table rows with "wrap text" (15 §7): a cell's text runs onto the row's lines instead of being cut. */
+[data-wrap] [data-cell] .truncate {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--row-lines, 1);
+  line-clamp: var(--row-lines, 1);
+}
+
+/* Board search matches in the table (13 §4.1), marked with the CSS Custom Highlight API. */
+::highlight(bines-search) {
+  background-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: inherit;
+}
+
+/* The shell (F4): the sidebar sits on the deep-green background. Inside it the same token names map to the
+   shell's light-on-dark values, so the tree, its inline forms and its rename inputs need no special classes.
+   Works because the theme is `inline`: utilities read the raw variables at the element, not at :root. */
+.on-shell {
+  --fg: var(--shell-fg);
+  --heading: var(--shell-strong);
+  --fg-2: var(--shell-fg);
+  --muted: var(--shell-muted);
+  --surface: var(--shell-input);
+  --surface-2: var(--shell-hover);
+  --surface-3: var(--shell-hover);
+  --line: var(--shell-line);
+  --line-soft: var(--shell-line-soft);
+  --line-strong: var(--shell-line-strong);
+  --primary: var(--shell-strong);
+  --on-primary: var(--shell);
+  --primary-soft: var(--shell-active);
+  color: var(--fg);
+}
+
+/* The shell's icon buttons owned by other features (bell, search) brighten to white on hover; on the light sidebar
+   (fix4) they darken to the shell's strong ink instead. */
+[data-sidebar] :is([data-testid='bell'], [data-testid='search-open']):hover {
+  color: var(--shell-strong);
+}
+
+/* The floating content panel. */
+.app-panel {
+  background: var(--surface);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+/* ── Motion (M7.5 stage 5 + r16motion, emil-design-eng) ──────────────────────────────────────────────────────
+   Product owner (r16motion): "a system, not a marketing site — subtle things only". Nothing over 200ms, ease-out, no springs,
+   no page / view transitions, only transform / opacity / colour (never a size that moves the layout). Entrances
+   with @starting-style; exits by a ghost copy (`useExitRef`, packages/ui/src/motion.ts) that fades over the spot.
+   Things opened from the keyboard many times a day (Ctrl+B search) stay instant.
+   The user's setting (profile → appearance) is `<html data-motion>`:
+     full    — everything below;
+     reduced — fades and colour only: no movement, no exits (`prefers-reduced-motion` gives this by default);
+     off     — none of it.
+   Without the attribute (before the app starts) the device's prefers-reduced-motion decides. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.anim-scrim {
+  transition: opacity 160ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+/* Modals stay centred: they scale from the middle. On a phone they are bottom sheets and rise instead. */
+.anim-dialog {
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@media (max-width: 639px) {
+  .anim-dialog {
+    transition:
+      opacity 200ms var(--ease-drawer),
+      transform 200ms var(--ease-drawer);
+    @starting-style {
+      opacity: 1;
+      transform: translateY(100%);
+    }
+  }
+}
+
+/* Menus and popovers grow from their trigger's side (they open under it, aligned to its inline start). */
+.anim-pop {
+  transform-origin: top left;
+  transition:
+    opacity 140ms var(--ease-out),
+    transform 140ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+[dir='rtl'] .anim-pop {
+  transform-origin: top right;
+}
+
+/* Side panels (the item card on the inline end, the mobile menu on the inline start) slide in from their edge. */
+.anim-from-end {
+  transition: transform 200ms var(--ease-drawer);
+  @starting-style {
+    transform: translateX(-100%);
+  }
+}
+.anim-from-start {
+  transition: transform 200ms var(--ease-drawer);
+  @starting-style {
+    transform: translateX(100%);
+  }
+}
+[dir='ltr'] .anim-from-end {
+  @starting-style {
+    transform: translateX(100%);
+  }
+}
+[dir='ltr'] .anim-from-start {
+  @starting-style {
+    transform: translateX(-100%);
+  }
+}
+
+.anim-toast {
+  transition:
+    opacity 160ms var(--ease-out),
+    transform 160ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Exits (r16motion): the ghost copy of a closed dialog / menu / popover / toast — 120–160ms, then removed. */
+@keyframes exit-fade {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes exit-scale {
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+@keyframes exit-sheet {
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes exit-lift {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+.exit-scrim {
+  animation: exit-fade 150ms var(--ease-out) forwards;
+}
+.exit-dialog {
+  animation: exit-scale 150ms var(--ease-out) forwards;
+}
+@media (max-width: 639px) {
+  .exit-dialog {
+    animation-name: exit-sheet;
+    animation-duration: 160ms;
+  }
+}
+.exit-pop {
+  transform-origin: top left;
+  animation: exit-scale 120ms var(--ease-out) forwards;
+}
+[dir='rtl'] .exit-pop {
+  transform-origin: top right;
+}
+.exit-toast {
+  animation: exit-lift 140ms var(--ease-out) forwards;
+}
+[data-motion-ghost] {
+  pointer-events: none !important;
+  user-select: none;
+}
+
+/* Press feedback on buttons. */
+.press {
+  transition-property: transform, background-color, border-color, color, filter, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: var(--ease-out);
+}
+.press:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* A status label that changes crossfades its colour (a transition — nothing happens on mount or scroll). */
+.motion-color {
+  transition:
+    background-color 150ms var(--ease-out),
+    color 150ms var(--ease-out);
+}
+
+/* A check box that the user ticks pops once (lib/motion.ts adds the class on `change`, never on mount). */
+@keyframes check-pop {
+  from {
+    transform: scale(0.82);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.motion-check-pop {
+  animation: check-pop 160ms var(--ease-out);
+}
+
+/* The tabs' underline slides to the chosen tab (controls.tsx `Tabs`). */
+.tab-indicator {
+  transition:
+    transform 180ms var(--ease-out),
+    width 180ms var(--ease-out);
+}
+
+/* A row the user just added: a soft tint over the whole row (over its sticky name cell too) that fades in ~500ms.
+   An overlay, so nothing moves; only the row the user created (lib/motion.ts), never a virtualised mount. */
+@keyframes row-fresh {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.row-fresh {
+  position: relative;
+}
+.row-fresh::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  pointer-events: none;
+  background: var(--accent-soft);
+  opacity: 0;
+  animation: row-fresh 500ms var(--ease-out);
+}
+
+/* Reduced: fades and colour stay, movement goes (entrances do not move, no exits, no pop, the tab bar jumps). */
+:root[data-motion='reduced'] :is(.anim-dialog, .anim-pop, .anim-from-end, .anim-from-start, .anim-toast) {
+  @starting-style {
+    transform: none;
+  }
+}
+:root[data-motion='reduced'] .press:active:not(:disabled) {
+  transform: none;
+}
+:root[data-motion='reduced'] :is(.motion-check-pop, .tab-indicator) {
+  animation: none;
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion]) :is(.anim-dialog, .anim-pop, .anim-from-end, .anim-from-start, .anim-toast) {
+    @starting-style {
+      transform: none;
+    }
+  }
+  :root:not([data-motion]) .press:active:not(:disabled) {
+    transform: none;
+  }
+  :root:not([data-motion]) :is(.motion-check-pop, .tab-indicator) {
+    animation: none;
+    transition: none;
+  }
+}
+/* Endless pulses — a running timer, an upload in progress (WCAG 2.2.2): still under reduced and off
+   and with the device's reduced motion when no level is set yet. The colour / icon still says what is going on. */
+:root:is([data-motion='reduced'], [data-motion='off']) .animate-pulse {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion]) .animate-pulse {
+    animation: none;
+  }
+}
+/* Off: none of the above. */
+:root[data-motion='off']
+  :is(
+    .anim-scrim,
+    .anim-dialog,
+    .anim-pop,
+    .anim-from-end,
+    .anim-from-start,
+    .anim-toast,
+    .press,
+    .motion-color,
+    .motion-check-pop,
+    .tab-indicator
+  ) {
+  transition: none !important;
+  animation: none !important;
+}
+:root[data-motion='off'] .press:active:not(:disabled) {
+  transform: none;
+}
+:root[data-motion='off'] .row-fresh::after {
+  animation: none;
+  display: none;
+}
+
+/* Scrollbars (fix1): thin, rounded and in the interface's colours — never the browser's grey bar. The thumb is a
+   muted tint of the local `--muted` (so it follows dark mode), stronger on hover; on the green shell (`.on-shell`
+   and the rail flyout) a light translucent thumb. WebKit/Blink get the pseudo-elements (rounded, inset); Firefox
+   (no ::-webkit-scrollbar) gets the standard `scrollbar-width` / `scrollbar-color`. */
+:root {
+  --scroll-thumb: color-mix(in srgb, var(--muted) 38%, transparent);
+  --scroll-thumb-hover: color-mix(in srgb, var(--muted) 65%, transparent);
+}
+.on-shell,
+.shell-scroll {
+  --scroll-thumb: var(--shell-thumb);
+  --scroll-thumb-hover: var(--shell-thumb-hover);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scroll-thumb-hover);
+}
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scroll-thumb) transparent;
+  }
+}
+/* pal40: the status picker's columns scroll across inside it — its thumb is always clearly there. */
+.status-picker-scroll {
+  --scroll-thumb: var(--scroll-thumb-hover);
+}
+
+/* Anything clickable shows the hand (product decision): Tailwind v4 resets buttons to the default arrow. */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  [role='tab'],
+  [role='menuitem'],
+  [role='menuitemradio'],
+  [role='option'],
+  summary,
+  label[for],
+  select {
+    cursor: pointer;
+  }
+
+  /* Accessibility (WCAG 2.4.7): one visible keyboard focus everywhere — the same 3:1 ring the shared
+     controls draw — for anything focusable that has no focus style of its own. In the base layer, so a component's
+     own focus-visible / outline utilities still decide. Mouse clicks show nothing (`:focus-visible`). */
+  :where(
+    a[href],
+    button,
+    summary,
+    [role='button'],
+    [role='tab'],
+    [role='link'],
+    [role='checkbox'],
+    [role='switch'],
+    [tabindex]:not([tabindex='-1'])
+  ):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* The system tooltip (fix6): replaces every native `title` bubble (TooltipHost in @bines/ui). Inverse surface like
+   the toast — dark ink in light mode, light in dark mode; above dialogs, popovers and sticky headers.
+   left/top are viewport coordinates set by the host (physical by nature, measured from getBoundingClientRect). */
+.sys-tip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: var(--z-tooltip);
+  max-width: min(280px, calc(100vw - 16px));
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: var(--toast-bg);
+  color: var(--toast-fg);
+  box-shadow: var(--shadow-pop);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: start;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 120ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+  }
+}
+.sys-tip[hidden] {
+  display: none;
+}
+
+/* Docs (M8 ד1): the others' carets while co-editing — a thin line in their colour with their name above it.
+   Logical properties; the label sits at the caret's start edge in RTL and LTR alike. */
+.collaboration-carets__caret {
+  position: relative;
+  margin-inline: -1px;
+  border-inline-start: 2px solid;
+  word-break: normal;
+  pointer-events: none;
+}
+.collaboration-carets__label {
+  position: absolute;
+  inset-block-end: 100%;
+  inset-inline-start: -2px;
+  padding: 1px 6px;
+  border-radius: 6px 6px 6px 0;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  user-select: none;
+}
+.collaboration-carets__selection {
+  border-radius: 2px;
+}
+
+/* Docs live presence: the block another person stands on, lit in their caret colour (peer); a bit
+   stronger while they type. Outline and background only — the text does not move. */
+.doc-content .doc-peer-block {
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--peer) 7%, transparent);
+  outline: 1.5px solid color-mix(in srgb, var(--peer) 45%, transparent);
+  outline-offset: 2px;
+  transition:
+    background-color 0.2s,
+    outline-color 0.2s;
+}
+.doc-content .doc-peer-typing {
+  background: color-mix(in srgb, var(--peer) 12%, transparent);
+  outline-color: var(--peer);
+}
+.doc-content .doc-peer-flash {
+  animation: doc-peer-flash 1.2s ease-out;
+}
+@keyframes doc-peer-flash {
+  from {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  to {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+.doc-presence-typing {
+  animation: doc-presence-typing 1s ease-in-out infinite alternate;
+}
+@keyframes doc-presence-typing {
+  to {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doc-content .doc-peer-flash,
+  .doc-presence-typing {
+    animation: none;
+  }
+}
+
+/* Docs (M8 ד2): the doc's own blocks. Logical properties only (RTL and LTR alike). */
+.doc-content h1 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+.doc-content h2 {
+  font-size: 1.3rem;
+}
+.doc-content > :is(h1, h2, h3) {
+  margin-block-start: 1em;
+}
+.doc-content > :is(h1, h2, h3):first-child {
+  margin-block-start: 0;
+}
+.doc-content p.is-empty::before {
+  content: attr(data-placeholder);
+  color: var(--muted);
+  float: inline-start;
+  height: 0;
+  pointer-events: none;
+}
+.doc-content .doc-columns {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+.doc-content .doc-column {
+  min-width: 0;
+  border-inline-start: 2px solid transparent;
+  padding-inline-start: 0.25rem;
+}
+.doc-content .doc-column:hover {
+  border-inline-start-color: var(--line);
+}
+@media (max-width: 640px) {
+  .doc-content .doc-columns {
+    grid-auto-flow: row;
+  }
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-block: 0.5em;
+}
+.doc-content th,
+.doc-content td {
+  border: 1px solid var(--line-strong);
+  padding: 0.35em 0.6em;
+  vertical-align: top;
+  min-width: 4em;
+  position: relative;
+}
+.doc-content th {
+  background: var(--surface-2);
+  font-weight: 600;
+  text-align: start;
+}
+.doc-content td > p,
+.doc-content th > p {
+  margin: 0;
+}
+.doc-content .selectedCell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-soft);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.doc-content .tableWrapper {
+  overflow-x: auto;
+}
+.doc-content .doc-details {
+  display: flex;
+  gap: 0.35em;
+  border-radius: var(--radius-sm);
+}
+.doc-content .doc-details > button {
+  flex-shrink: 0;
+  width: 1.4em;
+  height: 1.4em;
+  margin-block-start: 0.1em;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+.doc-content .doc-details > button::before {
+  content: '▸';
+}
+.doc-content .doc-details > button:hover {
+  background: var(--surface-2);
+}
+.doc-content .doc-details.is-open > button::before {
+  content: '▾';
+}
+[dir='rtl'] .doc-content .doc-details:not(.is-open) > button::before {
+  content: '◂';
+}
+.doc-content .doc-details > div {
+  flex: 1;
+  min-width: 0;
+}
+.doc-content .doc-details summary {
+  font-weight: 600;
+  list-style: none;
+}
+.doc-content .doc-details [data-type='detailsContent'] {
+  margin-block-start: 0.25em;
+}
+.doc-content .doc-details:not(.is-open) [data-type='detailsContent'] {
+  display: none;
+}
+.doc-content .ProseMirror-selectednode {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+.doc-drag-handle {
+  transition: opacity 120ms var(--ease-out);
+}
+.doc-drag-handle[data-dragging='true'] {
+  opacity: 0.4;
+}
+
+/* Map popups (Fix: ): MapLibre's white frame and tip follow the theme, like every other floating panel
+   (prefixed with the map's class: maplibre-gl.css loads later, with the map, and would win a tie). */
+.maplibregl-map .maplibregl-popup-content {
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-pop);
+  padding: 24px 12px 12px; /* the close button sits in the top strip, not on the card */
+}
+.maplibregl-map .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-map .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-map .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+  border-top-color: var(--surface);
+}
+.maplibregl-map .maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-map .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-map .maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
+  border-bottom-color: var(--surface);
+}
+.maplibregl-map .maplibregl-popup-anchor-left .maplibregl-popup-tip {
+  border-right-color: var(--surface);
+}
+.maplibregl-map .maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-left-color: var(--surface);
+}
+.maplibregl-map .maplibregl-popup-close-button {
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1;
+}
+.maplibregl-map .maplibregl-popup-close-button:hover {
+  background: var(--surface-2);
+  color: var(--fg);
+}
+
+/* F9 cardw: while the item card's edge is dragged, the whole page shows the resize cursor and selects no text. */
+html.card-resizing,
+html.card-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+/* s37market: the extension developer guide inside the app (DevDocsPage) — English content, left to right, the app's
+   own tokens (light and dark). The HTML is the server's rendering of the bundled Markdown. */
+.dev-doc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+.dev-doc :is(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  color: var(--heading);
+  line-height: 1.25;
+  scroll-margin-top: 4rem;
+}
+.dev-doc h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-block-end: 0.6em;
+}
+.dev-doc h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-block-start: 2em;
+  padding-block-start: 0.6em;
+  border-block-start: 1px solid var(--line);
+}
+.dev-doc h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-block-start: 1.6em;
+}
+.dev-doc h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-block-start: 1.2em;
+}
+.dev-doc :is(p, ul, ol, table, blockquote, .dev-doc-code) {
+  margin-block: 0.75em;
+}
+.dev-doc ul {
+  list-style: disc;
+  padding-inline-start: 1.5em;
+}
+.dev-doc ol {
+  list-style: decimal;
+  padding-inline-start: 1.5em;
+}
+.dev-doc li + li {
+  margin-block-start: 0.25em;
+}
+.dev-doc a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+.dev-doc code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.88em;
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+.dev-doc pre {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  padding-inline-end: 5.5rem;
+  overflow-x: auto;
+}
+.dev-doc pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.dev-doc table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+.dev-doc :is(th, td) {
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  text-align: start;
+  vertical-align: top;
+}
+.dev-doc th {
+  background: var(--surface-2);
+}
+.dev-doc blockquote {
+  padding: 4px 16px;
+  border-inline-start: 3px solid var(--primary);
+  color: var(--fg-2);
+}
+.dev-doc hr {
+  border: 0;
+  border-block-start: 1px solid var(--line);
+  margin-block: 2em;
+}
+.dev-doc mark[data-doc-hit] {
+  background: var(--accent-soft);
+  color: inherit;
+  border-radius: 2px;
+}
+.dev-doc mark[data-doc-hit][data-current] {
+  outline: 2px solid var(--accent);
+}
+
+/* Guided tours: the owner console's on-screen picker outlines every element a step can point at. */
+html[data-tour-picking] [data-tour] {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
+  cursor: crosshair;
+}
+html[data-tour-picking] [data-tour]:hover {
+  outline-style: solid;
+}
+
+/* The media player: its buttons' hover — a light wash on the video's dark bar, the surface elsewhere. */
+.media-ctl:hover {
+  background: var(--surface-3);
+}
+.media-dark .media-ctl:hover {
+  background: rgb(255 255 255 / 0.15);
+}
+
+/* Recording a voice message: the red dot pulses while the microphone records. */
+.voice-rec-dot {
+  animation: voice-rec 1s ease-in-out infinite alternate;
+}
+@keyframes voice-rec {
+  to {
+    opacity: 0.3;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .voice-rec-dot {
+    animation: none;
+  }
+}
+
+/* Phone: a number not recognised is kept as written — a dotted, muted underline instead of an error. */
+.phone-unrecognized {
+  color: var(--fg-2);
+  text-decoration-style: dotted;
+}
+
+/* a secret typed into a form's text area shows as dots until "show" (the text stays real). */
+.secret-mask {
+  -webkit-text-security: disc;
+  text-security: disc;
+}

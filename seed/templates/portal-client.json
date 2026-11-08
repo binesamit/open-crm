@@ -1,0 +1,258 @@
+{
+  "key": "portal_client",
+  "format_version": 2,
+  "template": true,
+  "existing_board_id": null,
+  "name": "פורטל — {client_name}",
+  "description": "בורד Shareable אחד לכל לקוח. הלקוח רואה רק את הבורד הזה. אייטם בקבוצת 'בקשות תמיכה' ⇒ טיקט פנימי (S1).",
+  "board_kind": "share",
+  "folder": "07",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "request",
+  "groups": [
+    {
+      "id": "requests",
+      "title": "בקשות תמיכה",
+      "color": "blue"
+    },
+    {
+      "id": "projects",
+      "title": "פרויקטים",
+      "color": "forest"
+    },
+    {
+      "id": "hours",
+      "title": "בנק שעות",
+      "color": "yellow"
+    },
+    {
+      "id": "guides",
+      "title": "מדריכים",
+      "color": "gray"
+    }
+  ],
+  "columns": [],
+  "add_columns": [
+    {
+      "id": "kind",
+      "title": "סוג",
+      "type": "status",
+      "settings": {
+        "labels": [
+          {
+            "id": 2,
+            "label": "תקלה",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 0,
+            "label": "שינוי",
+            "color": "gray",
+            "index": 1
+          },
+          {
+            "id": 3,
+            "label": "שאלה",
+            "color": "gray",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "priority",
+      "title": "דחיפות",
+      "type": "status",
+      "settings": {
+        "labels": [
+          {
+            "id": 2,
+            "label": "השבתה",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 0,
+            "label": "פגיעה",
+            "color": "gray",
+            "index": 1
+          },
+          {
+            "id": 3,
+            "label": "רגיל",
+            "color": "gray",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "נמוך",
+            "color": "gray",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "description",
+      "title": "תיאור",
+      "type": "long_text",
+      "settings": {}
+    },
+    {
+      "id": "files",
+      "title": "קבצים",
+      "type": "file",
+      "settings": {}
+    },
+    {
+      "id": "internal_ticket",
+      "title": "טיקט פנימי",
+      "type": "board_relation",
+      "description": "Restrict column view → בעלים בלבד",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597817"
+        ],
+        "allow_multiple": false
+      }
+    },
+    {
+      "id": "status_mirror",
+      "title": "סטטוס",
+      "type": "mirror",
+      "description": "מראה של סטטוס הטיקט הפנימי — לקריאה",
+      "settings": {
+        "relation_column_id": "internal_ticket",
+        "source_column_id": "color_mm6xrcv7"
+      }
+    },
+    {
+      "id": "internal_project",
+      "title": "פרויקט פנימי",
+      "type": "board_relation",
+      "description": "Restrict column view → בעלים בלבד",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": false
+      }
+    },
+    {
+      "id": "project_status",
+      "title": "סטטוס פרויקט",
+      "type": "mirror",
+      "settings": {
+        "relation_column_id": "internal_project",
+        "source_column_id": "client_status"
+      }
+    },
+    {
+      "id": "last_update",
+      "title": "עדכון אחרון",
+      "type": "mirror",
+      "settings": {
+        "relation_column_id": "internal_project",
+        "source_column_id": "long_text_mm6x8rmc"
+      }
+    },
+    {
+      "id": "hours_bought",
+      "title": "שעות שנרכשו",
+      "type": "numbers",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "hours_used",
+      "title": "שעות שנוצלו",
+      "type": "numbers",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "hours_left",
+      "title": "יתרה",
+      "type": "formula",
+      "settings": {
+        "formula": "{hours_bought}-{hours_used}"
+      }
+    },
+    {
+      "id": "opened",
+      "title": "נפתח",
+      "type": "creation_log",
+      "settings": {
+        "mode": "both"
+      }
+    },
+    {
+      "id": "updated",
+      "title": "עודכן",
+      "type": "last_updated",
+      "settings": {
+        "mode": "ago"
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_content",
+    "restrict_column_editing": {
+      "status_mirror": [
+        "@owner"
+      ],
+      "project_status": [
+        "@owner"
+      ],
+      "hours_bought": [
+        "@owner"
+      ],
+      "hours_used": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {
+      "internal_ticket": [
+        "@owner"
+      ],
+      "internal_project": [
+        "@owner"
+      ]
+    }
+  },
+  "views": [
+    {
+      "name": "Table",
+      "type": "table"
+    },
+    {
+      "name": "בקשות — Kanban",
+      "type": "kanban",
+      "settings": {
+        "column": "status_mirror"
+      }
+    }
+  ],
+  "forms": [
+    {
+      "name": "פתיחת בקשה",
+      "group": "requests",
+      "questions": [
+        "name",
+        "kind",
+        "priority",
+        "description",
+        "files"
+      ],
+      "public": true,
+      "password": null
+    }
+  ],
+  "$schema": "../schema/board.schema.json"
+}

@@ -1,0 +1,15 @@
+[
+  { "name": "itemId", "label": "Item ID", "type": "text", "required": true },
+  {
+    "name": "boardId",
+    "label": "Target board",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        { "name": "groupId", "label": "Group", "type": "select", "required": false, "options": "rpc://listGroups" }
+      ]
+    }
+  }
+]

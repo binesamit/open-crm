@@ -1,0 +1,39 @@
+node_modules/
+dist/
+.turbo/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+.vite/
+playwright-report/
+test-results/
+e2e/screens/
+.map.json
+# Private reference material (third-party screenshots, research, business data, import snapshots) lives outside the repo:
+# ../private-reference/ (see CLAUDE.md). Never commit it back.
+reference/
+design-guide/img/
+design-guide/index.html
+# perf-seed output (local test credentials) and k6 results
+perf/.perf-*.json
+perf/results/
+
+# Agent worktrees
+.claude/worktrees/
+# OpenAPI export (pnpm --filter @bines/api openapi:export)
+apps/api/openapi/
+# Enterprise license signing keys (scripts/license-tool.mjs keygen) — the private key never goes into git
+.license-keys/
+# Built by apps/api/test/idocs-pdf.test.ts (removed after the test)
+apps/api/.pdf-bundle-test/
+
+# Editors and scratch
+.claude/
+.vscode/
+.idea/
+*.orig
+*.rej
+e2e/.scratch/

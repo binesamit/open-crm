@@ -1,0 +1,5 @@
+{
+  "url": "/boards/{{parameters.boardId}}/columns/{{parameters.columnId}}/choices",
+  "qs": { "subitems": "{{if(parameters.subitems, 'true', 'false')}}" },
+  "response": { "iterate": "{{body.data}}", "output": { "label": "{{item.text}}", "value": "{{item.text}}" } }
+}

@@ -1,0 +1,29 @@
+# Bines OS
+
+> A self-hosted, open-source (AGPL-3.0) work-management platform: boards with typed columns, views, automations,
+> dashboards, docs, forms, a client portal, AI agents and an MCP server. Multi-account. Hebrew and English.
+
+Every running installation serves the documents below at its own address; paths are relative to it.
+
+## Use it from an AI client
+
+- [MCP server](/mcp): Streamable HTTP. Sign in with OAuth or pass an API token as a bearer. Tools cover workspaces,
+  boards, columns, items, updates, docs, dashboards, automations and files.
+- [API reference](/api/docs): every endpoint with request and response schemas.
+- [OpenAPI document](/api/v1/openapi.json): the machine-readable API.
+- Authentication: `Authorization: Bearer <token>` and `X-Account-Id: <account>` on every request. Tokens are made in
+  the app under Profile → API tokens.
+
+## Understand the model
+
+- [Installation and licensing guide](/api/docs/guide): install, the first admin, keys, privacy, FAQ.
+- [Extension developer guide](/api/docs/extensions): how extensions, widgets and panels talk to the platform.
+- Column types, their settings, values, filters and summaries: `docs/COLUMN-TYPES.generated.md` in the source
+  repository (generated from the code, always complete).
+- Automations are data: `{trigger, conditions, actions}`; the API returns and accepts the same shape the UI builds.
+
+## Source
+
+- Source code: the link under ? → About in the app (AGPL section 13), or the project's repository.
+- Licence: GNU AGPL-3.0-only with the additional permissions in `LICENSE-EXCEPTIONS.md` (extensions through the public
+  API and SDKs may use any licence).

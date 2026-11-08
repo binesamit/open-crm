@@ -1,0 +1,136 @@
+{
+  "key": "project_multilevel",
+  "format_version": 2,
+  "template": true,
+  "existing_board_id": null,
+  "name": "פרויקט (רב-רמות) — {project_name}",
+  "description": "תבנית לפרויקט גדול: אפיק → מודול → משימה בבורד אחד (hierarchy_type multi_level). ליצור מה-Template Center בלבד; ה-API לא יוצר בורד multi-level ישירות.",
+  "board_kind": "public",
+  "folder": "03",
+  "hierarchy_type": "multi_level",
+  "hierarchy_depth_max": 6,
+  "item_terminology": "work item",
+  "groups": [
+    {
+      "id": "streams",
+      "title": "אפיקים",
+      "color": "blue"
+    }
+  ],
+  "columns": [],
+  "add_columns": [
+    {
+      "id": "owner",
+      "title": "אחראי",
+      "type": "people",
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "status",
+      "title": "סטטוס",
+      "type": "status",
+      "settings": {
+        "labels": [
+          {
+            "id": 5,
+            "label": "לביצוע",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 0,
+            "label": "בעבודה",
+            "color": "gray",
+            "index": 1
+          },
+          {
+            "id": 2,
+            "label": "חסום",
+            "color": "gray",
+            "index": 2
+          },
+          {
+            "id": 1,
+            "label": "הושלם",
+            "color": "gray",
+            "index": 3,
+            "is_done": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "timeline",
+      "title": "ציר זמן",
+      "type": "timeline",
+      "settings": {}
+    },
+    {
+      "id": "estimate",
+      "title": "הערכה (שעות)",
+      "type": "numbers",
+      "description": "rollup SUM לרמות העליונות",
+      "settings": {
+        "footer": "sum"
+      },
+      "capabilities": {
+        "calculated": {
+          "function": "SUM"
+        }
+      }
+    },
+    {
+      "id": "actual",
+      "title": "בפועל (שעות)",
+      "type": "numbers",
+      "settings": {
+        "footer": "sum"
+      },
+      "capabilities": {
+        "calculated": {
+          "function": "SUM"
+        }
+      }
+    },
+    {
+      "id": "deps",
+      "title": "תלויות",
+      "type": "dependency",
+      "settings": {
+        "mode": "flexible",
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "project",
+      "title": "פרויקט (רשומת אב)",
+      "type": "board_relation",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": false
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": [
+    {
+      "name": "Gantt",
+      "type": "gantt"
+    },
+    {
+      "name": "Workload",
+      "type": "workload"
+    }
+  ],
+  "$schema": "../schema/board.schema.json"
+}

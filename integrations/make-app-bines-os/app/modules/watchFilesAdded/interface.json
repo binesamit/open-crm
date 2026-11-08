@@ -1,0 +1,52 @@
+[
+  { "name": "type", "label": "Event", "type": "text" },
+  { "name": "boardId", "label": "Board ID", "type": "text" },
+  { "name": "boardName", "label": "Board name", "type": "text" },
+  { "name": "groupId", "label": "Group ID", "type": "text" },
+  { "name": "groupName", "label": "Group name", "type": "text" },
+  { "name": "itemId", "label": "Item ID", "type": "text" },
+  { "name": "itemName", "label": "Item name", "type": "text" },
+  { "name": "parentItemId", "label": "Parent item ID", "type": "text" },
+  {
+    "name": "files",
+    "label": "Files",
+    "type": "array",
+    "spec": [
+      { "name": "id", "label": "File ID", "type": "text" },
+      { "name": "name", "label": "Name", "type": "text" },
+      { "name": "size", "label": "Size", "type": "number" },
+      { "name": "mime", "label": "Type", "type": "text" }
+    ]
+  },
+  {
+    "name": "actor",
+    "label": "Done by",
+    "type": "collection",
+    "spec": [
+      { "name": "kind", "label": "Kind", "type": "text" },
+      { "name": "id", "label": "ID", "type": "text" },
+      { "name": "name", "label": "Name", "type": "text" }
+    ]
+  },
+  {
+    "name": "item",
+    "label": "Item",
+    "type": "collection",
+    "spec": [
+      { "name": "id", "label": "Item ID", "type": "text" },
+      { "name": "name", "label": "Name", "type": "text" },
+      { "name": "board_id", "label": "Board ID", "type": "text" },
+      { "name": "group_id", "label": "Group ID", "type": "text" },
+      { "name": "parent_item_id", "label": "Parent item ID", "type": "text" },
+      { "name": "key", "label": "Key", "type": "text" },
+      { "name": "column_values", "label": "Column values (text)", "type": "any" },
+      { "name": "cells", "label": "Cells (stored values by column id)", "type": "any" },
+      { "name": "created_at", "label": "Created at", "type": "date" },
+      { "name": "updated_at", "label": "Updated at", "type": "date" }
+    ]
+  },
+  { "name": "triggerTime", "label": "Time", "type": "date" },
+  { "name": "eventId", "label": "Event ID", "type": "text" },
+  { "name": "subscriptionId", "label": "Subscription ID", "type": "text" },
+  { "name": "deliveryId", "label": "Delivery ID", "type": "text" }
+]

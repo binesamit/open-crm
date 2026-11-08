@@ -1,0 +1,44 @@
+name: PR checks
+
+# Contributor pull requests from forks: format, lint, typecheck and the unit tests of the web app, worker and
+# packages — fast feedback that needs NO secrets.
+# Deliberately `pull_request` (the fork's code runs with a read-only token and no repository secrets), never
+# `pull_request_target`. The full API suite runs in ci.yml (also secret-free; PGlite), whose "CI / check" is the
+# required status.
+on:
+  pull_request:
+
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Format, lint, typecheck, unit tests
+    # Only for pull requests from forks: branches of this repository already get the same steps from ci.yml.
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # The API's typecheck outgrew Node's default ~2 GB heap (CI #156–#166: "JavaScript heap out of memory", exit
+    # 134); the runner has 16 GB.
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      # Caches the pnpm store, keyed on pnpm-lock.yaml.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - name: Unit tests (web, worker, packages, integrations)
+        run: pnpm -r --filter '!@bines/api' test

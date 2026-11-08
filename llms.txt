@@ -1,0 +1,72 @@
+# Bines OS
+
+> Bines OS is an open-source (AGPL-3.0) work-management platform: boards, groups and items with typed columns,
+> views, automations, workflows, dashboards, docs, forms, interactive documents, an AI assistant and agents, a REST
+> API, an MCP server for AI apps, and extensions. It runs as one Node.js process with an embedded database, or with
+> Postgres and S3-compatible storage. The UI is Hebrew-first (right-to-left) with full English.
+
+This file points AI models and coding agents to the right documentation. Paths are relative to the repository root.
+On a running installation, the live API reference is at `/api/docs`, the OpenAPI document at
+`/api/v1/openapi.json`, and the MCP server at `/mcp`.
+
+## Using the product
+
+- [User guide (English)](docs/user/README.md): one guide per feature, for business users
+- [User guide (Hebrew)](docs/user/README.he.md)
+- [Getting started](docs/user/getting-started.md)
+- [Boards, groups and items](docs/user/boards-groups-items.md)
+- [Columns](docs/user/columns.md)
+- [Views](docs/user/views.md)
+- [Search, filter, sort and group](docs/user/search-filter-sort-group.md)
+- [The item card and working together](docs/user/item-card-and-collaboration.md)
+- [Docs and forms](docs/user/docs-and-forms.md)
+- [Interactive documents](docs/user/interactive-documents.md)
+- [Dashboards](docs/user/dashboards.md)
+- [Automations](docs/user/automations.md)
+- [Workflows and scenarios](docs/user/workflows.md)
+- [Item templates](docs/user/item-templates.md)
+- [Calendar and Google sync](docs/user/calendar-and-google-sync.md)
+- [Notifications, inbox and My work](docs/user/notifications-and-inbox.md)
+- [Time tracking](docs/user/time-tracking.md)
+- [AI](docs/user/ai.md)
+- [MCP, API and integrations](docs/user/mcp-and-api.md)
+- [Extensions](docs/user/extensions.md)
+- [Sharing and permissions](docs/user/sharing-and-permissions.md)
+- [Account administration](docs/user/account-admin.md)
+- [Import and export](docs/user/import-export.md)
+- [Built-in help center](seed/help/README.md): the in-app articles, guides and tours that a new installation loads
+
+## Connecting AI and code
+
+- [API reference](docs/06-API.md): every endpoint, authentication, scopes, errors, pagination, webhooks, real time, MCP and OAuth
+- [Automations](docs/04-AUTOMATIONS.md): triggers, conditions and actions
+- [Column types](docs/03-COLUMN-TYPES.md) and the [generated column catalog](docs/COLUMN-TYPES.generated.md): every column type and its value format
+- [Filters](docs/13-FILTERS.md) and [Views](docs/15-VIEWS.md)
+- [Extensions guide](docs/EXTENSIONS-GUIDE.md), [developer reference](docs/extensions/README.md) and [quickstart](docs/extensions/QUICKSTART.md)
+- [Interactive documents](docs/INTERACTIVE-DOCUMENTS.he.md) (Hebrew)
+
+## Installing and running
+
+- [Installation and licensing guide](docs/GUIDE.md) ([Hebrew](docs/GUIDE.he.md))
+- [Self-hosting](docs/SELF-HOSTING.md): Docker, Postgres, storage, email, backups, upgrades
+- [Operations](docs/07-OPERATIONS.md)
+- [Account administration](docs/08-ACCOUNT-ADMIN.md)
+- [Licensing](docs/LICENSING.md)
+- [Environment variables](.env.example)
+
+## Working on the code
+
+- [Agent instructions](AGENTS.md): conventions, commands and checks for coding agents
+- [Architecture](docs/01-ARCHITECTURE.md)
+- [Data model](docs/02-DATA-MODEL.md)
+- [Permissions](docs/05-PERMISSIONS.md)
+- [UI design](docs/11-UI-DESIGN.md) and [context menus](docs/14-CONTEXT-MENUS.md)
+- [Decisions](docs/DECISIONS.md)
+- [Contributing](CONTRIBUTING.md)
+
+## Optional
+
+- [Product requirements](docs/00-PRD.md)
+- [Roadmap](docs/12-ROADMAP.md)
+- [Security review](docs/SECURITY-REVIEW.md), [AI security review](docs/AI-SECURITY-REVIEW.md), [extensions security review](docs/EXTENSIONS-SECURITY-REVIEW.md), [performance review](docs/PERFORMANCE-REVIEW.md)
+- [Releasing](docs/RELEASING.md)

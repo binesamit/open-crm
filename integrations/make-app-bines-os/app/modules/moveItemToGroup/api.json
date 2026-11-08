@@ -1,0 +1,7 @@
+{
+  "url": "/items/{{parameters.itemId}}/move-to-group",
+  "method": "POST",
+  "qs": { "format": "flat" },
+  "body": { "group_id": "{{parameters.groupId}}" },
+  "response": { "output": "{{body}}" }
+}

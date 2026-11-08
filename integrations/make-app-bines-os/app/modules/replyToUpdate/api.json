@@ -1,0 +1,6 @@
+{
+  "url": "/updates/{{parameters.updateId}}/replies",
+  "method": "POST",
+  "body": { "body": "{{parameters.body}}" },
+  "response": { "output": "{{body}}" }
+}

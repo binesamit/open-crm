@@ -1,0 +1,84 @@
+[
+  {
+    "label": "Triggers",
+    "modules": [
+      "watchItemsCreated",
+      "watchColumnValueChanged",
+      "watchStatusChanged",
+      "watchAnyColumnChanged",
+      "watchItemsRenamed",
+      "watchUpdates",
+      "watchItemsMovedToGroup",
+      "watchItemsMovedToAnyGroup",
+      "watchItemsArchived",
+      "watchItemsDeleted",
+      "watchItemsRestored",
+      "watchItemsMovedToBoard",
+      "watchUpdatesEdited",
+      "watchUpdatesDeleted",
+      "watchFilesAdded",
+      "watchGroupsCreated",
+      "watchColumnsCreated",
+      "watchColumnTypeChanged",
+      "watchSubitemsCreated",
+      "watchSubitemColumnChanged",
+      "watchSubitemStatusChanged",
+      "watchSubitemsRenamed",
+      "watchSubitemsArchived",
+      "watchSubitemsDeleted",
+      "watchSubitemUpdates",
+      "watchAutomationSends"
+    ]
+  },
+  {
+    "label": "Items",
+    "modules": [
+      "createItem",
+      "applyItemTemplate",
+      "updateItem",
+      "getItem",
+      "searchItems",
+      "findItems",
+      "moveItemToGroup",
+      "moveItemToBoard",
+      "duplicateItem",
+      "archiveItem",
+      "deleteItem"
+    ]
+  },
+  {
+    "label": "Subitems",
+    "modules": [
+      "createSubitem",
+      "updateSubitem",
+      "getSubitems",
+      "searchSubitems",
+      "findSubitems",
+      "moveSubitem",
+      "moveSubitemUp",
+      "archiveSubitem",
+      "deleteSubitem"
+    ]
+  },
+  {
+    "label": "Updates and files",
+    "modules": ["createUpdate", "replyToUpdate", "tickUpdateTask", "uploadFile", "addFileLink"]
+  },
+  { "label": "Time tracking", "modules": ["startTimer", "stopTimer", "addTimeEntry", "getTimeEntries"] },
+  {
+    "label": "Boards, people and agents",
+    "modules": [
+      "listBoards",
+      "getBoardSchema",
+      "createGroup",
+      "renameGroup",
+      "deleteGroup",
+      "createColumn",
+      "searchEverything",
+      "listUsers",
+      "listTeams",
+      "runAgent"
+    ]
+  },
+  { "label": "Other", "modules": ["makeApiCall"] }
+]

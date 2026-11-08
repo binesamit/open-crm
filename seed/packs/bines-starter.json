@@ -1,0 +1,29 @@
+{
+  "manifest_version": 1,
+  "id": "bines",
+  "name": "ערכת התחלה (תיקיות 01–07)",
+  "name_en": "Bines kit (folders 01–07)",
+  "description": "מרחב עבודה עם תיקיות 01–07 ולוחות מכל התבניות המובנות (חוץ מהתבניות שנפתחות לכל לקוח או פרויקט).",
+  "description_en": "A workspace with folders 01–07 and boards from every built-in template (except the per-client / per-project ones).",
+  "version": "1.0.0",
+  "icon": "🧰",
+  "publisher": { "name": "Bines" },
+  "permissions": [],
+  "origins": [],
+  "features": [],
+  "data": {
+    "starter_kit": {
+      "default": true,
+      "folders": [
+        "01 · מכירות",
+        "02 · לקוחות ושירות",
+        "03 · פרויקטים",
+        "04 · כספים",
+        "05 · ידע",
+        "06 · תפעול ו-AI",
+        "07 · פורטלים"
+      ],
+      "all_builtin_templates": { "except": ["portal_client", "project_multilevel"] }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "url": "/items/{{parameters.itemId}}/time/start",
+  "method": "POST",
+  "body": { "column_id": "{{parameters.columnId}}" },
+  "response": { "output": "{{body}}" }
+}

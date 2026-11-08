@@ -1,0 +1,17 @@
+{
+  "url": "{{replace(replace(trim(connection.baseUrl), '/[/]+$/', ''), '/[/]api[/]v1$/', '')}}/api/v1/boards/{{parameters.boardId}}/webhooks",
+  "method": "POST",
+  "headers": { "Authorization": "Bearer {{connection.apiToken}}" },
+  "body": {
+    "url": "{{webhook.url}}",
+    "event": "specific_column_changed",
+    "config": {
+      "include_item": "{{parameters.includeItem != false}}",
+      "format": "flat",
+      "column_id": "{{ifempty(parameters.columnId, '')}}"
+    },
+    "description": "Make: specific_column_changed"
+  },
+  "response": { "data": { "externalHookId": "{{body.id}}", "secret": "{{body.secret}}" } },
+  "log": { "sanitize": ["request.headers.authorization", "response.body.secret"] }
+}

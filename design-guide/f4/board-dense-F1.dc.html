@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<title>לוח לידים — F1 דחוס</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;700;800&amp;family=Rubik:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0d3b35}
+a{color:#0d3b35}a:hover{color:#16584f}
+button{font-family:inherit}
+</style>
+</helmet>
+<div dir="rtl" style="min-height: 1100px; display: flex; flex-wrap: wrap; background: #0d3b35; color: #13221f; font-family: 'Rubik', system-ui, sans-serif; font-size: 13px;">
+
+  <nav aria-label="ניווט ראשי" style="flex: 1 1 248px; max-width: 248px; padding: 16px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; color: #e6f2ef;">
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 8px 14px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 30px; height: 30px; border-radius: 50%; background: {{accent}}; color: #0d3b35; display: flex; align-items: center; justify-content: center; font-family: 'Heebo', sans-serif; font-weight: 800;">S</div>
+        <div style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 16px; color: #ffffff;">Demo</div>
+      </div>
+      <span style="width: 26px; height: 26px; border-radius: 50%; background: #c2410c; color: #fff; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center;">עב</span>
+    </div>
+    <label style="display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px; margin-bottom: 8px; border-radius: 10px; background: rgba(255,255,255,0.08); color: #a9c9c1;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4-4"></path></svg>
+      <input type="search" placeholder="חיפוש לוחות ופריטים" aria-label="חיפוש" style="border: 0; outline: none; background: transparent; font: inherit; color: #ffffff; width: 100%;">
+      <span style="font-size: 11px; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,0.12);">Ctrl K</span>
+    </label>
+    <a href="#" style="display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 10px; border-radius: 10px; color: #cfe3de; text-decoration: none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>בית</a>
+    <a href="#" style="display: flex; align-items: center; justify-content: space-between; height: 32px; padding: 0 10px; border-radius: 10px; color: #cfe3de; text-decoration: none;">
+      <span style="display: flex; align-items: center; gap: 10px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 12l3 3 5-6"></path></svg>העבודה שלי</span>
+      <span style="font-size: 11px; color: #a9c9c1;">12</span></a>
+    <a href="#" style="display: flex; align-items: center; justify-content: space-between; height: 32px; padding: 0 10px; border-radius: 10px; color: #cfe3de; text-decoration: none;">
+      <span style="display: flex; align-items: center; gap: 10px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h4l2 3h4l2-3h4"></path><path d="M5 5h14l1 8v6H4v-6z"></path></svg>תיבת עדכונים</span>
+      <span style="min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: {{accent}}; color: #0d3b35; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;">5</span></a>
+    <a href="#" style="display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 10px; border-radius: 10px; color: #cfe3de; text-decoration: none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"></path></svg>אוטומציות</a>
+
+    <div style="padding: 14px 10px 4px; font-size: 11px; font-weight: 600; color: #8fb8ae;">מועדפים</div>
+    <sc-for list="{{favorites}}" as="b" hint-placeholder-count="3">
+      <a href="#" style="display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px; border-radius: 10px; background: {{b.bg}}; color: {{b.fg}}; font-weight: {{b.weight}}; text-decoration: none;">
+        <span style="color: {{accent}};">★</span>{{b.name}}</a>
+    </sc-for>
+
+    <div style="padding: 14px 10px 4px; font-size: 11px; font-weight: 600; color: #8fb8ae;">מרחבי עבודה</div>
+    <sc-for list="{{spaces}}" as="s" hint-placeholder-count="5">
+      <div style="display: flex; align-items: center; justify-content: space-between; height: 30px; padding: 0 10px; border-radius: 10px; color: #cfe3de;">
+        <span style="display: flex; align-items: center; gap: 8px;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="{{s.chevron}}"></path></svg>{{s.name}}</span>
+        <span style="font-size: 11px; color: #8fb8ae;">{{s.count}}</span>
+      </div>
+      <sc-for list="{{s.boards}}" as="b" hint-placeholder-count="0">
+        <a href="#" style="display: block; height: 28px; line-height: 28px; padding-inline-start: 30px; border-radius: 10px; background: {{b.bg}}; color: {{b.fg}}; font-weight: {{b.weight}}; text-decoration: none;">{{b.name}}</a>
+      </sc-for>
+    </sc-for>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 12px; padding-inline-start: 0; box-sizing: border-box; display: flex;">
+    <div style="flex: 1 1 auto; min-width: 0; background: #ffffff; border-radius: 20px; padding: 20px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 24px 60px rgba(0,0,0,0.25);">
+      <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <h1 style="margin: 0; font-family: 'Heebo', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.6px; color: #0d3b35;">לידים</h1>
+          <div style="display: flex; gap: 16px; padding: 6px 12px; border-radius: 12px; background: #f1f6f4;">
+            <span><span style="color: #5d756f;">פתוחים </span><b style="color: #0d3b35;">37</b></span>
+            <span><span style="color: #5d756f;">בצנרת </span><b style="color: #0d3b35;">₪482,300</b></span>
+            <span><span style="color: #5d756f;">נסגרו החודש </span><b style="color: #0b6b45;">₪61,400</b></span>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+          <div style="display: flex;">
+            <span style="width: 28px; height: 28px; border-radius: 50%; background: #0d3b35; border: 2px solid #fff; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center;">עב</span>
+            <span style="width: 28px; height: 28px; border-radius: 50%; background: #2f6fe0; border: 2px solid #fff; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; margin-inline-start: -8px;">דנ</span>
+            <span style="width: 28px; height: 28px; border-radius: 50%; background: #c2410c; border: 2px solid #fff; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; margin-inline-start: -8px;">יל</span>
+            <span style="width: 28px; height: 28px; border-radius: 50%; background: #e3ece9; border: 2px solid #fff; color: #33524b; font-size: 11px; display: flex; align-items: center; justify-content: center; margin-inline-start: -8px;">+4</span>
+          </div>
+          <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #d5e2de; border-radius: 12px; background: #ffffff; color: #0d3b35; font-size: 13px; cursor: pointer;">אוטומציות · 4</button>
+          <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #d5e2de; border-radius: 12px; background: #ffffff; color: #0d3b35; font-size: 13px; cursor: pointer;">הרשאות</button>
+          <button type="button" style="height: 36px; padding: 0 16px; border: 0; border-radius: 12px; background: {{accent}}; color: #0d3b35; font-size: 14px; font-weight: 700; cursor: pointer;">+ ליד חדש</button>
+        </div>
+      </header>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+        <div role="tablist" aria-label="תצוגות" style="display: flex; gap: 2px; padding: 3px; border-radius: 12px; background: #f1f6f4;">
+          <button type="button" role="tab" aria-selected="true" style="height: 30px; padding: 0 14px; border: 0; border-radius: 9px; background: #0d3b35; color: #ffffff; font-size: 13px; font-weight: 600; cursor: pointer;">טבלה ראשית</button>
+          <button type="button" role="tab" aria-selected="false" style="height: 30px; padding: 0 14px; border: 0; border-radius: 9px; background: transparent; color: #33524b; font-size: 13px; cursor: pointer;">שלי</button>
+          <button type="button" role="tab" aria-selected="false" style="height: 30px; padding: 0 14px; border: 0; border-radius: 9px; background: transparent; color: #33524b; font-size: 13px; cursor: pointer;">קנבן</button>
+          <button type="button" role="tab" aria-selected="false" style="height: 30px; padding: 0 14px; border: 0; border-radius: 9px; background: transparent; color: #33524b; font-size: 13px; cursor: pointer;">לוח שנה</button>
+          <button type="button" aria-label="תצוגה חדשה" style="height: 30px; width: 30px; border: 0; border-radius: 9px; background: transparent; color: #33524b; font-size: 16px; cursor: pointer;">+</button>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px;">
+          <label style="display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border: 1px solid #d5e2de; border-radius: 10px; color: #5d756f;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4-4"></path></svg>
+            <input type="search" placeholder="חיפוש בלוח" aria-label="חיפוש בלוח" style="border: 0; outline: none; background: transparent; font: inherit; width: 110px; color: #13221f;">
+          </label>
+          <button type="button" style="height: 32px; padding: 0 10px; border: 0; border-radius: 10px; background: #e8f0fd; color: #1d4ea8; font-size: 13px; font-weight: 500; cursor: pointer;">אחראי: אני ✕</button>
+          <button type="button" style="height: 32px; padding: 0 10px; border: 1px dashed #c4d4cf; border-radius: 10px; background: transparent; color: #33524b; font-size: 13px; cursor: pointer;">+ פילטר</button>
+          <button type="button" style="height: 32px; padding: 0 10px; border: 0; border-radius: 10px; background: transparent; color: #33524b; font-size: 13px; cursor: pointer;">מיון</button>
+          <button type="button" style="height: 32px; padding: 0 10px; border: 0; border-radius: 10px; background: transparent; color: #33524b; font-size: 13px; cursor: pointer;">קיבוץ</button>
+          <button type="button" style="height: 32px; padding: 0 10px; border: 0; border-radius: 10px; background: transparent; color: #33524b; font-size: 13px; cursor: pointer;">ייצוא</button>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <div style="min-width: 1000px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: grid; grid-template-columns: 36px minmax(220px, 1fr) 80px 128px 92px 100px 100px 88px 92px; height: 32px; align-items: center; border-bottom: 1px solid #e3ece9; color: #5d756f; font-size: 12px; font-weight: 600;">
+            <span></span><span>ליד</span><span style="text-align: center;">אחראי</span><span style="text-align: center;">סטטוס</span><span style="text-align: center;">עדיפות</span><span style="text-align: center;">מקור</span><span style="text-align: center;">סכום</span><span style="text-align: center;">מעקב</span><span style="text-align: center;">עודכן</span>
+          </div>
+          <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+            <section>
+              <div style="display: flex; align-items: center; gap: 8px; height: 30px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5d756f" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="{{g.chevron}}"></path></svg>
+                <span style="width: 8px; height: 20px; border-radius: 4px; background: {{g.color}};"></span>
+                <span style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 800; color: #0d3b35;">{{g.title}}</span>
+                <span style="padding: 1px 8px; border-radius: 999px; background: #f1f6f4; color: #33524b; font-size: 12px; font-weight: 600;">{{g.count}}</span>
+                <span style="color: #5d756f; font-size: 12px;">{{g.sum}}</span>
+              </div>
+              <sc-if value="{{g.open}}" hint-placeholder-val="{{ true }}">
+                <div style="border: 1px solid #e3ece9; border-radius: 12px; overflow: hidden; margin-top: 4px;">
+                  <sc-for list="{{g.items}}" as="it" hint-placeholder-count="4">
+                    <div style="display: grid; grid-template-columns: 36px minmax(220px, 1fr) 80px 128px 92px 100px 100px 88px 92px; height: 36px; align-items: center; border-bottom: 1px solid #eef3f1; background: {{it.rowBg}};">
+                      <label style="display: flex; align-items: center; justify-content: center;"><input type="checkbox" aria-label="בחירת {{it.name}}"></label>
+                      <span style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+                        <span style="font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{it.name}}</span>
+                        <sc-if value="{{it.hasUpdates}}" hint-placeholder-val="{{ false }}">
+                          <span style="display: inline-flex; align-items: center; gap: 3px; font-size: 11px; padding: 0 6px; border-radius: 6px; background: #f1f6f4; color: #33524b;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="עדכונים"><path d="M4 5h16v11H9l-5 4z"></path></svg>{{it.updates}}</span>
+                        </sc-if>
+                      </span>
+                      <span style="display: flex; justify-content: center;">
+                        <span style="width: 24px; height: 24px; border-radius: 50%; background: {{it.ownerColor}}; color: #ffffff; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center;">{{it.owner}}</span>
+                      </span>
+                      <span style="display: flex; justify-content: center;">
+                        <span style="height: 24px; padding: 0 10px; border-radius: 7px; background: {{it.statusBg}}; color: {{it.statusFg}}; font-weight: 600; font-size: 12px; display: flex; align-items: center; gap: 6px;">
+                          <span style="width: 7px; height: 7px; border-radius: 50%; background: {{it.statusColor}};"></span>{{it.status}}</span>
+                      </span>
+                      <span style="text-align: center; color: {{it.prioColor}}; font-weight: 600; font-size: 12px;">{{it.prio}}</span>
+                      <span style="text-align: center; color: #33524b;">{{it.source}}</span>
+                      <span style="text-align: center; font-weight: 600; font-variant-numeric: tabular-nums;">{{it.amount}}</span>
+                      <span style="text-align: center; color: {{it.dateColor}}; font-weight: {{it.dateWeight}};">{{it.date}}</span>
+                      <span style="text-align: center; color: #5d756f; font-size: 12px;">{{it.updated}}</span>
+                    </div>
+                  </sc-for>
+                  <div style="display: grid; grid-template-columns: 36px minmax(220px, 1fr) 80px 128px 92px 100px 100px 88px 92px; height: 34px; align-items: center; background: #f7faf9;">
+                    <span></span>
+                    <span style="color: #5d756f;">+ הוספת ליד</span>
+                    <span></span>
+                    <span style="display: flex; height: 10px; margin: 0 10px; border-radius: 5px; overflow: hidden;">
+                      <sc-for list="{{g.bar}}" as="seg" hint-placeholder-count="3"><span style="width: {{seg.w}}; background: {{seg.c}};"></span></sc-for>
+                    </span>
+                    <span></span><span></span>
+                    <span style="text-align: center; font-weight: 700; color: #0d3b35; font-size: 12px;">{{g.sum}}</span>
+                    <span></span><span></span>
+                  </div>
+                </div>
+              </sc-if>
+            </section>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ffb020","options":["#ffb020","#7dd3a8","#ff8a65","#a5b4fc"]},"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = {
+      new: { status: 'חדש', statusColor: '#2f6fe0', statusBg: '#e8f0fd', statusFg: '#1d4ea8' },
+      working: { status: 'בטיפול', statusColor: '#e8920c', statusBg: '#fff3dd', statusFg: '#8a5200' },
+      waiting: { status: 'ממתין ללקוח', statusColor: '#8a4fd8', statusBg: '#f3ecfd', statusFg: '#5f2fa8' },
+      won: { status: 'נסגר', statusColor: '#13a067', statusBg: '#e3f6ee', statusFg: '#0b6b45' },
+      stuck: { status: 'חסום', statusColor: '#e0364f', statusBg: '#fde8eb', statusFg: '#a51d33' },
+    };
+    const P = {
+      AB: { owner: 'עב', ownerColor: '#0d3b35' }, DN: { owner: 'דנ', ownerColor: '#2f6fe0' },
+      YL: { owner: 'יל', ownerColor: '#c2410c' }, RT: { owner: 'רת', ownerColor: '#8a4fd8' },
+    };
+    const PR = { h: { prio: 'גבוהה', prioColor: '#a51d33' }, m: { prio: 'בינונית', prioColor: '#8a5200' }, l: { prio: 'נמוכה', prioColor: '#5d756f' } };
+    let n = 0;
+    const row = (name, p, s, pr, source, amount, date, updated, upd, late) => ({
+      name, ...P[p], ...S[s], ...PR[pr], source, amount, date, updated,
+      updates: upd || 0, hasUpdates: !!upd,
+      dateColor: late ? '#a51d33' : '#33524b', dateWeight: late ? 600 : 400,
+      rowBg: (n++ % 2) ? '#fcfdfd' : '#ffffff',
+    });
+    const bar = (parts) => parts.map(([k, w]) => ({ c: S[k].statusColor, w: w + '%' }));
+    const open = 'M6 9l6 6 6-6', closed = 'M15 6l-6 6 6 6';
+    const groups = [
+      { title: 'לידים חדשים', color: '#2f6fe0', count: '6', sum: '₪71,700', open: true, chevron: open,
+        bar: bar([['new', 67], ['working', 33]]), items: [
+        row('דנה — אפליקציית הזמנות', 'AB', 'new', 'h', 'המלצה', '₪18,000', 'היום', 'לפני 5 דק׳', 3),
+        row('מאפיית השכונה', 'DN', 'new', 'l', 'פייסבוק', '₪4,500', 'מחר', 'לפני שעה'),
+        row('דנה כהן — סטודיו לעיצוב', 'YL', 'working', 'm', 'אתר', '₪9,200', '7 אוק׳', 'אתמול', 1),
+        row('אולם אירועים גלים', 'RT', 'new', 'h', 'גוגל', '₪22,000', '8 אוק׳', 'אתמול'),
+        row('מוסך האחים חדד', 'DN', 'new', 'm', 'המלצה', '₪7,800', '9 אוק׳', 'לפני יומיים'),
+        row('בית ספר למוזיקה תווים', 'AB', 'working', 'l', 'אינסטגרם', '₪10,200', '10 אוק׳', 'לפני 3 ימים', 2),
+      ] },
+      { title: 'בטיפול', color: '#e8920c', count: '5', sum: '₪96,300', open: true, chevron: open,
+        bar: bar([['working', 40], ['waiting', 20], ['stuck', 40]]), items: [
+        row('קליניקה ד״ר לוי', 'AB', 'waiting', 'm', 'גוגל', '₪12,000', '3 אוק׳', 'היום', 4, true),
+        row('רשת חנויות אופק', 'DN', 'stuck', 'h', 'כנס', '₪36,000', '1 אוק׳', 'לפני שבוע', 0, true),
+        row('יוסי מזרחי — הובלות', 'YL', 'working', 'm', 'המלצה', '₪6,800', '8 אוק׳', 'היום', 1),
+        row('חברת ביטוח אמנה', 'RT', 'working', 'h', 'לינקדאין', '₪29,500', '12 אוק׳', 'אתמול'),
+        row('פיצה על האש', 'AB', 'stuck', 'l', 'פייסבוק', '₪12,000', '29 ספט׳', 'לפני 9 ימים', 0, true),
+      ] },
+      { title: 'ממתין להחלטת לקוח', color: '#8a4fd8', count: '24', sum: '₪254,100', open: false, chevron: closed, bar: [], items: [] },
+      { title: 'נסגרו החודש', color: '#13a067', count: '3', sum: '₪61,400', open: true, chevron: open,
+        bar: bar([['won', 100]]), items: [
+        row('משרד עו״ד בר-און', 'AB', 'won', 'm', 'אתר', '₪15,500', '—', 'לפני 4 ימים', 6),
+        row('גן ילדים הפרפר', 'DN', 'won', 'l', 'פייסבוק', '₪3,900', '—', 'לפני שבוע'),
+        row('נדל״ן כהן ושות׳', 'RT', 'won', 'h', 'המלצה', '₪42,000', '—', 'לפני שבוע', 9),
+      ] },
+      { title: 'ארכיון — רבעון 3', color: '#9fb5ae', count: '118', sum: '₪1.2M', open: false, chevron: closed, bar: [], items: [] },
+    ];
+    const cur = { bg: 'rgba(255,255,255,0.14)', fg: '#ffffff', weight: 600 };
+    const def = { bg: 'transparent', fg: '#cfe3de', weight: 400 };
+    const favorites = [
+      { name: 'לידים', ...cur }, { name: 'פרויקטים פעילים', ...def }, { name: 'כרטיסי תמיכה', ...def },
+    ];
+    const b = (name, on) => ({ name, ...(on ? cur : def) });
+    const spaces = [
+      { name: 'מכירות', count: '4', chevron: open, boards: [b('אנשי קשר'), b('לידים', true), b('הזדמנויות'), b('הצעות מחיר')] },
+      { name: 'לקוחות ושירות', count: '5', chevron: open, boards: [b('לקוחות'), b('בנק שעות'), b('כרטיסי תמיכה')] },
+      { name: 'פרויקטים', count: '9', chevron: closed, boards: [] },
+      { name: 'כספים', count: '6', chevron: closed, boards: [] },
+      { name: 'שיווק', count: '7', chevron: closed, boards: [] },
+    ];
+    return { accent: this.props.accent ?? '#ffb020', groups, favorites, spaces };
+  }
+}
+</script>
+</body>
+</html>

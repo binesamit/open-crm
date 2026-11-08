@@ -1,0 +1,87 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "control_panel",
+  "format_version": 2,
+  "existing_board_id": "5103636390",
+  "name": "בקרה · אוטומציות",
+  "description": "לוח בקרה להפעלה ידנית של אוטומציות n8n. שינוי הסטטוס ל'הרץ עכשיו' מפעיל את הסנכרון.",
+  "board_kind": "public",
+  "folder": "06",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "topics",
+      "title": "Group Title",
+      "color": "forest"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6ydnm0",
+      "title": "הפעלה",
+      "type": "status",
+      "description": "בחר 'הרץ עכשיו' כדי להפעיל את הסנכרון. הסטטוס יתעדכן אוטומטית בסיום.",
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "רץ כעת",
+            "color": "yellow",
+            "index": 2
+          },
+          {
+            "id": 1,
+            "label": "הרץ עכשיו",
+            "color": "forest",
+            "index": 1
+          },
+          {
+            "id": 2,
+            "label": "נכשל",
+            "color": "crimson",
+            "index": 4
+          },
+          {
+            "id": 3,
+            "label": "הושלם",
+            "color": "blue",
+            "index": 3
+          },
+          {
+            "id": 17,
+            "label": "מוכן",
+            "color": "gray",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "long_text_mm6yk6j9",
+      "title": "תוצאה אחרונה",
+      "type": "long_text",
+      "description": "[agent-write] סיכום הריצה האחרונה — נכתב על ידי n8n",
+      "settings": {}
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "long_text_mm6yk6j9": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

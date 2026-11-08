@@ -1,0 +1,6 @@
+{
+  "url": "/items/{{parameters.itemId}}/cells/{{parameters.columnId}}/links",
+  "method": "POST",
+  "body": { "url": "{{parameters.url}}", "name": "{{ifempty(parameters.name, omit)}}" },
+  "response": { "output": "{{body}}" }
+}

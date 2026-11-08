@@ -1,0 +1,18 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+}
+body {
+  margin: 0;
+  padding: 12px;
+  background: transparent;
+  color: #1f2a37;
+}
+.dark body {
+  color: #e5e7eb;
+}
+li {
+  cursor: pointer;
+  padding-block: 2px;
+}

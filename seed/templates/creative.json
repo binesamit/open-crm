@@ -1,0 +1,130 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "creative",
+  "format_version": 2,
+  "existing_board_id": "5103747135",
+  "name": "קריאייטיב",
+  "description": null,
+  "board_kind": "public",
+  "folder": "06",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "topics",
+      "title": "פתוח",
+      "color": "blue"
+    },
+    {
+      "id": "group_mm6zvs8d",
+      "title": "סגור",
+      "color": "green"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "status",
+      "title": "Status",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "בעבודה",
+            "color": "yellow",
+            "index": 2
+          },
+          {
+            "id": 1,
+            "label": "הושלם",
+            "color": "forest",
+            "index": 6
+          },
+          {
+            "id": 2,
+            "label": "לא אושר",
+            "color": "crimson",
+            "index": 4
+          },
+          {
+            "id": 3,
+            "label": "מוכן להתחיל",
+            "color": "blue",
+            "index": 1
+          },
+          {
+            "id": 4,
+            "label": "דיון",
+            "color": "purple",
+            "index": 3
+          },
+          {
+            "id": 5,
+            "label": "",
+            "color": "gray",
+            "index": 7
+          },
+          {
+            "id": 6,
+            "label": "אושר",
+            "color": "forest",
+            "index": 5
+          },
+          {
+            "id": 155,
+            "label": "אפיון",
+            "color": "plum",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple_person_mm6z9vrr",
+      "title": "אחראי",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "file_mm6z1cxe",
+      "title": "מסמכים",
+      "type": "file",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "votes_mm6zbdv",
+      "title": "הצבעה בעד",
+      "type": "vote",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "votes_mm6za4mw",
+      "title": "הצבעה נגד",
+      "type": "vote",
+      "description": null,
+      "settings": {}
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": []
+}

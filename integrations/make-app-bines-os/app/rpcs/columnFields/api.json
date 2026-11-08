@@ -1,0 +1,7 @@
+{
+  "url": "/boards/{{parameters.boardId}}/fields",
+  "qs": { "subitems": "{{if(parameters.subitems, 'true', 'false')}}" },
+  "response": {
+    "output": { "name": "columns", "label": "Column values", "type": "collection", "spec": "{{body.data}}" }
+  }
+}

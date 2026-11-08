@@ -1,0 +1,15 @@
+[
+  { "url": "/boards/{{parameters.boardId}}/schema", "response": { "temp": { "schema": "{{body}}" } } },
+  {
+    "url": "/boards/{{temp.schema.subitems.board_id}}/items/find",
+    "method": "POST",
+    "qs": { "format": "flat" },
+    "body": {
+      "column_id": "{{parameters.column_id}}",
+      "value": "{{ifempty(parameters.choice, parameters.value)}}",
+      "match": "{{parameters.match}}",
+      "limit": "{{parameters.limit}}"
+    },
+    "response": { "limit": "{{parameters.limit}}", "iterate": "{{body.data}}", "output": "{{item}}" }
+  }
+]

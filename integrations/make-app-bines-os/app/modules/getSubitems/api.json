@@ -1,0 +1,5 @@
+{
+  "url": "/items/{{parameters.itemId}}/subitems",
+  "qs": { "format": "flat" },
+  "response": { "limit": "{{parameters.limit}}", "iterate": "{{body.data}}", "output": "{{item}}" }
+}

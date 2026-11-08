@@ -1,0 +1,45 @@
+name: Installer
+
+# The one-command server install (scripts/install.sh) on a clean runner: Docker, HTTPS through Caddy
+# checked from outside the installation, the owner lock, the daily backup and an upgrade. See scripts/install-smoke.sh.
+# GitHub minutes are limited: it runs only when what it installs changes, or by hand (workflow_dispatch).
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/install.sh'
+      - 'scripts/install-smoke.sh'
+      - 'docker/**'
+      - 'apps/api/src/serve.ts'
+      - 'apps/api/src/standalone.ts'
+      - 'docs/SELF-HOSTING.md'
+      - '.github/workflows/installer.yml'
+  pull_request:
+    paths:
+      - 'scripts/install.sh'
+      - 'scripts/install-smoke.sh'
+      - 'docker/**'
+      - 'apps/api/src/serve.ts'
+      - 'apps/api/src/standalone.ts'
+      - 'docs/SELF-HOSTING.md'
+      - '.github/workflows/installer.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: installer-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  installer:
+    name: One-command server install (install.sh) smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Lint the scripts
+        run: shellcheck scripts/install.sh scripts/install-smoke.sh
+      - name: Smoke test
+        run: bash scripts/install-smoke.sh

@@ -1,0 +1,10 @@
+{
+  "url": "/item-templates/{{parameters.templateId}}/apply",
+  "method": "POST",
+  "body": {
+    "group_id": "{{parameters.groupId}}",
+    "parent_item_id": "{{parameters.parentItemId}}",
+    "variables": "{{ifempty(parameters.variables, emptycollection)}}"
+  },
+  "response": { "output": "{{body}}" }
+}

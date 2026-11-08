@@ -1,0 +1,9 @@
+{
+  "url": "{{replace(replace(trim(parameters.baseUrl), '/[/]+$/', ''), '/[/]api[/]v1$/', '')}}/api/v1/auth/me",
+  "headers": { "Authorization": "Bearer {{parameters.apiToken}}" },
+  "response": {
+    "metadata": { "type": "email", "value": "{{body.user.email}}" },
+    "error": { "message": "[{{statusCode}}] {{ifempty(body.error.message, \"Cannot sign in with this token\")}}" }
+  },
+  "log": { "sanitize": ["request.headers.authorization"] }
+}

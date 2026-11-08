@@ -1,0 +1,4 @@
+[
+  { "name": "id", "label": "Item ID", "type": "text" },
+  { "name": "board_id", "label": "Board ID", "type": "text" }
+]

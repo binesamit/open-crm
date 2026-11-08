@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Bines — side panel",
+  "description": "The Bines item card next to the site you chat on (ManyChat, WhatsApp Web, Gmail…). Configured in the platform.",
+  "version": "0.1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuxmOzdgI9CbbT1CzW8Pq7gEWOg7wD6oXw+sz8z3IuikcB5Tpz2+5rDjbrCnnLHbzsEc14lvpx+O7jG9z862H67DAnAAyzB3FRzQIl6lB3G0Yd8wmBkuaXteaR1nsg1vAS3SNAkbkhBHrXcY3gsrJsEO7GZDmwZ95j3zJGg2y+lS8nGXGvUZ8zryl/aHgPu6rX5wwPJ66QG2A6UaYPmIQ9MoiMkltVA2rMW/FPPqXsRx3ElOB8vZxqYb63JE/HeUz2xuOFFy4wrR7B/a8N49+9p4U9IJbO1HBzoBnLOC92bX4XrIRnUmW3nrFTMWsf+fWjF1oxD2eV3LIRB0CEWc66QIDAQAB",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "storage", "contextMenus"],
+  "optional_host_permissions": ["https://*/*"],
+  "background": {
+    "service_worker": "sw.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_title": "Bines"
+  }
+}

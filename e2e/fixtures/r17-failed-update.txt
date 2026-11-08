@@ -1,0 +1,349 @@
+החיבור לmake מראה חיבור צולח אבל בזרימות הוא נכשל
+
+/api/v1/me/events?account_id=01H00000000000000000000001:1 Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR
+
+/api/v1/flow-connections/01H00000000000000000000002/flows:1 Failed to load resource: the server responded with a status of 502 ()
+
+/api/v1/flow-connections/01H00000000000000000000002/flows:1 Failed to load resource: the server responded with a status of 502 ()
+
+זה מהגליץ'
+
+{
+  "platform": "node",
+  "event_id": "0123456789abcdef0123456789abcdef",
+  "timestamp": 1791366295.239,
+  "datetime": "2026-10-07T09:44:55.239Z",
+  "breadcrumbs": {
+    "values": [
+      {
+        "data": {
+          "url": "https://eu1.make.com/api/v2/scenarios",
+          "status_code": 200,
+          "http.request.method": "GET"
+        },
+        "type": "http",
+        "category": "http",
+        "timestamp": "2026-10-07T09:44:55.160000Z"
+      },
+      {
+        "data": {
+          "url": "https://eu1.make.com/api/v2/scenarios/1234567/logs",
+          "status_code": 400,
+          "http.request.method": "GET"
+        },
+        "type": "http",
+        "level": "warning",
+        "category": "http",
+        "timestamp": "2026-10-07T09:44:55.235000Z"
+      }
+    ]
+  },
+  "project": 1,
+  "level": "error",
+  "exception": {
+    "values": [
+      {
+        "type": "AppError",
+        "value": "flow_platform_error",
+        "mechanism": {
+          "type": "generic",
+          "handled": true
+        },
+        "stacktrace": {
+          "frames": [
+            {
+              "colno": 10,
+              "in_app": false,
+              "lineno": 60,
+              "module": "hono.dist.validator:validator",
+              "abs_path": "/app/node_modules/.pnpm/hono@4.13.12/node_modules/hono/dist/validator/validator.js",
+              "filename": "/app/node_modules/.pnpm/hono@4.13.12/node_modules/hono/dist/validator/validator.js",
+              "function": "?",
+              "pre_context": [
+                "\t\t\tcase \"cookie\": value = getCookie(c);",
+                "\t\t}",
+                "\t\tconst res = await validationFunc(value, c);",
+                "\t\tif (res instanceof Response) return res;",
+                "\t\tc.req.addValidatedData(target, res);"
+              ],
+              "context_line": "\t\treturn await next();",
+              "post_context": [
+                "\t};",
+                "};",
+                "//#endregion",
+                "export { validator };"
+              ]
+            },
+            {
+              "colno": 11,
+              "in_app": false,
+              "lineno": 35,
+              "module": "hono.dist:compose",
+              "abs_path": "/app/node_modules/.pnpm/hono@4.13.12/node_modules/hono/dist/compose.js",
+              "filename": "/app/node_modules/.pnpm/hono@4.13.12/node_modules/hono/dist/compose.js",
+              "function": "dispatch",
+              "pre_context": [
+                "\t\t\tif (middleware[i]) {",
+                "\t\t\t\thandler = middleware[i][0][0];",
+                "\t\t\t\tcontext.req.routeIndex = i;",
+                "\t\t\t} else handler = i === middleware.length && next || void 0;",
+                "\t\t\tif (handler) try {"
+              ],
+              "context_line": "\t\t\t\tres = await handler(context, () =\u003E dispatch(i + 1));",
+              "post_context": [
+                "\t\t\t} catch (err) {",
+                "\t\t\t\tif (err instanceof Error && onError) {",
+                "\t\t\t\t\tcontext.error = err;",
+                "\t\t\t\t\tres = await onError(err, context);",
+                "\t\t\t\t\tisError = true;"
+              ]
+            },
+            {
+              "colno": 25,
+              "in_app": true,
+              "lineno": 36361,
+              "module": "index",
+              "abs_path": "/app/apps/api/dist/index.js",
+              "filename": "/app/apps/api/dist/index.js",
+              "function": "?"
+            },
+            {
+              "colno": 82,
+              "in_app": true,
+              "lineno": 15288,
+              "module": "index",
+              "abs_path": "/app/apps/api/dist/index.js",
+              "filename": "/app/apps/api/dist/index.js",
+              "function": "?"
+            },
+            {
+              "colno": 82,
+              "in_app": true,
+              "lineno": 14762,
+              "module": "index",
+              "abs_path": "/app/apps/api/dist/index.js",
+              "filename": "/app/apps/api/dist/index.js",
+              "function": "Object.listFlows"
+            },
+            {
+              "colno": 29,
+              "in_app": true,
+              "lineno": 14743,
+              "module": "index",
+              "abs_path": "/app/apps/api/dist/index.js",
+              "filename": "/app/apps/api/dist/index.js",
+              "function": "statsOf"
+            },
+            {
+              "in_app": false,
+              "module": "index 1",
+              "abs_path": "index 1",
+              "filename": "index 1",
+              "function": "Promise.all"
+            },
+            {
+              "colno": 13,
+              "in_app": true,
+              "lineno": 14727,
+              "module": "index",
+              "abs_path": "/app/apps/api/dist/index.js",
+              "filename": "/app/apps/api/dist/index.js",
+              "function": "logs"
+            },
+            {
+              "colno": 5,
+              "in_app": false,
+              "lineno": 103,
+              "module": "task_queues",
+              "abs_path": "node:internal/process/task_queues",
+              "filename": "node:internal/process/task_queues",
+              "function": "process.processTicksAndRejections"
+            },
+            {
+              "colno": 11,
+              "in_app": true,
+              "lineno": 14667,
+              "module": "index",
+              "abs_path": "/app/apps/api/dist/index.js",
+              "filename": "/app/apps/api/dist/index.js",
+              "function": "jsonCall"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "modules": {
+    "pg": "^8.23.1",
+    "tsx": "^4.23.0",
+    "yjs": "^13.6.33",
+    "zod": "^4.6.0",
+    "hono": "^4.13.0",
+    "pino": "^10.3.0",
+    "tsup": "^8.5.0",
+    "unpdf": "^1.8.1",
+    "fflate": "^0.8.3",
+    "vitest": "^5.0.0",
+    "crossws": "^0.4.12",
+    "@types/pg": "^8.23.1",
+    "@bines/sdk": "workspace:^",
+    "typescript": "~5.9.3",
+    "@types/node": "^22.10.0",
+    "better-auth": "^1.7.7",
+    "drizzle-kit": "^0.31.11",
+    "drizzle-orm": "^0.45.3",
+    "pino-pretty": "^13.0.0",
+    "y-protocols": "^1.0.6",
+    "@sentry/node": "^11.4.0",
+    "@bines/shared": "workspace:*",
+    "graphile-worker": "^0.18.0",
+    "@bines/server-ai": "workspace:^",
+    "@anthropic-ai/sdk": "^0.131.0",
+    "@hono/node-server": "^2.1.0",
+    "@hono/zod-openapi": "^1.6.0",
+    "@aws-sdk/client-s3": "^3.1144.0",
+    "@bines/server-mail": "workspace:*",
+    "@hocuspocus/server": "^4.7.0",
+    "@electric-sql/pglite": "^0.5.8",
+    "@hocuspocus/provider": "^4.7.0",
+    "@scalar/api-reference": "1.73.0",
+    "@modelcontextprotocol/client": "^2.3.0",
+    "@modelcontextprotocol/server": "^2.3.0",
+    "@aws-sdk/s3-request-presigner": "^3.1144.0"
+  },
+  "contexts": {
+    "os": {
+      "name": "Debian",
+      "type": "os",
+      "version": "13.7\n",
+      "kernel_version": "6.18.15+deb13-cloud-amd64"
+    },
+    "app": {
+      "type": "app",
+      "app_memory": 229658624,
+      "app_start_time": "2026-10-07T07:42:05.929Z"
+    },
+    "trace": {
+      "type": "trace",
+      "span_id": "8238466ad02d8a4d",
+      "trace_id": "2077e8533c384e5c8892fba05934f070"
+    },
+    "device": {
+      "arch": "x64",
+      "type": "device",
+      "boot_time": "2026-07-21T14:10:45.048Z",
+      "free_memory": 165438029824,
+      "memory_size": 346488938496,
+      "cpu_description": "AMD EPYC 9655P 96-Core Processor",
+      "processor_count": 48,
+      "processor_frequency": 0
+    },
+    "culture": {
+      "type": "culture",
+      "locale": "en-US",
+      "timezone": "UTC"
+    },
+    "runtime": {
+      "name": "node",
+      "type": "runtime",
+      "version": "v22.23.3"
+    },
+    "cloud_resource": {
+      "type": "cloud_resource"
+    }
+  },
+  "sdk": {
+    "name": "sentry.javascript.node",
+    "version": "11.4.0",
+    "packages": [
+      {
+        "name": "npm:@sentry/node",
+        "version": "11.4.0"
+      }
+    ],
+    "integrations": [
+      "EventFilters",
+      "FunctionToString",
+      "LinkedErrors",
+      "Dedupe",
+      "RequestData",
+      "NodeSystemError",
+      "ConversationId",
+      "Console",
+      "Http",
+      "NodeFetch",
+      "OnUncaughtException",
+      "ContextLines",
+      "LocalVariablesAsync",
+      "Context",
+      "ChildProcess",
+      "WorkerThreads",
+      "ProcessSession",
+      "Modules",
+      "Express",
+      "Fastify",
+      "Hapi",
+      "Hono",
+      "Koa",
+      "Graphql",
+      "Mongo",
+      "Mongoose",
+      "Mysql",
+      "Mysql2",
+      "Redis",
+      "Postgres",
+      "Prisma",
+      "Tedious",
+      "Knex",
+      "GenericPool",
+      "Kafka",
+      "Amqplib",
+      "LruMemoizer",
+      "Dataloader",
+      "Aws",
+      "LangChain",
+      "LangGraph",
+      "Mastra",
+      "VercelAI",
+      "OpenAI",
+      "Anthropic_AI",
+      "Google_GenAI",
+      "Mistral",
+      "Groq",
+      "TogetherAI",
+      "TypeSafe",
+      "PostgresJs",
+      "Firebase",
+      "McpServer",
+      "OnUnhandledRejection",
+      "SpanStreaming"
+    ]
+  },
+  "type": "error",
+  "request": {
+    "url": "https://work.example.com/api/v1/flow-connections/01H00000000000000000000002/flows",
+    "method": "GET"
+  },
+  "environment": "production",
+  "user": {
+    "ip_address": "203.0.113.0"
+  },
+  "hashes": [
+    "de8896a72e5ca4f5ad8a8d3641e21098"
+  ],
+  "title": "AppError: flow_platform_error",
+  "transaction": "GET /api/v1/flow-connections/01H00000000000000000000002/flows",
+  "tags": {
+    "os.name": "Debian",
+    "release": "0000000",
+    "service": "api",
+    "requestId": "tab_gecezyt5vr-114",
+    "environment": "production",
+    "server_name": "api"
+  }
+}
+
+/api/v1/me/events?account_id=01H00000000000000000000001:1  Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR
+/api/v1/updates/01H00000000000000000000003:1  Failed to load resource: the server responded with a status of 400 ()
+icons-Bal7Bp2r.js:1 Uncaught (in promise) ApiError: Request validation failed
+    at n (icons-Bal7Bp2r.js:1:69533)

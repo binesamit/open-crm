@@ -1,0 +1,22 @@
+{
+  "manifest_version": 1,
+  "id": "browser-panel",
+  "name": "פאנל דפדפן",
+  "name_en": "Browser panel",
+  "description": "כרטיס הפריט של המערכת בפאנל הצד של כרום ו-Edge, ליד אתר שבו מתכתבים עם לקוחות (למשל ManyChat). הפאנל מוצא את איש הקשר ופותח את הכרטיס הרגיל שלו. שלב ראשון: חיפוש לפי מה שבכתובת או בטקסט שסומן.",
+  "description_en": "The app's item card in the Chrome / Edge side panel, next to a site where you chat with customers (e.g. ManyChat). The panel finds the contact and opens its usual card. First step: a search by what is in the address or in the selected text.",
+  "version": "0.1.0",
+  "icon": "🧭",
+  "publisher": { "name": "Bines" },
+  "permissions": ["boards:read", "search"],
+  "origins": ["{{SAMPLE_EXTENSIONS_ORIGIN}}"],
+  "features": [
+    {
+      "type": "panel",
+      "key": "panel",
+      "name": "פאנל דפדפן",
+      "name_en": "Browser panel",
+      "url": "{{SAMPLE_EXTENSIONS_ORIGIN}}/browser-panel/index.html"
+    }
+  ]
+}

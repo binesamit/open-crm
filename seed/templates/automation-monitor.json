@@ -1,0 +1,324 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "automation_monitor",
+  "format_version": 2,
+  "existing_board_id": "5103597829",
+  "name": "מוניטור אוטומציות",
+  "description": "הזנה: Error handlers ב-Make/n8n → webhook → MCP monitor.upsert + Poll יומי. תקלה ⇒ טיקט P2 + WhatsApp למנהל תיק. תקלה > 48 שעות ⇒ הלקוח אדום.",
+  "board_kind": "public",
+  "folder": "06",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xvya5",
+      "title": "פעיל",
+      "color": "gray"
+    },
+    {
+      "id": "group_mm6x8ve4",
+      "title": "לא פעיל",
+      "color": "forest"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x62ts",
+      "title": "פלטפורמה",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "Pipecat",
+            "color": "forest",
+            "index": 4
+          },
+          {
+            "id": 2,
+            "label": "n8n",
+            "color": "crimson",
+            "index": 1
+          },
+          {
+            "id": 3,
+            "label": "ManyChat",
+            "color": "blue",
+            "index": 2
+          },
+          {
+            "id": 4,
+            "label": "Make",
+            "color": "purple",
+            "index": 0
+          },
+          {
+            "id": 7,
+            "label": "כלים פנימיים",
+            "color": "blue",
+            "index": 6
+          },
+          {
+            "id": 10,
+            "label": "Railway",
+            "color": "gray",
+            "index": 5
+          },
+          {
+            "id": 19,
+            "label": "Zapier",
+            "color": "crimson",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "text_mm6xphqz",
+      "title": "מזהה חיצוני",
+      "type": "text",
+      "description": "scenario_id / workflow_id",
+      "settings": {}
+    },
+    {
+      "id": "link_mm6x9p52",
+      "title": "קישור",
+      "type": "link",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xjrzk",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "אזהרה",
+            "color": "yellow",
+            "index": 3
+          },
+          {
+            "id": 1,
+            "label": "פעיל",
+            "color": "forest",
+            "index": 0
+          },
+          {
+            "id": 2,
+            "label": "תקלה",
+            "color": "crimson",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "מושהה",
+            "color": "gray",
+            "index": 1
+          },
+          {
+            "id": 17,
+            "label": "לא ידוע",
+            "color": "gray",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "date_mm6x4gt4",
+      "title": "ריצה אחרונה",
+      "type": "date",
+      "description": "[agent-write] ",
+      "settings": {}
+    },
+    {
+      "id": "date_mm6x8ybz",
+      "title": "הצלחה אחרונה",
+      "type": "date",
+      "description": "[agent-write] ",
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6x844p",
+      "title": "ריצות 7 ימים",
+      "type": "numbers",
+      "description": "[agent-write] ",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6x1m4s",
+      "title": "שגיאות 7 ימים",
+      "type": "numbers",
+      "description": "[agent-write] ",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xg3by",
+      "title": "נפח חודשי",
+      "type": "numbers",
+      "description": "אופרציות / הודעות / דקות",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6x9r2j",
+      "title": "עלות חודשית",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "color_mm6xfe6b",
+      "title": "קריטיות",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "חשוב",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 2,
+            "label": "קריטי",
+            "color": "crimson",
+            "index": 0
+          },
+          {
+            "id": 5,
+            "label": "רגיל",
+            "color": "gray",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "text_mm6xbd81",
+      "title": "בעלים אצל הלקוח",
+      "type": "text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "formula_mm6xj98n",
+      "title": "אחוז כשל",
+      "type": "formula",
+      "description": null,
+      "settings": {
+        "formula": "IF({numeric_mm6x844p}>0,ROUND({numeric_mm6x1m4s}/{numeric_mm6x844p}*100,1),0)"
+      }
+    },
+    {
+      "id": "formula_mm6x6k1n",
+      "title": "בתקלה?",
+      "type": "formula",
+      "description": "עזר לספירה בבורד לקוחות",
+      "settings": {
+        "formula": "IF({color_mm6xjrzk}=\"תקלה\",1,0)"
+      }
+    },
+    {
+      "id": "formula_mm6xqeqj",
+      "title": "מונה",
+      "type": "formula",
+      "description": "עזר לספירת \"אוטומציות במעקב\" בבורד לקוחות",
+      "settings": {
+        "formula": "1"
+      }
+    },
+    {
+      "id": "board_relation_mm6x3n9m",
+      "title": "טיקט פתוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597817"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xqqrr",
+      "title": "פרויקט",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xwam2",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x1qr0",
+      "title": "הזדמנות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597830"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "date_mm6x4gt4": [
+        "@owner"
+      ],
+      "date_mm6x8ybz": [
+        "@owner"
+      ],
+      "numeric_mm6x844p": [
+        "@owner"
+      ],
+      "numeric_mm6x1m4s": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

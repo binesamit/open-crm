@@ -1,0 +1,22 @@
+# Build context of docker/Dockerfile (BuildKit reads <Dockerfile>.dockerignore; there is deliberately no root
+# .dockerignore, so Railway's Railpack build is unaffected).
+**/node_modules
+**/dist
+**/.turbo
+**/coverage
+**/*.log
+.git
+.github
+.claude
+.vscode
+.env
+.env.*
+!.env.example
+docker-compose*.yml
+docs
+design-guide
+e2e
+perf
+reference
+playwright-report
+test-results

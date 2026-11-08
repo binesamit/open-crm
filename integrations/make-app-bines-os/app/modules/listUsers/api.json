@@ -1,0 +1,5 @@
+{
+  "url": "/users",
+  "qs": { "status": "active", "q": "{{parameters.q}}" },
+  "response": { "limit": "{{parameters.limit}}", "iterate": "{{body.data}}", "output": "{{item}}" }
+}

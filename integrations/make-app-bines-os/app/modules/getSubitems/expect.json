@@ -1,0 +1,10 @@
+[
+  { "name": "itemId", "label": "Parent item ID", "type": "text", "required": true },
+  {
+    "name": "limit",
+    "label": "Limit",
+    "type": "uinteger",
+    "default": 100,
+    "help": "The most results this module returns in one run."
+  }
+]

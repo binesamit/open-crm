@@ -1,0 +1,144 @@
+# Self-hosting (docs/SELF-HOSTING.md): the whole platform with one command.
+#
+#   cp .env.example .env        # then fill in the "Self-hosting" section (secrets, admin email, address)
+#   docker compose -f docker-compose.prod.yml up -d
+#
+# Services: postgres, minio (file storage, optional - see COMPOSE_PROFILES), migrate (one-shot: migrations + seed),
+# api (serves the web app too) and worker. All of them read .env; the lines under `environment:` win over it, so
+# the local-development values at the top of .env.example never leak into this stack.
+# (docker-compose.yml is the local-development stack; this file is unrelated to it.)
+
+name: bines-os
+
+x-app: &app
+  image: ${APP_IMAGE:-bines-os:local}
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+    args:
+      VITE_SENTRY_DSN: ${VITE_SENTRY_DSN:-}
+  init: true
+  restart: unless-stopped
+  env_file: [.env]
+  environment: &app-env
+    NODE_ENV: production
+    LOG_LEVEL: ${APP_LOG_LEVEL:-info}
+    API_PORT: '3000'
+    WEB_ORIGIN: ${APP_URL:?set APP_URL in .env (the address people open, e.g. https://work.example.com)}
+    BETTER_AUTH_URL: ${APP_URL}
+    BETTER_AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in .env (openssl rand -base64 48)}
+    SECRET_MASTER_KEY: ${SECRET_MASTER_KEY:?set SECRET_MASTER_KEY in .env (openssl rand -base64 32)}
+    SEED_ADMIN_EMAIL: ${ADMIN_EMAIL:?set ADMIN_EMAIL in .env (the first administrator)}
+    SEED_ACCOUNT_NAME: ${FIRST_ACCOUNT_NAME:-Main}
+    SEED_ACCOUNT_SLUG: ${FIRST_ACCOUNT_SLUG:-main}
+    SEED_TEMPLATE_SET: ${FIRST_ACCOUNT_KIT:-}
+    DATABASE_URL: postgres://${POSTGRES_USER:-bines}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (openssl rand -hex 24)}@postgres:5432/${POSTGRES_DB:-bines_os}
+    TRUST_PROXY: ${PROXY_HOPS:-none}
+    # Files: the bundled MinIO by default; any S3-compatible service when STORAGE_ENDPOINT is set.
+    S3_ENDPOINT: ${STORAGE_ENDPOINT:-http://minio:9000}
+    S3_PUBLIC_ENDPOINT: ${STORAGE_PUBLIC_URL:-}
+    S3_BUCKET: ${STORAGE_BUCKET:-files}
+    S3_REGION: ${STORAGE_REGION:-us-east-1}
+    S3_ACCESS_KEY_ID: ${STORAGE_ACCESS_KEY:?set STORAGE_ACCESS_KEY in .env}
+    S3_SECRET_ACCESS_KEY: ${STORAGE_SECRET_KEY:?set STORAGE_SECRET_KEY in .env (openssl rand -hex 24)}
+    S3_FORCE_PATH_STYLE: ${STORAGE_FORCE_PATH_STYLE:-true}
+    S3_SET_CORS: ${STORAGE_SET_CORS:-false}
+    # Mail: SMTP_* / EMAIL_FROM / RESEND_API_KEY come from .env as they are. The dev-only Mailpit is never used here.
+    MAILPIT_URL: ''
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-bines}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (openssl rand -hex 24)}
+      POSTGRES_DB: ${POSTGRES_DB:-bines_os}
+    volumes: ['pgdata:/var/lib/postgresql'] # PG 18+ keeps its data in /var/lib/postgresql/18/docker
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  minio:
+    # S3-compatible file storage. MinIO no longer publishes images upstream; this is the last free build, frozen.
+    # Prefer an external S3 service for production (STORAGE_ENDPOINT, and drop "minio" from COMPOSE_PROFILES).
+    image: bitnamilegacy/minio:2025.7.23
+    profiles: [minio]
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY:?set STORAGE_ACCESS_KEY in .env}
+      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_KEY:?set STORAGE_SECRET_KEY in .env (openssl rand -hex 24)}
+      MINIO_DEFAULT_BUCKETS: ${STORAGE_BUCKET:-files} # created on first start
+    ports: ['${MINIO_PORT:-9000}:9000'] # browsers upload and download here (STORAGE_PUBLIC_URL)
+    volumes: ['miniodata:/bitnami/minio/data']
+    healthcheck:
+      test: ['CMD', 'curl', '-fsS', 'http://localhost:9000/minio/health/live']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # One-shot release: database migrations, then the idempotent seed (built-in templates; the first account and the
+  # admin invitation only on an empty database). Runs on every `up`; api and worker wait for it to succeed.
+  migrate:
+    <<: *app
+    restart: 'no'
+    command: ['sh', '-c', 'node dist/migrate.js && node dist/seed.js']
+    healthcheck:
+      disable: true
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    <<: *app
+    # The api alone (the image's default is standalone mode, which would also run the worker's jobs).
+    command: ['node', 'dist/index.js']
+    ports: ['${APP_PORT:-3000}:3000']
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      minio:
+        condition: service_healthy
+        required: false # not started when an external S3 is used
+
+  worker:
+    <<: *app
+    command: ['node', '/app/apps/worker/dist/index.js']
+    healthcheck:
+      disable: true # no HTTP port; restarts on crash
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  # Optional: the calendar-sync extension's server (two-way Google Calendar sync, extensions/calendar-sync). Start it
+  # with the `calendar-sync` profile (COMPOSE_PROFILES=minio,calendar-sync) and put it behind your proxy on its own
+  # https address (CALSYNC_PUBLIC_URL); then install it in Bines from <that address>/manifest.json. Google's OAuth
+  # client is entered in the extension's settings page, or here as the default for every account.
+  # docs/SELF-HOSTING.md "Connecting Google Calendar".
+  calendar-sync:
+    image: ${CALSYNC_IMAGE:-bines-calendar-sync:local}
+    build:
+      context: .
+      dockerfile: extensions/calendar-sync/Dockerfile
+    profiles: [calendar-sync]
+    init: true
+    restart: unless-stopped
+    environment:
+      PUBLIC_URL: ${CALSYNC_PUBLIC_URL:-}
+      BINES_ORIGIN: ${APP_URL:-}
+      PORT: '3990'
+      # Its own database on the bundled Postgres (created on first start).
+      DATABASE_URL: postgres://${POSTGRES_USER:-bines}:${POSTGRES_PASSWORD:-}@postgres:5432/${CALSYNC_DB:-calendar_sync}
+      CALSYNC_ENCRYPTION_KEY: ${CALSYNC_ENCRYPTION_KEY:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+    ports: ['${CALSYNC_PORT:-3990}:3990']
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  miniodata:

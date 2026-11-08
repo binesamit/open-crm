@@ -1,0 +1,6 @@
+{
+  "url": "{{replace(replace(trim(connection.baseUrl), '/[/]+$/', ''), '/[/]api[/]v1$/', '')}}/api/v1/webhooks/{{webhook.externalHookId}}",
+  "method": "DELETE",
+  "headers": { "Authorization": "Bearer {{connection.apiToken}}" },
+  "log": { "sanitize": ["request.headers.authorization"] }
+}

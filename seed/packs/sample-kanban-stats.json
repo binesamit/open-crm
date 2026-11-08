@@ -1,0 +1,23 @@
+{
+  "manifest_version": 1,
+  "id": "kanban-stats",
+  "name": "סטטיסטיקת קנבן",
+  "name_en": "Kanban stats",
+  "description": "ווידג׳ט לדשבורד: לכל לוח בדשבורד — כמה פריטים בכל נתיב סטטוס, אחוז השלמה והנתיב הגדול. בוחרים את עמודת הסטטוס בווידג׳ט. קריאה בלבד.",
+  "description_en": "A dashboard widget: for every board of the dashboard — items per status lane, % done and the biggest lane. Pick the status column in the widget. Read-only.",
+  "version": "1.0.0",
+  "icon": "📊",
+  "publisher": { "name": "Bines" },
+  "permissions": ["boards:read"],
+  "origins": ["{{SAMPLE_EXTENSIONS_ORIGIN}}"],
+  "features": [
+    {
+      "type": "dashboard_widget",
+      "key": "lanes",
+      "name": "סטטיסטיקת קנבן",
+      "name_en": "Kanban stats",
+      "url": "{{SAMPLE_EXTENSIONS_ORIGIN}}/kanban-stats/index.html",
+      "default_size": { "w": 6, "h": 4 }
+    }
+  ]
+}

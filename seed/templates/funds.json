@@ -1,0 +1,153 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "funds",
+  "format_version": 2,
+  "existing_board_id": "5103597811",
+  "name": "קופות",
+  "description": "חלוקת כל חשבונית לקופות לפי אחוזי ברירת מחדל (סכום האחוזים = 100). הקצאה מעל ₪20,000 דורשת אישור אדם.",
+  "board_kind": "public",
+  "folder": "04",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6x3qjh",
+      "title": "קופות",
+      "color": "forest"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x53g2",
+      "title": "סוג",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "רזרבה",
+            "color": "forest",
+            "index": 3
+          },
+          {
+            "id": 2,
+            "label": "חובה למדינה",
+            "color": "crimson",
+            "index": 0
+          },
+          {
+            "id": 3,
+            "label": "תפעול",
+            "color": "blue",
+            "index": 1
+          },
+          {
+            "id": 4,
+            "label": "מחלקה",
+            "color": "purple",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "numeric_mm6xpf0m",
+      "title": "אחוז ברירת מחדל",
+      "type": "numbers",
+      "description": "סכום כל האחוזים = 100",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xe668",
+      "title": "הוקצה החודש",
+      "type": "numbers",
+      "description": "[agent-write] מחושב ע\"י MCP fund.summary לחודש הנוכחי (Mirror לא תומך בסינון לפי חודש)",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xyhsz",
+      "title": "הוצא",
+      "type": "numbers",
+      "description": "ידני / Morning הוצאות (שלב 2)",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6x9qdt",
+      "title": "יעד חודשי",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "multiple_person_mm6xwae6",
+      "title": "אחראי",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xweb9",
+      "title": "הקצאות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103600573"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "lookup_mm6xdgna",
+      "title": "הוקצה מצטבר",
+      "type": "mirror",
+      "description": null,
+      "settings": {
+        "relation_column_id": "board_relation_mm6xweb9",
+        "source_column_id": "numeric_mm6xxrp6",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "formula_mm6x21fc",
+      "title": "יתרה",
+      "type": "formula",
+      "description": null,
+      "settings": {
+        "formula": "{lookup_mm6xdgna}-{numeric_mm6xyhsz}"
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "numeric_mm6xe668": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

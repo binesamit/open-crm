@@ -1,0 +1,1 @@
+{ "url": "/items/{{parameters.itemId}}/archive", "method": "POST", "body": {}, "response": { "output": "{{body}}" } }

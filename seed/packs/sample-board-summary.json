@@ -1,0 +1,22 @@
+{
+  "manifest_version": 1,
+  "id": "board-summary",
+  "name": "סיכום בורד",
+  "name_en": "Board summary",
+  "description": "תצוגת לוח שמסכמת את הלוח במבט אחד: כמה פריטים, אחוז השלמה, כמה באיחור, ופילוח לפי סטטוס, קבוצה ואחראי. קריאה בלבד — לא משנה כלום.",
+  "description_en": "A board view that sums the board up at a glance: items, % done, overdue, and a breakdown by status, group and owner. Read-only — it changes nothing.",
+  "version": "1.0.0",
+  "icon": "📋",
+  "publisher": { "name": "Bines" },
+  "permissions": ["boards:read"],
+  "origins": ["{{SAMPLE_EXTENSIONS_ORIGIN}}"],
+  "features": [
+    {
+      "type": "board_view",
+      "key": "summary",
+      "name": "סיכום בורד",
+      "name_en": "Board summary",
+      "url": "{{SAMPLE_EXTENSIONS_ORIGIN}}/board-summary/index.html"
+    }
+  ]
+}

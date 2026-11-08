@@ -1,0 +1,68 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board of the parent items",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "filters",
+          "label": "Filters",
+          "type": "array",
+          "help": "All conditions must match.",
+          "spec": [
+            {
+              "name": "column_id",
+              "label": "Column",
+              "type": "select",
+              "required": true,
+              "options": {
+                "store": "rpc://listColumns?subitems=true",
+                "nested": [
+                  {
+                    "name": "choice",
+                    "label": "Value (pick)",
+                    "type": "select",
+                    "help": "Pick one of the column values — or leave empty and type the value below.",
+                    "options": "rpc://listValues?purpose=filter&subitems=true"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "operator",
+              "label": "Operator",
+              "type": "select",
+              "default": "any_of",
+              "options": [
+                { "label": "Is (any of)", "value": "any_of" },
+                { "label": "Is not (none of)", "value": "not_any_of" },
+                { "label": "Contains text", "value": "contains_text" },
+                { "label": "Greater than", "value": "greater_than" },
+                { "label": "Lower than", "value": "lower_than" },
+                { "label": "Is empty", "value": "is_empty" },
+                { "label": "Is not empty", "value": "is_not_empty" }
+              ]
+            },
+            {
+              "name": "value",
+              "label": "Value",
+              "type": "text",
+              "help": "Used when nothing is picked above. For \"any of\": values separated by commas (labels by text, people / tags / items by ID)."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  { "name": "search", "label": "Search text", "type": "text" },
+  {
+    "name": "limit",
+    "label": "Limit",
+    "type": "uinteger",
+    "default": 100,
+    "help": "The most results this module returns in one run."
+  }
+]

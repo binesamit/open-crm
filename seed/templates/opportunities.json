@@ -1,0 +1,262 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "opportunities",
+  "format_version": 2,
+  "existing_board_id": "5103597830",
+  "name": "הזדמנויות",
+  "description": "מנוע הצמיחה. הסוכן סורק פעם בשבוע כל לקוח פעיל ויוצר \"רעיון\" עם הנמקה; אדם מסנן. לפני סקירה רבעונית: מסמך \"3 הצעות לשיפור\".",
+  "board_kind": "public",
+  "folder": "01",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xxwxb",
+      "title": "פתוחות",
+      "color": "blue"
+    },
+    {
+      "id": "group_mm6xevkm",
+      "title": "סגורות",
+      "color": "blue"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xjc51",
+      "title": "מקור",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "טיקט חוזר",
+            "color": "yellow",
+            "index": 2
+          },
+          {
+            "id": 1,
+            "label": "שיחה",
+            "color": "forest",
+            "index": 5
+          },
+          {
+            "id": 3,
+            "label": "סקירה רבעונית",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "בנק שעות",
+            "color": "purple",
+            "index": 3
+          },
+          {
+            "id": 7,
+            "label": "רעיון סוכן",
+            "color": "blue",
+            "index": 4
+          },
+          {
+            "id": 19,
+            "label": "מוניטור",
+            "color": "crimson",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6x45wq",
+      "title": "סוג",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "ייעול",
+            "color": "forest",
+            "index": 2
+          },
+          {
+            "id": 3,
+            "label": "אוטומציה חדשה",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "הרחבה",
+            "color": "purple",
+            "index": 1
+          },
+          {
+            "id": 7,
+            "label": "הדרכה",
+            "color": "blue",
+            "index": 4
+          },
+          {
+            "id": 9,
+            "label": "חידוש",
+            "color": "yellow",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "long_text_mm6xnwna",
+      "title": "תיאור",
+      "type": "long_text",
+      "description": "[agent-write] הנמקה",
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6xe741",
+      "title": "ערך ללקוח",
+      "type": "long_text",
+      "description": "שעות שנחסכות / מכירות",
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6xqhph",
+      "title": "הערכת סכום",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "color_mm6x34gj",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "הוצג ללקוח",
+            "color": "yellow",
+            "index": 2
+          },
+          {
+            "id": 1,
+            "label": "זכינו",
+            "color": "forest",
+            "index": 4,
+            "is_done": true
+          },
+          {
+            "id": 2,
+            "label": "נדחה",
+            "color": "crimson",
+            "index": 5
+          },
+          {
+            "id": 3,
+            "label": "לבדיקה",
+            "color": "blue",
+            "index": 1
+          },
+          {
+            "id": 4,
+            "label": "הצעה",
+            "color": "purple",
+            "index": 3
+          },
+          {
+            "id": 5,
+            "label": "רעיון",
+            "color": "gray",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6xk5d3",
+      "title": "נוצר ע\"י",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 3,
+            "label": "אדם",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "סוכן",
+            "color": "purple",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "board_relation_mm6xfcsm",
+      "title": "מוניטור",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597829"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x6e2h",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xvzfc",
+      "title": "הצעה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597804"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "long_text_mm6xnwna": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

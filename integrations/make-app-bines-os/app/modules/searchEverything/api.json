@@ -1,0 +1,5 @@
+{
+  "url": "/search",
+  "qs": { "q": "{{parameters.q}}", "archived": "{{if(parameters.archived, '1', omit)}}" },
+  "response": { "output": "{{body}}" }
+}

@@ -1,0 +1,6 @@
+[
+  { "name": "boardId", "type": "text", "label": "Board", "required": true },
+  { "name": "column_id", "type": "text", "label": "Column", "required": true },
+  { "name": "subitems", "type": "boolean", "label": "Subitem columns (the sub-board)" },
+  { "name": "purpose", "type": "text", "label": "write, find or filter" }
+]

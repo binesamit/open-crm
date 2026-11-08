@@ -1,0 +1,1056 @@
+[
+  {
+    "slug": "welcome",
+    "locale": "he",
+    "title": "ברוכים הבאים: איך המערכת בנויה",
+    "route": "home",
+    "start": "offer",
+    "position": 0,
+    "publish": true,
+    "steps": [
+      {
+        "id": "hello",
+        "title": "ברוכים הבאים",
+        "body": "סיור של דקה על המבנה של המערכת: איפה הבורדים, איך מחפשים, ואיפה מקבלים עזרה. אפשר לדלג בכל רגע."
+      },
+      {
+        "id": "sidebar",
+        "anchor": "nav.sidebar",
+        "title": "סרגל הצד",
+        "body": "מכאן מגיעים לכל מקום: הבית, העבודה שלי, תיבת העדכונים ומרחבי העבודה עם הבורדים."
+      },
+      {
+        "id": "boards",
+        "anchor": "nav.boards",
+        "title": "מרחבי עבודה ובורדים",
+        "body": "כל מרחב עבודה מחזיק בורדים, מסמכים ודשבורדים. לחיצה על בורד פותחת אותו."
+      },
+      {
+        "id": "search",
+        "anchor": "nav.search",
+        "title": "חיפוש בכל החשבון",
+        "body": "מחפשים פריט, בורד, מסמך או אדם, ומגיעים ישר אליו."
+      },
+      {
+        "id": "bell",
+        "anchor": "nav.notifications",
+        "title": "התראות",
+        "body": "כאן מופיע כל מה שקשור אליכם: תיוגים, שיבוצים ותזכורות."
+      },
+      {
+        "id": "mywork",
+        "anchor": "nav.my-work",
+        "title": "העבודה שלי",
+        "body": "כל הפריטים שמשובצים אליכם, מכל הבורדים, במקום אחד ולפי תאריכים."
+      },
+      {
+        "id": "help",
+        "anchor": "nav.help",
+        "title": "עזרה תמיד כאן",
+        "body": "בתפריט ה־? יש מרכז ידע עם מדריכים, סיור לכל מסך, ופנייה לתמיכה."
+      }
+    ]
+  },
+  {
+    "slug": "board-basics",
+    "locale": "he",
+    "title": "בורד: פריטים, קבוצות ועמודות",
+    "route": "board",
+    "start": "offer",
+    "position": 1,
+    "publish": true,
+    "steps": [
+      {
+        "id": "title",
+        "anchor": "board.title",
+        "title": "זה בורד",
+        "body": "בורד הוא טבלה של עבודה: כל שורה היא פריט, וכל עמודה היא שדה של הפריט."
+      },
+      {
+        "id": "new",
+        "anchor": "board.new-item",
+        "title": "מוסיפים פריט חדש",
+        "body": "כל שורה בבורד היא פריט: ליד, משימה או לקוח. לחצו כאן כדי להוסיף פריט לקבוצה הראשונה."
+      },
+      {
+        "id": "group",
+        "anchor": "board.group",
+        "title": "קבוצות",
+        "body": "פריטים מסודרים בקבוצות, למשל לפי שלב או חודש. גוררים פריט מקבוצה לקבוצה, ואפשר לקפל קבוצה."
+      },
+      {
+        "id": "column",
+        "anchor": "board.column-header",
+        "title": "עמודות",
+        "body": "בכותרת של כל עמודה אפשר לשנות שם, סוג, רוחב והרשאות."
+      },
+      {
+        "id": "add-column",
+        "anchor": "board.add-column",
+        "title": "עמודה חדשה",
+        "body": "סטטוס, תאריך, אנשים, מספרים, קבצים ועוד. בוחרים סוג, והעמודה נוספת לכל הפריטים."
+      },
+      {
+        "id": "views",
+        "anchor": "board.views",
+        "title": "תצוגות",
+        "body": "אותם נתונים בצורה אחרת: קנבן, לוח שנה, גאנט, מפה או דשבורד. כל תצוגה שומרת פילטרים משלה."
+      }
+    ]
+  },
+  {
+    "slug": "board-find",
+    "locale": "he",
+    "title": "חיפוש, פילטר ומיון בבורד",
+    "route": "board",
+    "start": "menu",
+    "position": 2,
+    "publish": true,
+    "steps": [
+      {
+        "id": "search",
+        "anchor": "board.search",
+        "title": "חיפוש בבורד",
+        "body": "מקלידים מילה ורואים רק את הפריטים שמכילים אותה, בכל העמודות."
+      },
+      {
+        "id": "filter",
+        "anchor": "board.filter",
+        "title": "פילטר",
+        "body": "מסננים לפי כל עמודה: סטטוס, אחראי, תאריך. אפשר לשלב כמה תנאים."
+      },
+      {
+        "id": "sort",
+        "anchor": "board.sort",
+        "title": "מיון",
+        "body": "ממיינים לפי עמודה אחת או כמה. הפילטר והמיון נשמרים בתצוגה."
+      }
+    ]
+  },
+  {
+    "slug": "item-card",
+    "locale": "he",
+    "title": "כרטיס הפריט ועדכונים",
+    "route": "item",
+    "start": "offer",
+    "position": 3,
+    "publish": true,
+    "steps": [
+      {
+        "id": "title",
+        "anchor": "item.title",
+        "title": "כרטיס הפריט",
+        "body": "כל מה שקשור לפריט במקום אחד. לחיצה על השם משנה אותו."
+      },
+      {
+        "id": "updates",
+        "anchor": "item.updates",
+        "title": "עדכונים ותיוגים",
+        "body": "כותבים עדכון, מתייגים אנשים עם @ ומצרפים קבצים. מי שתויג מקבל התראה."
+      },
+      {
+        "id": "tabs",
+        "anchor": "item.tabs",
+        "title": "לשוניות הכרטיס",
+        "body": "בלשונית „שדות” רואים ומשנים את כל העמודות של הפריט. יש גם תתי־פריטים ויומן פעילות."
+      }
+    ]
+  },
+  {
+    "slug": "automations",
+    "locale": "he",
+    "title": "אוטומציות",
+    "route": "automations",
+    "start": "offer",
+    "position": 4,
+    "publish": true,
+    "steps": [
+      {
+        "id": "intro",
+        "title": "אוטומציות",
+        "body": "אוטומציה עושה עבודה במקומכם: כשמשהו קורה בבורד, היא שולחת מייל, משבצת אחראי או מזיזה פריט."
+      },
+      {
+        "id": "list",
+        "anchor": "automations.list",
+        "title": "כל האוטומציות של החשבון",
+        "body": "כאן רואים את כל האוטומציות לפי בורד, אם הן פעילות, ומתי רצו לאחרונה."
+      },
+      {
+        "id": "templates",
+        "anchor": "automations.templates",
+        "title": "מתכונים מוכנים",
+        "body": "בוחרים מתכון, משלימים את הפרטים, והאוטומציה מוכנה. אוטומציה חדשה יוצרים גם מתוך הבורד."
+      }
+    ]
+  },
+  {
+    "slug": "dashboards",
+    "locale": "he",
+    "title": "דשבורדים ווידג'טים",
+    "route": "dashboard",
+    "start": "offer",
+    "position": 5,
+    "publish": true,
+    "steps": [
+      {
+        "id": "widgets",
+        "anchor": "dashboard.widgets",
+        "title": "דשבורד",
+        "body": "דשבורד מרכז נתונים מכמה בורדים: מספרים, גרפים, סוללות התקדמות וטבלאות."
+      },
+      {
+        "id": "add",
+        "anchor": "dashboard.add-widget",
+        "title": "וידג'ט חדש",
+        "body": "בוחרים סוג וידג'ט ואת הבורדים שהוא מסתכל עליהם. גוררים כדי לסדר ומשנים גודל מהפינה."
+      }
+    ]
+  },
+  {
+    "slug": "docs",
+    "locale": "he",
+    "title": "מסמכים",
+    "route": "doc",
+    "start": "offer",
+    "position": 6,
+    "publish": true,
+    "steps": [
+      {
+        "id": "title",
+        "anchor": "doc.title",
+        "title": "מסמך",
+        "body": "מסמך הוא דף עבודה משותף: אפיון, נוהל או סיכום פגישה."
+      },
+      {
+        "id": "editor",
+        "anchor": "doc.editor",
+        "title": "כותבים יחד",
+        "body": "כמה אנשים כותבים בו בבת אחת. הקלידו / כדי להוסיף כותרת, טבלה, תמונה או קישור לבורד."
+      }
+    ]
+  },
+  {
+    "slug": "agents",
+    "locale": "he",
+    "title": "סוכני AI",
+    "route": "agents",
+    "start": "offer",
+    "position": 7,
+    "publish": true,
+    "steps": [
+      {
+        "id": "list",
+        "anchor": "agents.list",
+        "title": "סוכנים",
+        "body": "סוכן AI עובד על הבורדים שלכם לפי ההוראות שנותנים לו: ממיין לידים, עונה על פניות או מסכם."
+      },
+      {
+        "id": "new",
+        "anchor": "agents.new",
+        "title": "סוכן חדש",
+        "body": "נותנים לו שם, הוראות ובורדים לעבוד עליהם. צריך חיבור AI פעיל בחשבון."
+      }
+    ]
+  },
+  {
+    "slug": "my-work",
+    "locale": "he",
+    "title": "העבודה שלי",
+    "route": "my_work",
+    "start": "offer",
+    "position": 8,
+    "publish": true,
+    "steps": [
+      {
+        "id": "list",
+        "anchor": "mywork.list",
+        "title": "כל מה שעליכם",
+        "body": "הפריטים שמשובצים אליכם מכל הבורדים, מסודרים לפי תאריך: באיחור, היום, השבוע ובהמשך."
+      }
+    ]
+  },
+  {
+    "slug": "inbox",
+    "locale": "he",
+    "title": "תיבת עדכונים",
+    "route": "inbox",
+    "start": "offer",
+    "position": 9,
+    "publish": true,
+    "steps": [
+      {
+        "id": "list",
+        "anchor": "inbox.list",
+        "title": "תיבת עדכונים",
+        "body": "עדכונים ותיוגים מהפריטים שאתם עוקבים אחריהם. עונים מכאן בלי לפתוח את הבורד."
+      }
+    ]
+  },
+  {
+    "slug": "admin",
+    "locale": "he",
+    "title": "ניהול החשבון",
+    "route": "admin",
+    "audience": "admins",
+    "start": "offer",
+    "position": 10,
+    "publish": true,
+    "steps": [
+      {
+        "id": "nav",
+        "anchor": "admin.nav",
+        "title": "ניהול החשבון",
+        "body": "כל ההגדרות של החשבון: אנשים, הרשאות, אבטחה, מיתוג, חיבורים והתוכנית."
+      },
+      {
+        "id": "users",
+        "anchor": "admin.users",
+        "title": "אנשים",
+        "body": "מזמינים אנשים, קובעים תפקיד לכל אחד ומארגנים צוותים."
+      },
+      {
+        "id": "ai",
+        "anchor": "admin.ai",
+        "title": "חיבורי AI",
+        "body": "מחברים ספק AI פעם אחת, וכל החשבון משתמש בו: עמודות AI, סוכנים והעוזר."
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-board",
+    "locale": "he",
+    "title": "פתיחת בורד",
+    "route": "home",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "כאן הבורדים שלכם",
+        "body": "בסרגל הצד נמצאים מרחבי העבודה והבורדים. לחצו על אחד מהם כדי לפתוח אותו.",
+        "anchor": "nav.boards",
+        "wait_event": "board_opened"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-item",
+    "locale": "he",
+    "title": "יצירת פריט",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "פריט חדש",
+        "body": "כל שורה בבורד היא פריט — ליד, משימה, הזמנה. לחצו כאן וצרו אחד.",
+        "anchor": "board.new-item",
+        "wait_event": "item_created"
+      },
+      {
+        "id": "b",
+        "title": "יופי!",
+        "body": "הפריט נוצר. אפשר לפתוח אותו בלחיצה על השם שלו."
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-edit",
+    "locale": "he",
+    "title": "עריכת ערך",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "לחצו על תא",
+        "body": "כל תא בטבלה ניתן לעריכה: סטטוס, תאריך, אנשים או השם עצמו. שנו ערך אחד.",
+        "anchor": "board.table",
+        "wait_event": "value_changed"
+      },
+      {
+        "id": "b",
+        "title": "נשמר",
+        "body": "כל שינוי נשמר מיד ומופיע ביומן הפריט."
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-view",
+    "locale": "he",
+    "title": "החלפת תצוגה",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "התצוגות של הבורד",
+        "body": "אותו בורד אפשר לראות כטבלה, קנבן, לוח שנה ועוד. בחרו תצוגה אחרת.",
+        "anchor": "board.views",
+        "wait_event": "view_switched"
+      },
+      {
+        "id": "b",
+        "title": "וגם להוסיף",
+        "body": "בכפתור הזה מוסיפים תצוגה חדשה לבורד.",
+        "anchor": "board.add-view"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-invite",
+    "locale": "he",
+    "title": "הזמנת חבר צוות",
+    "route": "admin",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "משתמשים",
+        "body": "כאן מנהלים את האנשים בחשבון. פתחו את רשימת המשתמשים.",
+        "anchor": "admin.users",
+        "wait_click": true
+      },
+      {
+        "id": "b",
+        "title": "הזמנה",
+        "body": "הזמינו חבר צוות במייל — הוא יקבל קישור להצטרפות.",
+        "anchor": "admin.invite",
+        "wait_event": "teammate_invited"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-update",
+    "locale": "he",
+    "title": "כתיבת עדכון",
+    "route": "item",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "עדכונים",
+        "body": "כאן מדברים על הפריט עם הצוות. אפשר לתייג אנשים עם @.",
+        "anchor": "item.updates"
+      },
+      {
+        "id": "b",
+        "title": "כתבו ושלחו",
+        "body": "כתבו עדכון קצר ושלחו אותו.",
+        "anchor": "item.composer",
+        "wait_event": "update_written"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-file",
+    "locale": "he",
+    "title": "צירוף קובץ",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "תא קבצים",
+        "body": "בעמודת קבצים מצרפים מסמכים ותמונות לפריט. לחצו על התא והעלו קובץ.",
+        "anchor": "board.file-cell",
+        "wait_event": "file_added"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-link",
+    "locale": "he",
+    "title": "חיבור שני פריטים",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "חיבור בורדים",
+        "body": "עמודת \"חיבור בורדים\" מקשרת פריט לפריט בבורד אחר — לקוח לפרויקט, ליד להצעה. לחצו על התא ובחרו פריט.",
+        "anchor": "board.relation-cell",
+        "wait_event": "items_linked"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-timer",
+    "locale": "he",
+    "title": "הפעלת טיימר",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "מעקב שעות",
+        "body": "בעמודת מעקב זמן מפעילים טיימר על פריט. העבירו את העכבר על התא ולחצו ▶.",
+        "anchor": "board.timer",
+        "wait_event": "timer_started"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-automation",
+    "locale": "he",
+    "title": "אוטומציה ראשונה",
+    "route": "automations",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "אוטומציה חדשה",
+        "body": "אוטומציה עושה משהו לבד כשמשהו קורה — למשל מודיעה כשסטטוס משתנה. צרו אחת.",
+        "anchor": "automations.new",
+        "wait_event": "automation_created"
+      }
+    ]
+  },
+  {
+    "slug": "welcome",
+    "locale": "en",
+    "title": "Welcome: how the platform is organized",
+    "route": "home",
+    "start": "offer",
+    "position": 0,
+    "publish": true,
+    "steps": [
+      {
+        "id": "hello",
+        "title": "Welcome",
+        "body": "A one-minute tour of how the platform is organized: where your boards are, how to search, and where to get help. You can skip at any time."
+      },
+      {
+        "id": "sidebar",
+        "anchor": "nav.sidebar",
+        "title": "The sidebar",
+        "body": "Get anywhere from here: Home, My work, the Inbox, and your workspaces with their boards."
+      },
+      {
+        "id": "boards",
+        "anchor": "nav.boards",
+        "title": "Workspaces and boards",
+        "body": "Each workspace holds boards, docs and dashboards. Click a board to open it."
+      },
+      {
+        "id": "search",
+        "anchor": "nav.search",
+        "title": "Search the whole account",
+        "body": "Search for an item, board, doc or person and go straight to it."
+      },
+      {
+        "id": "bell",
+        "anchor": "nav.notifications",
+        "title": "Notifications",
+        "body": "Everything that involves you shows up here: mentions, assignments and reminders."
+      },
+      {
+        "id": "mywork",
+        "anchor": "nav.my-work",
+        "title": "My work",
+        "body": "All the items assigned to you, from every board, in one place and sorted by date."
+      },
+      {
+        "id": "help",
+        "anchor": "nav.help",
+        "title": "Help is always here",
+        "body": "The ? menu has the help center with guides, a tour for every screen, and a way to contact support."
+      }
+    ]
+  },
+  {
+    "slug": "board-basics",
+    "locale": "en",
+    "title": "Boards: items, groups and columns",
+    "route": "board",
+    "start": "offer",
+    "position": 1,
+    "publish": true,
+    "steps": [
+      {
+        "id": "title",
+        "anchor": "board.title",
+        "title": "This is a board",
+        "body": "A board is a table of work: each row is an item, and each column is a field of the item."
+      },
+      {
+        "id": "new",
+        "anchor": "board.new-item",
+        "title": "Add a new item",
+        "body": "Each row on the board is an item: a lead, a task or a customer. Click here to add an item to the first group."
+      },
+      {
+        "id": "group",
+        "anchor": "board.group",
+        "title": "Groups",
+        "body": "Items are organized into groups, for example by stage or month. Drag an item from one group to another, and collapse a group when you want."
+      },
+      {
+        "id": "column",
+        "anchor": "board.column-header",
+        "title": "Columns",
+        "body": "In each column's header you can change its name, type, width and permissions."
+      },
+      {
+        "id": "add-column",
+        "anchor": "board.add-column",
+        "title": "New column",
+        "body": "Status, date, people, numbers, files and more. Choose a type, and the column is added to every item."
+      },
+      {
+        "id": "views",
+        "anchor": "board.views",
+        "title": "Views",
+        "body": "The same data shown another way: Kanban, calendar, Gantt, map or dashboard. Each view keeps its own filters."
+      }
+    ]
+  },
+  {
+    "slug": "board-find",
+    "locale": "en",
+    "title": "Search, filter and sort a board",
+    "route": "board",
+    "start": "menu",
+    "position": 2,
+    "publish": true,
+    "steps": [
+      {
+        "id": "search",
+        "anchor": "board.search",
+        "title": "Search the board",
+        "body": "Type a word to see only the items that contain it, in any column."
+      },
+      {
+        "id": "filter",
+        "anchor": "board.filter",
+        "title": "Filter",
+        "body": "Filter by any column: status, owner, date. You can combine several conditions."
+      },
+      {
+        "id": "sort",
+        "anchor": "board.sort",
+        "title": "Sort",
+        "body": "Sort by one column or several. The filter and sort are saved in the view."
+      }
+    ]
+  },
+  {
+    "slug": "item-card",
+    "locale": "en",
+    "title": "The item card and updates",
+    "route": "item",
+    "start": "offer",
+    "position": 3,
+    "publish": true,
+    "steps": [
+      {
+        "id": "title",
+        "anchor": "item.title",
+        "title": "The item card",
+        "body": "Everything about the item in one place. Click the name to change it."
+      },
+      {
+        "id": "updates",
+        "anchor": "item.updates",
+        "title": "Updates and mentions",
+        "body": "Write an update, mention people with @ and attach files. Anyone you mention gets a notification."
+      },
+      {
+        "id": "tabs",
+        "anchor": "item.tabs",
+        "title": "Card tabs",
+        "body": "The “Fields” tab shows all of the item's columns so you can view and change them. There are also subitems and an activity log."
+      }
+    ]
+  },
+  {
+    "slug": "automations",
+    "locale": "en",
+    "title": "Automations",
+    "route": "automations",
+    "start": "offer",
+    "position": 4,
+    "publish": true,
+    "steps": [
+      {
+        "id": "intro",
+        "title": "Automations",
+        "body": "An automation does the work for you: when something happens on a board, it sends an email, assigns an owner or moves an item."
+      },
+      {
+        "id": "list",
+        "anchor": "automations.list",
+        "title": "All the account's automations",
+        "body": "See all the automations by board, whether they're active, and when they last ran."
+      },
+      {
+        "id": "templates",
+        "anchor": "automations.templates",
+        "title": "Ready-made recipes",
+        "body": "Choose a recipe, fill in the details, and the automation is ready. You can also create a new automation from inside a board."
+      }
+    ]
+  },
+  {
+    "slug": "dashboards",
+    "locale": "en",
+    "title": "Dashboards and widgets",
+    "route": "dashboard",
+    "start": "offer",
+    "position": 5,
+    "publish": true,
+    "steps": [
+      {
+        "id": "widgets",
+        "anchor": "dashboard.widgets",
+        "title": "Dashboard",
+        "body": "A dashboard brings together data from several boards: numbers, charts, progress batteries and tables."
+      },
+      {
+        "id": "add",
+        "anchor": "dashboard.add-widget",
+        "title": "New widget",
+        "body": "Choose a widget type and the boards it looks at. Drag to arrange, and resize from the corner."
+      }
+    ]
+  },
+  {
+    "slug": "docs",
+    "locale": "en",
+    "title": "Docs",
+    "route": "doc",
+    "start": "offer",
+    "position": 6,
+    "publish": true,
+    "steps": [
+      {
+        "id": "title",
+        "anchor": "doc.title",
+        "title": "Doc",
+        "body": "A doc is a shared working page: a spec, a procedure or meeting notes."
+      },
+      {
+        "id": "editor",
+        "anchor": "doc.editor",
+        "title": "Write together",
+        "body": "Several people can write in it at once. Type / to add a heading, a table, an image or a link to a board."
+      }
+    ]
+  },
+  {
+    "slug": "agents",
+    "locale": "en",
+    "title": "AI agents",
+    "route": "agents",
+    "start": "offer",
+    "position": 7,
+    "publish": true,
+    "steps": [
+      {
+        "id": "list",
+        "anchor": "agents.list",
+        "title": "Agents",
+        "body": "An AI agent works on your boards following the instructions you give it: it sorts leads, answers requests or writes summaries."
+      },
+      {
+        "id": "new",
+        "anchor": "agents.new",
+        "title": "New agent",
+        "body": "Give it a name, instructions and the boards to work on. The account needs an active AI connection."
+      }
+    ]
+  },
+  {
+    "slug": "my-work",
+    "locale": "en",
+    "title": "My work",
+    "route": "my_work",
+    "start": "offer",
+    "position": 8,
+    "publish": true,
+    "steps": [
+      {
+        "id": "list",
+        "anchor": "mywork.list",
+        "title": "Everything on your plate",
+        "body": "The items assigned to you from every board, sorted by date: overdue, today, this week and later."
+      }
+    ]
+  },
+  {
+    "slug": "inbox",
+    "locale": "en",
+    "title": "Inbox",
+    "route": "inbox",
+    "start": "offer",
+    "position": 9,
+    "publish": true,
+    "steps": [
+      {
+        "id": "list",
+        "anchor": "inbox.list",
+        "title": "Inbox",
+        "body": "Updates and mentions from the items you follow. Reply from here without opening the board."
+      }
+    ]
+  },
+  {
+    "slug": "admin",
+    "locale": "en",
+    "title": "Administration",
+    "route": "admin",
+    "audience": "admins",
+    "start": "offer",
+    "position": 10,
+    "publish": true,
+    "steps": [
+      {
+        "id": "nav",
+        "anchor": "admin.nav",
+        "title": "Administration",
+        "body": "All the account's settings: people, permissions, security, branding, connections and the plan."
+      },
+      {
+        "id": "users",
+        "anchor": "admin.users",
+        "title": "People",
+        "body": "Invite people, set a role for each one and organize them into teams."
+      },
+      {
+        "id": "ai",
+        "anchor": "admin.ai",
+        "title": "AI connections",
+        "body": "Connect an AI provider once, and the whole account uses it: AI columns, agents and the assistant."
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-board",
+    "locale": "en",
+    "title": "Open a board",
+    "route": "home",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "Your boards are here",
+        "body": "The sidebar holds your workspaces and boards. Click one to open it.",
+        "anchor": "nav.boards",
+        "wait_event": "board_opened"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-item",
+    "locale": "en",
+    "title": "Create an item",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "New item",
+        "body": "Each row on the board is an item: a lead, a task, an order. Click here and create one.",
+        "anchor": "board.new-item",
+        "wait_event": "item_created"
+      },
+      {
+        "id": "b",
+        "title": "Nice!",
+        "body": "The item was created. You can open it by clicking its name."
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-edit",
+    "locale": "en",
+    "title": "Edit a value",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "Click a cell",
+        "body": "Every cell in the table can be edited: status, date, people or the name itself. Change one value.",
+        "anchor": "board.table",
+        "wait_event": "value_changed"
+      },
+      {
+        "id": "b",
+        "title": "Saved",
+        "body": "Every change is saved right away and shows up in the item's log."
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-view",
+    "locale": "en",
+    "title": "Switch views",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "The board's views",
+        "body": "You can see the same board as a table, Kanban, calendar and more. Choose a different view.",
+        "anchor": "board.views",
+        "wait_event": "view_switched"
+      },
+      {
+        "id": "b",
+        "title": "And add more",
+        "body": "Use this button to add a new view to the board.",
+        "anchor": "board.add-view"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-invite",
+    "locale": "en",
+    "title": "Invite a teammate",
+    "route": "admin",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "Users",
+        "body": "Manage the people in the account here. Open the user list.",
+        "anchor": "admin.users",
+        "wait_click": true
+      },
+      {
+        "id": "b",
+        "title": "Invite",
+        "body": "Invite a teammate by email. They'll get a link to join.",
+        "anchor": "admin.invite",
+        "wait_event": "teammate_invited"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-update",
+    "locale": "en",
+    "title": "Write an update",
+    "route": "item",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "Updates",
+        "body": "Talk about the item with your team here. You can mention people with @.",
+        "anchor": "item.updates"
+      },
+      {
+        "id": "b",
+        "title": "Write and send",
+        "body": "Write a short update and send it.",
+        "anchor": "item.composer",
+        "wait_event": "update_written"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-file",
+    "locale": "en",
+    "title": "Attach a file",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "Files cell",
+        "body": "In a Files column you attach documents and images to the item. Click the cell and upload a file.",
+        "anchor": "board.file-cell",
+        "wait_event": "file_added"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-link",
+    "locale": "en",
+    "title": "Connect two items",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "Connect boards",
+        "body": "A “Connect boards” column links an item to an item on another board: a customer to a project, a lead to a quote. Click the cell and choose an item.",
+        "anchor": "board.relation-cell",
+        "wait_event": "items_linked"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-timer",
+    "locale": "en",
+    "title": "Start a timer",
+    "route": "board",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "Time tracking",
+        "body": "In a Time tracking column you start a timer on an item. Hover over the cell and click ▶.",
+        "anchor": "board.timer",
+        "wait_event": "timer_started"
+      }
+    ]
+  },
+  {
+    "slug": "first-steps-automation",
+    "locale": "en",
+    "title": "Your first automation",
+    "route": "automations",
+    "audience": "all",
+    "start": "menu",
+    "publish": true,
+    "steps": [
+      {
+        "id": "a",
+        "title": "New automation",
+        "body": "An automation does something on its own when something happens, for example it notifies you when a status changes. Create one.",
+        "anchor": "automations.new",
+        "wait_event": "automation_created"
+      }
+    ]
+  }
+]

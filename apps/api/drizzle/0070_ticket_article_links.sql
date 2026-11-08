@@ -1,0 +1,1 @@
+ALTER TABLE "support_ticket_messages" ADD COLUMN "article_ids" text[] DEFAULT '{}'::text[] NOT NULL;

@@ -1,0 +1,184 @@
+{
+  "key": "contacts",
+  "format_version": 2,
+  "existing_board_id": null,
+  "name": "אנשי קשר",
+  "description": "אדם אחד = אייטם אחד. מכאן מזמינים אורחים לפורטל (guest_user מתמלא אחרי ההזמנה).",
+  "board_kind": "public",
+  "folder": "01",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "contact",
+  "groups": [
+    {
+      "id": "active",
+      "title": "פעילים",
+      "color": "forest"
+    },
+    {
+      "id": "inactive",
+      "title": "לא פעילים",
+      "color": "gray"
+    }
+  ],
+  "columns": [],
+  "add_columns": [
+    {
+      "id": "account",
+      "title": "לקוח",
+      "type": "board_relation",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "role",
+      "title": "תפקיד",
+      "type": "status",
+      "settings": {
+        "labels": [
+          {
+            "id": 3,
+            "label": "בעלים",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 1,
+            "label": "מנכ\"ל",
+            "color": "gray",
+            "index": 1
+          },
+          {
+            "id": 4,
+            "label": "מנהל שיווק",
+            "color": "gray",
+            "index": 2
+          },
+          {
+            "id": 0,
+            "label": "תפעול",
+            "color": "gray",
+            "index": 3
+          },
+          {
+            "id": 7,
+            "label": "הנהלת חשבונות",
+            "color": "gray",
+            "index": 4
+          },
+          {
+            "id": 9,
+            "label": "טכני",
+            "color": "gray",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone",
+      "title": "טלפון",
+      "type": "phone",
+      "settings": {
+        "default_country": "IL"
+      }
+    },
+    {
+      "id": "email",
+      "title": "אימייל",
+      "type": "email",
+      "settings": {}
+    },
+    {
+      "id": "channel",
+      "title": "ערוץ מועדף",
+      "type": "status",
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "WhatsApp",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 7,
+            "label": "אימייל",
+            "color": "gray",
+            "index": 1
+          },
+          {
+            "id": 4,
+            "label": "טלפון",
+            "color": "gray",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "gets_updates",
+      "title": "מקבל עדכונים",
+      "type": "checkbox",
+      "settings": {}
+    },
+    {
+      "id": "guest_user",
+      "title": "משתמש אורח",
+      "type": "people",
+      "description": "[agent-write] מתמלא אחרי invite_users",
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "leads",
+      "title": "לידים",
+      "type": "board_relation",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597799"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "notes",
+      "title": "הערות",
+      "type": "long_text",
+      "settings": {}
+    },
+    {
+      "id": "created",
+      "title": "נוצר",
+      "type": "creation_log",
+      "settings": {
+        "mode": "both"
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "guest_user": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": [
+    {
+      "name": "לפי לקוח",
+      "type": "table",
+      "group_by": "account"
+    }
+  ],
+  "$schema": "../schema/board.schema.json"
+}

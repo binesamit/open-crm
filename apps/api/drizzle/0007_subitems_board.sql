@@ -1,0 +1,3 @@
+ALTER TABLE "boards" ADD COLUMN "parent_board_id" varchar(26);--> statement-breakpoint
+ALTER TABLE "boards" ADD CONSTRAINT "boards_parent_board_id_boards_id_fk" FOREIGN KEY ("parent_board_id") REFERENCES "public"."boards"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+CREATE UNIQUE INDEX "ux_boards_parent" ON "boards" USING btree ("parent_board_id") WHERE "boards"."parent_board_id" is not null;

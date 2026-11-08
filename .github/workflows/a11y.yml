@@ -1,0 +1,59 @@
+name: Accessibility
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: a11y-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+# Accessibility (Israeli Standard 5568 ≈ WCAG 2.1 AA), stage 4: the axe-core scan of the main screens
+# (e2e/a11y-scan.spec.ts) on every push, so a change that breaks accessibility is caught before it ships. It needs
+# the real stack — Postgres, the mail catcher (sign-in links), a migrated and seeded database, the API and the web
+# app (started by the Playwright config) — so it runs apart from the PGlite unit suites in ci.yml.
+jobs:
+  scan:
+    name: Accessibility scan (WCAG 2.1 AA)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: bines
+          POSTGRES_PASSWORD: bines
+          POSTGRES_DB: bines_os
+        ports: ['5433:5432']
+        options: >-
+          --health-cmd "pg_isready -U bines -d bines_os" --health-interval 5s --health-timeout 5s --health-retries 10
+      mailpit:
+        image: axllent/mailpit:latest
+        ports: ['8025:8025', '1025:1025']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Local settings (from .env.example, with a throwaway secret for this run)
+        run: |
+          sed "s|^BETTER_AUTH_SECRET=.*|BETTER_AUTH_SECRET=$(openssl rand -hex 32)|" .env.example > .env
+      - run: pnpm db:migrate
+      - run: pnpm db:seed
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Scan
+        run: pnpm e2e a11y-scan.spec.ts
+      - name: Failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: a11y-test-results
+          path: test-results
+          retention-days: 7

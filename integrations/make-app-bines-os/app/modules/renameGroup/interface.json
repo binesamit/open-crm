@@ -1,0 +1,4 @@
+[
+  { "name": "id", "label": "Group ID", "type": "text" },
+  { "name": "title", "label": "Title", "type": "text" }
+]

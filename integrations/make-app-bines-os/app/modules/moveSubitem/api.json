@@ -1,0 +1,6 @@
+{
+  "url": "/items/{{parameters.itemId}}/reparent",
+  "method": "POST",
+  "body": { "parent_item_id": "{{parameters.parentItemId}}", "position": "{{parameters.position}}" },
+  "response": { "output": "{{body}}" }
+}

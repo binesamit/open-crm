@@ -1,0 +1,10 @@
+{
+  "url": "/boards/{{parameters.boardId}}/columns",
+  "method": "POST",
+  "body": {
+    "title": "{{parameters.title}}",
+    "type": "{{parameters.type}}",
+    "description": "{{ifempty(parameters.description, omit)}}"
+  },
+  "response": { "output": "{{body}}" }
+}

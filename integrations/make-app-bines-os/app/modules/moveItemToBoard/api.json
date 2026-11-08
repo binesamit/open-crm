@@ -1,0 +1,6 @@
+{
+  "url": "/items/{{parameters.itemId}}/move-to-board",
+  "method": "POST",
+  "body": { "board_id": "{{parameters.boardId}}", "group_id": "{{parameters.groupId}}" },
+  "response": { "output": "{{body}}" }
+}

@@ -1,0 +1,581 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "accounts",
+  "format_version": 2,
+  "existing_board_id": "5103597801",
+  "name": "לקוחות",
+  "description": "מרכז הכובד. כל בורד אחר מקושר לכאן ב-Connect Boards; תיק הלקוח נבנה מ-Mirror. client_id = מזהה במערכת החשבוניות.",
+  "board_kind": "public",
+  "folder": "02",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xhs83",
+      "title": "פעילים",
+      "color": "yellow"
+    },
+    {
+      "id": "group_mm6xgwrb",
+      "title": "לא פעילים",
+      "color": "gray"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "board_relation_mm6xwczf",
+      "title": "לידים",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597799"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "text_mm6xhz21",
+      "title": "client_id",
+      "type": "text",
+      "description": "מזהה הלקוח ב-Morning. חובה, ייחודי.",
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x51x6",
+      "title": "סוג",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "ריטיינר",
+            "color": "forest",
+            "index": 2
+          },
+          {
+            "id": 3,
+            "label": "ישיר",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "White-label",
+            "color": "purple",
+            "index": 1
+          },
+          {
+            "id": 9,
+            "label": "חד-פעמי",
+            "color": "yellow",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6xad88",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "בהקפאה",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "פעיל",
+            "color": "forest",
+            "index": 0
+          },
+          {
+            "id": 3,
+            "label": "פוטנציאל",
+            "color": "blue",
+            "index": 3
+          },
+          {
+            "id": 5,
+            "label": "הסתיים",
+            "color": "gray",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple_person_mm6xqyk2",
+      "title": "מנהל תיק",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "text_mm6xsb4a",
+      "title": "איש קשר ראשי",
+      "type": "text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "phone_mm6x1hps",
+      "title": "טלפון",
+      "type": "phone",
+      "description": null,
+      "settings": {
+        "default_country": "IL"
+      }
+    },
+    {
+      "id": "email_mm6xjg69",
+      "title": "אימייל",
+      "type": "email",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "dropdown_mm6xw233",
+      "title": "תחום",
+      "type": "dropdown",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "נדל\"ן"
+          },
+          {
+            "id": 2,
+            "label": "ביטוח"
+          },
+          {
+            "id": 3,
+            "label": "קמעונאות"
+          },
+          {
+            "id": 4,
+            "label": "שירותים"
+          },
+          {
+            "id": 5,
+            "label": "סוכנות"
+          },
+          {
+            "id": 6,
+            "label": "אחר"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dropdown_mm6xvcfw",
+      "title": "סטאק לקוח",
+      "type": "dropdown",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "Make"
+          },
+          {
+            "id": 2,
+            "label": "n8n"
+          },
+          {
+            "id": 3,
+            "label": "ManyChat"
+          },
+          {
+            "id": 5,
+            "label": "Fireberry"
+          },
+          {
+            "id": 6,
+            "label": "iCount"
+          },
+          {
+            "id": 7,
+            "label": "Morning"
+          },
+          {
+            "id": 8,
+            "label": "WhatsApp"
+          },
+          {
+            "id": 9,
+            "label": "אחר"
+          }
+        ]
+      }
+    },
+    {
+      "id": "date_mm6x5y8r",
+      "title": "תאריך התחלה",
+      "type": "date",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "link_mm6xgmpd",
+      "title": "הסכם",
+      "type": "link",
+      "description": "קישור לחוזה חתום",
+      "settings": {}
+    },
+    {
+      "id": "date_mm6xrste",
+      "title": "סקירה רבעונית הבאה",
+      "type": "date",
+      "description": "מזין את מנוע ההזדמנויות",
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6xn5ag",
+      "title": "הערות סוכן",
+      "type": "long_text",
+      "description": "[agent-write] תובנות שהסוכן צובר",
+      "settings": {}
+    },
+    {
+      "id": "text_mm6x35cd",
+      "title": "portal_user_id",
+      "type": "text",
+      "description": "מזהה משתמש הפורטל במערכת החיצונית",
+      "settings": {}
+    },
+    {
+      "id": "board_relation_mm6xxhvs",
+      "title": "הצעות מחיר",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597804"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xmz03",
+      "title": "חשבוניות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597806"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x2y59",
+      "title": "בנק שעות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597813"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x6sch",
+      "title": "כרטיסי תמיכה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597817"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xk6z1",
+      "title": "פרויקטים",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xev2g",
+      "title": "מרכז מידע",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597822"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xm8f8",
+      "title": "שו\"ת",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597824"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xgckj",
+      "title": "לוג סוכן AI",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597825"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xq0pe",
+      "title": "מוניטור",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597829"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x840c",
+      "title": "הזדמנויות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597830"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "lookup_mm6xec8j",
+      "title": "חשבוניות פתוחות",
+      "type": "mirror",
+      "description": "סכום \"יתרה לתשלום\" של החשבוניות המקושרות",
+      "settings": {
+        "relation_column_id": "board_relation_mm6xmz03",
+        "source_column_id": "formula_mm6x9sy8",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "lookup_mm6xwq5g",
+      "title": "טיקטים פתוחים",
+      "type": "mirror",
+      "description": null,
+      "settings": {
+        "relation_column_id": "board_relation_mm6x6sch",
+        "source_column_id": "formula_mm6xwkcw",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "lookup_mm6xf2k",
+      "title": "פרויקטים פעילים",
+      "type": "mirror",
+      "description": null,
+      "settings": {
+        "relation_column_id": "board_relation_mm6xk6z1",
+        "source_column_id": "formula_mm6x6q4e",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "lookup_mm6xv8ve",
+      "title": "אוטומציות במעקב",
+      "type": "mirror",
+      "description": null,
+      "settings": {
+        "relation_column_id": "board_relation_mm6xq0pe",
+        "source_column_id": "formula_mm6xqeqj",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "lookup_mm6xk7pe",
+      "title": "אוטומציות בתקלה",
+      "type": "mirror",
+      "description": null,
+      "settings": {
+        "relation_column_id": "board_relation_mm6xq0pe",
+        "source_column_id": "formula_mm6x6k1n",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "lookup_mm6xf1br",
+      "title": "חוב באיחור",
+      "type": "mirror",
+      "description": "עזר לבריאות: סכום חשבוניות בסטטוס באיחור",
+      "settings": {
+        "relation_column_id": "board_relation_mm6xmz03",
+        "source_column_id": "formula_mm6xhchq",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "board_relation_mm6xqscd",
+      "title": "לוג סנכרון",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597834"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "lookup_mm6xpz9n",
+      "title": "שעות בבנק",
+      "type": "mirror",
+      "description": "סכום \"יתרה\" של בנקי השעות המקושרים",
+      "settings": {
+        "relation_column_id": "board_relation_mm6x2y59",
+        "source_column_id": "formula_mm6x86cp",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "lookup_mm6xce5v",
+      "title": "בנקי שעות נמוכים",
+      "type": "mirror",
+      "description": "עזר לבריאות",
+      "settings": {
+        "relation_column_id": "board_relation_mm6x2y59",
+        "source_column_id": "formula_mm6x1kqh",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "formula_mm6x19ze",
+      "title": "בריאות",
+      "type": "formula",
+      "description": "אדום: חשבונית באיחור / אוטומציה בתקלה. צהוב: טיקט פתוח / בנק שעות נמוך. ספי הזמן (טיקט > 5 ימים, תקלה > 48 שעות) נאכפים ב-MCP client.health",
+      "settings": {
+        "formula": "IF(OR({lookup_mm6xf1br}>0,{lookup_mm6xk7pe}>0),\"🔴 אדום\",IF(OR({lookup_mm6xwq5g}>0,{lookup_mm6xce5v}>0),\"🟡 צהוב\",\"🟢 ירוק\"))"
+      }
+    },
+    {
+      "id": "board_relation_mm6yy5ct",
+      "title": "link to אנשי קשר",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "text_mm6y485b",
+      "title": "סונכרן עד (WA)",
+      "type": "text",
+      "description": "[agent-write] חותמת הזמן של ההודעה האחרונה שסונכרנה מוואטסאפ (unix). ריק = טרם סונכרן.",
+      "settings": {}
+    }
+  ],
+  "add_columns": [
+    {
+      "id": "portal_board",
+      "title": "פורטל לקוח",
+      "type": "link",
+      "description": "קישור לבורד ה-Shareable של הלקוח",
+      "settings": {}
+    },
+    {
+      "id": "portal_board_id",
+      "title": "portal_board_id",
+      "type": "text",
+      "description": "[agent-write] מזהה בורד הפורטל — נדרש לאוטומציות ול-API",
+      "settings": {}
+    },
+    {
+      "id": "primary_contact",
+      "title": "איש קשר ראשי (קישור)",
+      "type": "board_relation",
+      "description": "מחליף את שדה הטקסט",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "@contacts"
+        ],
+        "allow_multiple": false
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "long_text_mm6xn5ag": [
+        "@owner"
+      ],
+      "text_mm6y485b": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": [
+    {
+      "name": "לפי בריאות",
+      "type": "table",
+      "sort": [
+        {
+          "column_id": "formula_mm6x19ze",
+          "direction": "asc"
+        }
+      ]
+    },
+    {
+      "name": "תיקי לקוח",
+      "type": "cards"
+    }
+  ]
+}

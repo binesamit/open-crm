@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Summary cards</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1f2a24;
+        --muted: #66736b;
+        --card: #f4f6f4;
+        --line: #dfe5e0;
+        --accent: #1f5c46;
+      }
+      :root.dark {
+        --bg: #121614;
+        --fg: #e8eee9;
+        --muted: #9aa69e;
+        --card: #1c221f;
+        --line: #2a322e;
+        --accent: #8fd3b5;
+      }
+      body {
+        margin: 0;
+        padding: 16px;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          14px/1.5 system-ui,
+          sans-serif;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+      }
+      .card b {
+        display: block;
+        font-size: 28px;
+        color: var(--accent);
+      }
+      ul {
+        padding-inline-start: 20px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      button {
+        margin-top: 12px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--fg);
+        border-radius: 10px;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="muted" id="status" data-testid="sample-status">…</p>
+    <div class="cards">
+      <div class="card"><span class="muted">פריטים</span><b id="count" data-testid="sample-count">–</b></div>
+      <div class="card"><span class="muted">קבוצות</span><b id="groups" data-testid="sample-groups">–</b></div>
+    </div>
+    <ul id="names" data-testid="sample-names"></ul>
+    <button type="button" id="write" data-testid="sample-write">ניסיון כתיבה (צריך להיחסם)</button>
+    <p id="write-result" data-testid="sample-write-result"></p>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

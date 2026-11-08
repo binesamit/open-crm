@@ -1,0 +1,17 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 560px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  gap: 12px;
+}
+label {
+  display: grid;
+  gap: 4px;
+}
+input,
+textarea {
+  font: inherit;
+  padding: 6px 8px;
+}

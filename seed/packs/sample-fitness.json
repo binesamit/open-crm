@@ -1,0 +1,33 @@
+{
+  "manifest_version": 1,
+  "id": "fitness",
+  "name": "כושר",
+  "name_en": "Fitness",
+  "description": "תצוגת לוח למתאמנים ולמאמנים: מצב אימון בטלפון (תרגיל אחד על המסך, טיימר מנוחה, \"פעם קודמת\" ושיאים), רישום תזונה מול יעד, בניית תוכניות אימון ותזונה ומסך מאמן. עובד גם בלי רשת ושולח כשחוזרת. משתמש בלוחות שלך: בוחרים בתוסף אילו לוחות ועמודות הם האימונים, היומן, הספרייה והתזונה.",
+  "description_en": "A board view for trainees and coaches: a workout mode on the phone (one exercise on screen, a rest timer, \"last time\" and records), food logging against a target, building workout and nutrition plans, and a coach screen. Works offline and sends when back online. Uses your own boards: you pick which boards and columns are the workouts, the log, the library and the nutrition.",
+  "version": "1.0.0",
+  "icon": "🏋️",
+  "publisher": {
+    "name": "Bines"
+  },
+  "permissions": [
+    "boards:read",
+    "boards:write",
+    "items:write",
+    "updates:write",
+    "users:read"
+  ],
+  "origins": [
+    "{{SAMPLE_EXTENSIONS_ORIGIN}}"
+  ],
+  "features": [
+    {
+      "type": "board_view",
+      "key": "app",
+      "name": "כושר",
+      "name_en": "Fitness",
+      "url": "{{SAMPLE_EXTENSIONS_ORIGIN}}/fitness/index.html",
+      "offline": true
+    }
+  ]
+}

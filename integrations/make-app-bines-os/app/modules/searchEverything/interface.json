@@ -1,0 +1,6 @@
+[
+  { "name": "items", "label": "Items", "type": "array" },
+  { "name": "boards", "label": "Boards", "type": "array" },
+  { "name": "updates", "label": "Updates", "type": "array" },
+  { "name": "people", "label": "People", "type": "array" }
+]

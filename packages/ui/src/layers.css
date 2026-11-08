@@ -1,0 +1,96 @@
+/* The stacking scale (product owner: "the top bar sits over the open document; make sure everything is right
+   not only the document"). Every layer that competes with the app's shell takes its z-index from here, by name
+   (`z-shell`, `z-panel`, …) — never a number of its own. Lowest to highest:
+
+   page      0–40   Inside the page: sticky table headers and columns, a board's floating batch bar, a cell's
+                    small menus (`z-1` … `z-40`, numbers). Always under the shell.
+   shell     45     The shell's bars: the top bar, the phone header, the screens-outside-an-account bar.
+   flyout    47     Floats over the shell without covering the page: the rail's boards flyout, the first steps panel.
+   panel     50     A surface over the page and the shell: the item card, a document's side panel, the AI panel,
+                    the phone menu drawer, a document's comments on a small screen.
+   modal     60     Dialogs and full-screen viewers (the files viewer, a dialog's sheet) — over any panel.
+   panel-over-modal 62  An item card opened from inside a dialog (a linked item in a popup): over that dialog,
+                    which stays open under it (P1-03).
+   modal-over-panel 64  A dialog opened while such a card is open (from the card): over the card.
+   palette   65     The quick search: over a dialog it was opened from.
+   popover   70     Menus, popovers, pickers, cell editors and their phone sheets — over whatever opened them.
+   toast     90     Notices.
+   tour      100    A guided tour (spotlight, its step card +1, the authoring bar +2) — over everything it points at.
+   tooltip   110    The system tooltip.
+   system    1000+  Whole-screen states that replace the app: a closed or deleting account (1000), the phone app's
+                    prompts (1040), its update bar (1050), offline (1100), "must refresh" (1200).
+
+   Rule: anything `position: fixed` (or portaled to <body>) above the page uses a name from this list. */
+:root {
+  --z-shell: 45;
+  --z-flyout: 47;
+  --z-panel: 50;
+  --z-modal: 60;
+  --z-panel-over-modal: 62;
+  --z-modal-over-panel: 64;
+  --z-palette: 65;
+  --z-popover: 70;
+  --z-toast: 90;
+  --z-tour: 100;
+  --z-tooltip: 110;
+  --z-system: 1000;
+  --z-system-prompt: 1040;
+  --z-system-banner: 1050;
+  --z-system-screen: 1100;
+  --z-system-top: 1200;
+}
+
+@utility z-shell {
+  z-index: var(--z-shell);
+}
+@utility z-flyout {
+  z-index: var(--z-flyout);
+}
+@utility z-panel {
+  z-index: var(--z-panel);
+}
+@utility z-modal {
+  z-index: var(--z-modal);
+}
+@utility z-panel-over-modal {
+  z-index: var(--z-panel-over-modal);
+}
+@utility z-modal-over-panel {
+  z-index: var(--z-modal-over-panel);
+}
+@utility z-palette {
+  z-index: var(--z-palette);
+}
+@utility z-popover {
+  z-index: var(--z-popover);
+}
+@utility z-toast {
+  z-index: var(--z-toast);
+}
+@utility z-tour {
+  z-index: var(--z-tour);
+}
+@utility z-tour-step {
+  z-index: calc(var(--z-tour) + 1);
+}
+@utility z-tour-top {
+  z-index: calc(var(--z-tour) + 2);
+}
+@utility z-tooltip {
+  z-index: var(--z-tooltip);
+}
+@utility z-system {
+  z-index: var(--z-system);
+}
+@utility z-system-prompt {
+  z-index: var(--z-system-prompt);
+}
+@utility z-system-banner {
+  z-index: var(--z-system-banner);
+}
+@utility z-system-screen {
+  z-index: var(--z-system-screen);
+}
+@utility z-system-top {
+  z-index: var(--z-system-top);
+}

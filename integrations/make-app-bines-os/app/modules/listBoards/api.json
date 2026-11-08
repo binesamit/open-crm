@@ -1,0 +1,5 @@
+{
+  "url": "/boards",
+  "qs": { "q": "{{parameters.q}}" },
+  "response": { "limit": "{{parameters.limit}}", "iterate": "{{body.data}}", "output": "{{item}}" }
+}

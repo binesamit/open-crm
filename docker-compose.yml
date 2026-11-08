@@ -1,0 +1,34 @@
+# Local development services (01-ARCHITECTURE §12). Apps run on the host with `pnpm dev`.
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: bines
+      POSTGRES_PASSWORD: bines
+      POSTGRES_DB: bines_os
+    # host 5433: a native Postgres may already own 5432; another project's container may own 5433 — then set
+    # BINES_PG_PORT (e.g. 5434) and point DATABASE_URL there. Loopback only (shared Wi-Fi).
+    ports: ['127.0.0.1:${BINES_PG_PORT:-5433}:5432']
+    volumes: ['pgdata:/var/lib/postgresql'] # PG 18+ keeps data in /var/lib/postgresql/18/docker
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U bines -d bines_os']
+      interval: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports: ['127.0.0.1:8025:8025', '127.0.0.1:1025:1025'] # UI :8025, SMTP :1025
+
+  minio:
+    # minio/minio is no longer published on Docker Hub; this is the same server (frozen image, local dev only).
+    image: bitnamilegacy/minio:latest
+    environment:
+      MINIO_ROOT_USER: bines
+      MINIO_ROOT_PASSWORD: bines-secret
+      MINIO_DEFAULT_BUCKETS: bines-os
+    ports: ['127.0.0.1:9000:9000', '127.0.0.1:9001:9001'] # fixed dev credentials: never on the LAN
+    volumes: ['miniodata:/bitnami/minio/data']
+
+volumes:
+  pgdata:
+  miniodata:

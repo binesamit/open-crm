@@ -1,0 +1,4 @@
+[
+  { "name": "q", "label": "Text", "type": "text", "required": true },
+  { "name": "archived", "label": "Include archived items", "type": "boolean", "default": false }
+]

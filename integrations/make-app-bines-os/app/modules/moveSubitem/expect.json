@@ -1,0 +1,14 @@
+[
+  { "name": "itemId", "label": "Subitem ID", "type": "text", "required": true },
+  { "name": "parentItemId", "label": "New parent item ID", "type": "text", "required": true },
+  {
+    "name": "position",
+    "label": "Position",
+    "type": "select",
+    "default": "bottom",
+    "options": [
+      { "label": "Last", "value": "bottom" },
+      { "label": "First", "value": "top" }
+    ]
+  }
+]

@@ -1,0 +1,328 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "tasks",
+  "format_version": 2,
+  "existing_board_id": "5103597820",
+  "name": "משימות",
+  "description": "\"בפועל (שעות)\" = מקור אמת לחיוב (MCP task.logHours). סאב-אייטמים = צ'קליסט טכני (לא מחויב בנפרד).",
+  "board_kind": "public",
+  "folder": "03",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 2,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6x80yz",
+      "title": "פתוחות",
+      "color": "blue"
+    },
+    {
+      "id": "group_mm6xsr02",
+      "title": "סגורות",
+      "color": "forest"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x1j95",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "בעבודה",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "הושלם",
+            "color": "forest",
+            "index": 4,
+            "is_done": true
+          },
+          {
+            "id": 2,
+            "label": "חסום",
+            "color": "crimson",
+            "index": 3
+          },
+          {
+            "id": 4,
+            "label": "בבדיקה",
+            "color": "purple",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "לביצוע",
+            "color": "gray",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple_person_mm6x7g8c",
+      "title": "אחראי",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "color_mm6x3yg",
+      "title": "עדיפות",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 2,
+            "label": "דחוף",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 3,
+            "label": "רגיל",
+            "color": "turquoise",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "נמוך",
+            "color": "gray",
+            "index": 3
+          },
+          {
+            "id": 19,
+            "label": "חשוב",
+            "color": "blue",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "date_mm6xcem8",
+      "title": "יעד",
+      "type": "date",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "duration_mm6zy9r5",
+      "title": "Time tracking",
+      "type": "time_tracking",
+      "description": null,
+      "settings": {
+        "display": "hms",
+        "show_seconds": true,
+        "billable_default": true,
+        "allow_manual": true
+      }
+    },
+    {
+      "id": "file_mm6zca5q",
+      "title": "Files",
+      "type": "file",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6xsam5",
+      "title": "הערכה (שעות)",
+      "type": "numbers",
+      "description": "חובה — מזין את ה-Workload",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "lookup_mm6xtvpy",
+      "title": "לקוח",
+      "type": "mirror",
+      "description": "דרך הפרויקט",
+      "settings": {
+        "relation_column_id": "board_relation_mm6x61vz",
+        "source_column_id": "board_relation_mm6x9vct"
+      }
+    },
+    {
+      "id": "formula_mm76qhda",
+      "title": "לקוח - פורמולה",
+      "type": "formula",
+      "description": null,
+      "settings": {
+        "formula": "{lookup_mm6xtvpy}"
+      }
+    },
+    {
+      "id": "board_relation_mm6x61vz",
+      "title": "פרויקט",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xmtsx",
+      "title": "בנק שעות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597813"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xak9f",
+      "title": "טיקט מקור",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597817"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "pulse_log_mm70d9z8",
+      "title": "נוצר בתאריך",
+      "type": "creation_log",
+      "description": null,
+      "settings": {
+        "mode": "both"
+      }
+    },
+    {
+      "id": "color_mm768emh",
+      "title": "צד",
+      "type": "status",
+      "description": "מי מבצע: אצלנו / אצל הלקוח / משותף",
+      "settings": {
+        "labels": [
+          {
+            "id": 4,
+            "label": "אצל הלקוח",
+            "color": "purple",
+            "index": 1
+          },
+          {
+            "id": 7,
+            "label": "אצלנו",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 9,
+            "label": "משותף",
+            "color": "yellow",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "text_mm76svz1",
+      "title": "קוד",
+      "type": "text",
+      "description": "מזהי משימות כמו T-01, C-01",
+      "settings": {}
+    },
+    {
+      "id": "color_mm762xfy",
+      "title": "גל",
+      "type": "status",
+      "description": "גל עבודה: 0 / 1 / 2 / Backlog",
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "גל 1",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 2,
+            "label": "גל 0",
+            "color": "crimson",
+            "index": 0
+          },
+          {
+            "id": 7,
+            "label": "גל 2",
+            "color": "blue",
+            "index": 2
+          },
+          {
+            "id": 17,
+            "label": "Backlog",
+            "color": "gray",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "long_text_mm76j1z9",
+      "title": "תלויות",
+      "type": "long_text",
+      "description": "הערות תלות בין משימות",
+      "settings": {}
+    }
+  ],
+  "add_columns": [
+    {
+      "id": "account",
+      "title": "לקוח (קישור)",
+      "type": "board_relation",
+      "description": "מתמלא ב-MCP מהפרויקט (T1); מאפשר פילטר ב-API",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": false
+      }
+    },
+    {
+      "id": "deps",
+      "title": "תלויות (Dependency)",
+      "type": "dependency",
+      "description": "Pro; מחליף את שדה הטקסט",
+      "settings": {
+        "mode": "flexible",
+        "allow_multiple": true
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": []
+}

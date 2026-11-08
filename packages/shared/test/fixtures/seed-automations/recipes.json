@@ -1,0 +1,337 @@
+{
+  "automations": [
+    {
+      "id": "L1",
+      "board": "leads",
+      "recipe": "When an item is created, set סטטוס to חדש and assign creator as בעלים",
+      "trigger": {
+        "type": "item_created"
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "set_status",
+          "column": "color_mm6x5rvw",
+          "label": "חדש",
+          "text": "set סטטוס to חדש"
+        },
+        {
+          "type": "assign_creator",
+          "column": "multiple_person_mm6xr34v",
+          "text": "assign creator as בעלים"
+        }
+      ],
+      "kind": "automation",
+      "note": "קיים חלקית כ-default values (184393051)"
+    },
+    {
+      "id": "L3",
+      "board": "leads",
+      "recipe": "When סטטוס changes to זכינו, and only if לקוח is empty, create an item in לקוחות and connect it",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6x5rvw",
+        "labels": ["זכינו"]
+      },
+      "conditions": [
+        {
+          "column": "board_relation_mm6x36x0",
+          "operator": "is_empty",
+          "text": "only if לקוח is empty"
+        }
+      ],
+      "actions": [
+        {
+          "type": "create_item",
+          "board": "accounts",
+          "name": "{item name}",
+          "mapping": {
+            "text_mm6xsb4a": "text_mm6xfhf6",
+            "phone_mm6x1hps": "phone_mm6xspyq",
+            "email_mm6xjg69": "email_mm6xp2w0"
+          },
+          "connect_column": "board_relation_mm6x36x0",
+          "connect_back_column": "board_relation_mm6xwczf",
+          "text": "create item in לקוחות (contact, phone, email) and connect it as לקוח"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: built from built-in actions (was a webhook to MCP lead.convert)"
+    },
+    {
+      "id": "L4",
+      "board": "leads",
+      "recipe": "When מעקב הבא arrives, and only if סטטוס is not זכינו/אבד, notify בעלים",
+      "trigger": {
+        "type": "date_arrived",
+        "column": "date_mm6xbb3h"
+      },
+      "conditions": [
+        {
+          "column": "color_mm6x5rvw",
+          "operator": "not_any_of",
+          "values": ["זכינו", "אבד"],
+          "text": "only if סטטוס is not זכינו, אבד"
+        }
+      ],
+      "actions": [
+        {
+          "type": "notify",
+          "to": "column:multiple_person_mm6xr34v",
+          "message": "מעקב: {item name} ({סטטוס})",
+          "text": "notify בעלים"
+        }
+      ],
+      "kind": "automation",
+      "note": null
+    },
+    {
+      "id": "L5",
+      "board": "leads",
+      "recipe": "Every day at 09:00, if סטטוס is חדש and Creation log is more than 2 days ago, notify בעלים",
+      "trigger": {
+        "type": "every_time_period",
+        "period": "day",
+        "time": "09:00"
+      },
+      "conditions": [
+        {
+          "column": "color_mm6x5rvw",
+          "operator": "any_of",
+          "values": ["חדש"],
+          "text": "only if סטטוס is חדש"
+        },
+        {
+          "column": "pulse_log_mm6zxepq",
+          "operator": "older_than_days",
+          "values": [2],
+          "text": "only if created more than 2 days ago"
+        }
+      ],
+      "actions": [
+        {
+          "type": "notify",
+          "to": "column:multiple_person_mm6xr34v",
+          "message": "ליד חדש ללא טיפול: {item name}",
+          "text": "notify בעלים"
+        }
+      ],
+      "kind": "automation",
+      "note": null
+    },
+    {
+      "id": "Q1",
+      "board": "quotes",
+      "recipe": "When סטטוס changes to אושרה, send a webhook",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6xbq8z",
+        "labels": ["אושרה"]
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "webhook",
+          "url": "{{N8N_URL}}/quote.approve",
+          "text": "send a webhook to n8n quote.approve (Morning)"
+        }
+      ],
+      "kind": "integration",
+      "note": "D26: stays a webhook to n8n (Morning). Paste the n8n webhook URL in the builder — {{N8N_URL}} is a placeholder."
+    },
+    {
+      "id": "Q2",
+      "board": "quotes",
+      "recipe": "When תוקף עד arrives, and only if סטטוס is נשלחה, change סטטוס to פגה and notify בעלים",
+      "trigger": {
+        "type": "date_arrived",
+        "column": "date_mm6xdbs4"
+      },
+      "conditions": [
+        {
+          "column": "color_mm6xbq8z",
+          "operator": "any_of",
+          "values": ["נשלחה"],
+          "text": "only if סטטוס is נשלחה"
+        }
+      ],
+      "actions": [
+        {
+          "type": "set_status",
+          "column": "color_mm6xbq8z",
+          "label": "פגה",
+          "text": "change סטטוס to פגה"
+        },
+        {
+          "type": "notify",
+          "to": "@owner",
+          "message": "הצעה פגה: {item name}",
+          "text": "notify דנה"
+        }
+      ],
+      "kind": "automation",
+      "note": null
+    },
+    {
+      "id": "A2",
+      "board": "accounts",
+      "recipe": "When סקירה רבעונית הבאה arrives 7 days before, create an item in משימות and connect",
+      "trigger": {
+        "type": "date_arrives_before",
+        "column": "date_mm6xrste",
+        "days": 7
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "create_item",
+          "board": "tasks",
+          "name": "הכנת סקירה רבעונית — {item name}",
+          "fixed": {
+            "account": "{item_id}"
+          },
+          "text": "create item in משימות with לקוח = this account"
+        }
+      ],
+      "kind": "automation",
+      "note": null
+    },
+    {
+      "id": "P3",
+      "board": "projects",
+      "recipe": "When ציבורי ללקוח is checked, and only if לקוח is {client}, create an item in {portal board} group פרויקטים and connect",
+      "trigger": {
+        "type": "checkbox_checked",
+        "column": "boolean_mm6x4eyj"
+      },
+      "conditions": [
+        {
+          "column": "board_relation_mm6x9vct",
+          "operator": "any_of",
+          "values": ["{client_item_id}"],
+          "text": "only if לקוח is {client}"
+        }
+      ],
+      "actions": [
+        {
+          "type": "create_item",
+          "board": "@portal:{client}",
+          "group": "projects",
+          "mapping": {
+            "name": "name",
+            "client_status": "project_status"
+          },
+          "connect_column": "portal_item",
+          "text": "create item in פורטל {client} and connect"
+        }
+      ],
+      "kind": "automation",
+      "note": "משוכפלת לכל לקוח; לחלופין MCP project.publish"
+    },
+    {
+      "id": "P4",
+      "board": "projects",
+      "recipe": "When סטטוס ללקוח changes, send an email via Gmail to the client's contacts",
+      "trigger": {
+        "type": "status_changed",
+        "column": "client_status",
+        "labels": "any"
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "gmail_send",
+          "to": "mirror:primary_contact.email",
+          "subject": "{item name}: {סטטוס ללקוח}",
+          "body": "{עדכון אחרון ללקוח}",
+          "text": "send email to איש קשר ראשי"
+        }
+      ],
+      "kind": "integration",
+      "note": null
+    },
+    {
+      "id": "T1",
+      "board": "tasks",
+      "recipe": "When פרויקט changes, set לקוח (קישור) from the לקוח of the linked פרויקט",
+      "trigger": {
+        "type": "column_changed",
+        "column": "board_relation_mm6x61vz"
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "copy_from_linked",
+          "relation": "board_relation_mm6x61vz",
+          "source": "board_relation_mm6x9vct",
+          "column": "account",
+          "text": "set לקוח (קישור) = לקוח of פרויקט"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: built from built-in actions (was mcp:task.inherit_account). Runs when the project is set — also right after a task is created with one."
+    },
+    {
+      "id": "T2a",
+      "board": "tasks",
+      "recipe": "When סטטוס changes to בעבודה, start time tracking",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6x1j95",
+        "labels": ["בעבודה"]
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "time_tracking_start",
+          "column": "duration_mm6zy9r5",
+          "text": "start time tracking"
+        }
+      ],
+      "kind": "automation",
+      "note": null
+    },
+    {
+      "id": "S3c",
+      "board": "support_tickets",
+      "recipe": "When עדיפות changes to P1 השבתה, set SLA יעד to now plus 4 hours",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6xv88q",
+        "labels": ["P1 השבתה"]
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "set_date",
+          "column": "date_mm6xzz5f",
+          "value": "now+4h",
+          "text": "set SLA יעד to now + 4 hours"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: built from built-in actions (was a webhook to MCP ticket.sla); P2 is S3d"
+    },
+    {
+      "id": "S3d",
+      "board": "support_tickets",
+      "recipe": "When עדיפות changes to P2 פגיעה, set SLA יעד to now plus 24 hours",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6xv88q",
+        "labels": ["P2 פגיעה"]
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "set_date",
+          "column": "date_mm6xzz5f",
+          "value": "now+24h",
+          "text": "set SLA יעד to now + 24 hours"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: the P2 half of the old S3c webhook"
+    }
+  ]
+}

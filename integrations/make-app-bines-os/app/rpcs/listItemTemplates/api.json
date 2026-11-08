@@ -1,0 +1,4 @@
+{
+  "url": "/boards/{{parameters.boardId}}/item-templates",
+  "response": { "iterate": "{{body.data}}", "output": { "label": "{{item.name}}", "value": "{{item.id}}" } }
+}

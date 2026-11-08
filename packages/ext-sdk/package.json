@@ -1,0 +1,62 @@
+{
+  "name": "@bines/ext-sdk",
+  "version": "1.0.0",
+  "description": "Bines OS extension SDK: the postMessage bridge and REST client for extension pages, and the server helpers (D27)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binesamit/open-crm.git",
+    "directory": "packages/ext-sdk"
+  },
+  "homepage": "https://github.com/binesamit/open-crm#readme",
+  "bugs": {
+    "url": "https://github.com/binesamit/open-crm/issues"
+  },
+  "type": "module",
+  "keywords": [
+    "bines",
+    "bines-os",
+    "extension",
+    "sdk",
+    "work-os"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./server": "./src/server.ts"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "./server": {
+        "types": "./dist/server.d.ts",
+        "import": "./dist/server.js"
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build:npm": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.build.json"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.0"
+  }
+}

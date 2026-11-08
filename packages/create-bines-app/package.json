@@ -1,0 +1,47 @@
+{
+  "name": "create-bines-app",
+  "version": "1.0.0",
+  "description": "Scaffold a Bines OS extension: Vite + @bines/ext-sdk, a manifest and a local dev server (D27 ת8)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binesamit/open-crm.git",
+    "directory": "packages/create-bines-app"
+  },
+  "homepage": "https://github.com/binesamit/open-crm#readme",
+  "bugs": {
+    "url": "https://github.com/binesamit/open-crm/issues"
+  },
+  "type": "module",
+  "keywords": [
+    "bines",
+    "bines-os",
+    "extension",
+    "create",
+    "scaffold"
+  ],
+  "bin": {
+    "create-bines-app": "./index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "scaffold.mjs",
+    "template",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@bines/shared": "workspace:*",
+    "vitest": "^5.0.0"
+  }
+}

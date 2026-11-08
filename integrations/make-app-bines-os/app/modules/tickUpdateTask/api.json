@@ -1,0 +1,6 @@
+{
+  "url": "/updates/{{parameters.updateId}}/tasks/{{parameters.index - 1}}",
+  "method": "PUT",
+  "body": { "checked": "{{parameters.checked}}" },
+  "response": { "output": "{{body}}" }
+}

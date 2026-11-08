@@ -1,0 +1,23 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, sans-serif;
+}
+#setup,
+#perm {
+  padding: 16px;
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+/* `display` above would override the `hidden` attribute. */
+[hidden] {
+  display: none !important;
+}
+iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

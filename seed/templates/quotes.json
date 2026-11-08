@@ -1,0 +1,270 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "quotes",
+  "format_version": 2,
+  "existing_board_id": "5103597804",
+  "name": "הצעות מחיר",
+  "description": "שם: \"לקוח — נושא — QYYYY-NNN\". סטטוס אושרה ⇒ MCP quote.approve יוצר פרויקט מהתבנית + לקוח אם לא קיים + ליד → זכינו.",
+  "board_kind": "public",
+  "folder": "01",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xz1wm",
+      "title": "פתוחות",
+      "color": "gray"
+    },
+    {
+      "id": "group_mm6x2gnx",
+      "title": "סגורות",
+      "color": "blue"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x1xqh",
+      "title": "סוג",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "ריטיינר",
+            "color": "forest",
+            "index": 1
+          },
+          {
+            "id": 3,
+            "label": "פרויקט",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "בנק שעות",
+            "color": "purple",
+            "index": 2
+          },
+          {
+            "id": 7,
+            "label": "אקדמיה",
+            "color": "blue",
+            "index": 4
+          },
+          {
+            "id": 9,
+            "label": "סדנה",
+            "color": "yellow",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "numeric_mm6xjncf",
+      "title": "סכום לפני מע\"מ",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6x99jy",
+      "title": "שעות מוערכות",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "color_mm6xbq8z",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "במו\"מ",
+            "color": "yellow",
+            "index": 2
+          },
+          {
+            "id": 1,
+            "label": "אושרה",
+            "color": "forest",
+            "index": 3,
+            "is_done": true
+          },
+          {
+            "id": 2,
+            "label": "נדחתה",
+            "color": "crimson",
+            "index": 4
+          },
+          {
+            "id": 3,
+            "label": "נשלחה",
+            "color": "blue",
+            "index": 1
+          },
+          {
+            "id": 5,
+            "label": "טיוטה",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 17,
+            "label": "פגה",
+            "color": "gray",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "date_mm6xdbs4",
+      "title": "תוקף עד",
+      "type": "date",
+      "description": "אוטומציה A2: חלף תוקף ⇒ פגה",
+      "settings": {}
+    },
+    {
+      "id": "file_mm6xqns9",
+      "title": "קובץ",
+      "type": "file",
+      "description": "PDF ההצעה",
+      "settings": {}
+    },
+    {
+      "id": "board_relation_mm6xdktm",
+      "title": "ליד",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597799"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xqypc",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xp1yc",
+      "title": "תבנית",
+      "type": "board_relation",
+      "description": "התבנית שתשוכפל כשתאושר",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597821"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x2nbb",
+      "title": "פרויקט",
+      "type": "board_relation",
+      "description": "נוצר באישור",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x3zcf",
+      "title": "חשבוניות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597806"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xcjnr",
+      "title": "בנק שעות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597813"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x5cfa",
+      "title": "הזדמנויות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597830"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [
+    {
+      "id": "quote_key",
+      "title": "quote_key",
+      "type": "item_id",
+      "settings": {
+        "display": "custom_key",
+        "prefix": "Q-",
+        "padding": 4
+      }
+    },
+    {
+      "id": "valid",
+      "title": "בתוקף?",
+      "type": "formula",
+      "settings": {
+        "formula": "IF({date_mm6xdbs4}<TODAY(),\"פג תוקף\",\"\")"
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": []
+}

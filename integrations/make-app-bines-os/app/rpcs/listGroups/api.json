@@ -1,0 +1,4 @@
+{
+  "url": "/boards/{{parameters.boardId}}/schema",
+  "response": { "iterate": "{{body.groups}}", "output": { "label": "{{item.title}}", "value": "{{item.id}}" } }
+}

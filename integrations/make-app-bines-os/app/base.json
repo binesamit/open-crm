@@ -1,0 +1,22 @@
+{
+  "baseUrl": "{{replace(replace(trim(connection.baseUrl), '/[/]+$/', ''), '/[/]api[/]v1$/', '')}}/api/v1",
+  "headers": { "Authorization": "Bearer {{connection.apiToken}}" },
+  "response": {
+    "error": {
+      "401": {
+        "type": "InvalidAccessTokenError",
+        "message": "[401] {{ifempty(body.error.message, \"Invalid API token\")}}"
+      },
+      "403": { "type": "InvalidConfigurationError", "message": "[403] {{body.error.message}} ({{body.error.code}})" },
+      "404": { "type": "DataError", "message": "[404] {{ifempty(body.error.message, \"Not found\")}}" },
+      "409": { "type": "DataError", "message": "[409] {{body.error.message}} ({{body.error.code}})" },
+      "422": { "type": "DataError", "message": "[422] {{body.error.message}} ({{body.error.code}})" },
+      "423": { "type": "InvalidConfigurationError", "message": "[423] {{body.error.message}}" },
+      "429": { "type": "RateLimitError", "message": "[429] {{ifempty(body.error.message, \"Rate limit\")}}" },
+      "503": { "type": "ConnectionError", "message": "[503] {{ifempty(body.error.message, \"Service unavailable\")}}" },
+      "type": "RuntimeError",
+      "message": "[{{statusCode}}] {{ifempty(body.error.message, body)}} ({{body.error.code}})"
+    }
+  },
+  "log": { "sanitize": ["request.headers.authorization"] }
+}

@@ -1,0 +1,1 @@
+{ "url": "/teams", "response": { "limit": "{{parameters.limit}}", "iterate": "{{body.data}}", "output": "{{item}}" } }

@@ -1,0 +1,9 @@
+# Keeps the SHA-pinned actions in .github/workflows current (audit 2026-10-10 web #2): a moved tag cannot change
+# what runs, and a real update arrives as a pull request with the new commit.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels: [ci]

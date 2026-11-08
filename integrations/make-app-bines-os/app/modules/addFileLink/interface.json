@@ -1,0 +1,5 @@
+[
+  { "name": "id", "label": "Link ID", "type": "text" },
+  { "name": "url", "label": "URL", "type": "url" },
+  { "name": "name", "label": "Name", "type": "text" }
+]

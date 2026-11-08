@@ -1,0 +1,20 @@
+# Build context of extensions/calendar-sync/Dockerfile (BuildKit reads <Dockerfile>.dockerignore; like
+# docker/Dockerfile.dockerignore, no root .dockerignore so Railway's Railpack builds are unaffected).
+**/node_modules
+**/dist
+**/.turbo
+**/coverage
+**/*.log
+.git
+.github
+.claude
+.vscode
+.env
+.env.*
+docs
+design-guide
+e2e
+perf
+reference
+playwright-report
+test-results

@@ -1,0 +1,59 @@
+{
+  "name": "n8n-nodes-bines-os",
+  "version": "0.3.0",
+  "description": "n8n community nodes for Bines OS: triggers that register their own webhooks, and actions and searches on boards, items, subitems, templates, updates, files, time tracking and AI agents.",
+  "keywords": [
+    "n8n-community-node-package",
+    "bines-os",
+    "work-os",
+    "crm"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binesamit/open-crm.git",
+    "directory": "integrations/n8n-nodes-bines-os"
+  },
+  "homepage": "https://github.com/binesamit/open-crm#readme",
+  "bugs": {
+    "url": "https://github.com/binesamit/open-crm/issues"
+  },
+  "author": {
+    "name": "Amit Bines"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/clean.mjs && tsc -p tsconfig.build.json && node scripts/copy-icons.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint:n8n": "n8n-node lint",
+    "prepublishOnly": "pnpm lint:n8n && pnpm test && pnpm build",
+    "test": "vitest run",
+    "pack:local": "pnpm build && npm pack"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/BinesOsApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/BinesOs/BinesOs.node.js",
+      "dist/nodes/BinesOsTrigger/BinesOsTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "0.54.4",
+    "@types/node": "^22.10.0",
+    "n8n-workflow": "2.16.0",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}

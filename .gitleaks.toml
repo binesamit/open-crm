@@ -1,0 +1,105 @@
+# gitleaks (security review S-CI): the default rules, plus an allowlist for verified false positives only.
+# Every entry names the exact file and line pattern; never allowlist a whole directory or rule.
+title = "Bines OS gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Verified false positive: fixed inbound-webhook secret used by the webhooks API test (not a real credential)"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/webhooks\.test\.ts$''']
+regexTarget = "line"
+regexes = ['''secret: 'inbound-secret-123',''']
+
+[[allowlists]]
+description = "Verified false positive (S-49): fixed signing secret of red-team test fixtures"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/(ai|extensions)-redteam\.test\.ts$''']
+regexTarget = "line"
+regexes = ['''secret: 'signing-secret-789',''']
+
+[[allowlists]]
+description = "Verified false positive (S-49): a fake Google key in the maps settings tests"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/(r10-board|views2)\.test\.ts$''']
+regexTarget = "line"
+regexes = ['''google_key: 'AIzaSyTestKey123456''']
+
+[[allowlists]]
+description = "Verified false positive (S-49): a ULID fixture in the column tests"
+condition = "AND"
+paths = ['''(^|/)packages/shared/test/columns\.test\.ts$''']
+regexTarget = "line"
+regexes = ['''key: '01JA2B3C4D5E6F7G8H9J0K1M2N' ''']
+
+[[allowlists]]
+description = "Verified false positive (S-49): an example Idempotency-Key UUID in the API guide"
+condition = "AND"
+paths = ['''(^|/)apps/api/src/modules/apidocs/guide\.ts$''']
+regexTarget = "line"
+regexes = ['''Idempotency-Key: 6f1c0d5e-2b8a-4c3f-9e71-0a4d2b5c8e19''']
+
+[[allowlists]]
+description = "Verified false positive (S-49): UI strings (\"Two-factor authentication\", \"The AI key is not valid\")"
+condition = "AND"
+paths = ['''(^|/)packages/shared/src/i18n/en\.json$''']
+regexTarget = "line"
+regexes = ['''"sec2\.policy\.title": "Two-factor authentication"''', '''"ai2\.reason\.invalid_api_key": "The AI key is not valid"''', '''"secret\.no2fa\.title": "Two-factor authentication needed"''']
+
+[[allowlists]]
+description = "Verified false positive: the inbound-webhook test secret passed in the URL query (S-11 refusal test)"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/webhooks\.test\.ts$''']
+regexTarget = "line"
+regexes = ['''\?secret=inbound-secret-123`''']
+
+[[allowlists]]
+description = "Verified false positive: fixed n8n webhook-subscription secret of the integrations / n8n trigger tests"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/integrations\.test\.ts$''', '''(^|/)integrations/n8n-nodes-bines-os/test/trigger\.test\.ts$''']
+regexTarget = "line"
+regexes = ['''secret(: | = )'n8n-secret-0123456789',?;?$''']
+
+[[allowlists]]
+description = "Verified false positive (R19 PWA): the public example push-subscription keys from the web-push README, used as test fixtures"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/r19pwa\.test\.ts$''', '''(^|/)e2e/r19pwa\.spec\.ts$''']
+regexTarget = "line"
+regexes = ['''auth: 'tBHItJI5svbpez7KI4CCXg',''']
+
+# --- Open-source release audit (2026-11-04): fixtures and public values that the default rules flag.
+[[allowlists]]
+description = "Verified false positive: fake Stripe test key and webhook secret in the payment/pricing/licence tests and E2E"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/(license-ops|plan-cancel|plan-payments|pricing)\.test\.ts$''', '''(^|/)e2e/plan-payments\.spec\.ts$''']
+regexTarget = "line"
+regexes = ['''whsec_TestSigningSecret123456''', '''sk_test_51E2eFakeKeyForPlans''']
+
+[[allowlists]]
+description = "Verified false positive: fixed test values for auth/form/provider secrets (never real credentials)"
+condition = "AND"
+paths = ['''(^|/)apps/api/test/(outbound-private|pglite-pool|s4f-pwa|secrets-oct27|voice|web-search|licensing)\.test\.ts$''', '''(^|/)packages/server-ai/test/transcribe\.test\.ts$''']
+regexTarget = "line"
+regexes = ['''q7Zt3LxP9mWv2KcR8nYb4HsJ6dFg1TeA5uQo0iVp''', '''from-the-environment-0123456789abcdef''', '''tBHItJI5svbpez7KI4CCXg''', '''Fr0m-F0rm-S3cret-QQ71''', '''soniox-key-1234567''', '''BSA-secret-key-12345''', '''key-123456789''', '''lic1\.signed-by-an-older-key''']
+
+[[allowlists]]
+description = "Verified false positive: prose and an i18n key name, not secrets"
+condition = "AND"
+paths = ['''(^|/)README\.md$''', '''(^|/)apps/web/src/features/owner/PlatformSettings\.tsx$''']
+regexTarget = "line"
+regexes = ['''S3-compatible''', '''s37intdocs\.internalRef''']
+
+[[allowlists]]
+description = "Verified false positive: i18n labels for the API reference links, not secrets"
+condition = "AND"
+paths = ['''(^|/)packages/shared/src/i18n/en\.json$''']
+regexTarget = "line"
+regexes = ['''"s37intdocs\.(publicRef|internalRef)": "(Public|Internal) API reference"''']
+
+[[allowlists]]
+description = "Public by design: the browser extension's public key (pins its extension id; the private key is not in the repo)"
+condition = "AND"
+paths = ['''(^|/)extensions/browser/manifest\.json$''']
+regexTarget = "line"
+regexes = ['''"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA''']

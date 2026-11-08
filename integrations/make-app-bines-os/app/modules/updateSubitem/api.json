@@ -1,0 +1,7 @@
+{
+  "url": "/items/{{parameters.itemId}}",
+  "method": "PATCH",
+  "qs": { "format": "flat" },
+  "body": { "name": "{{parameters.name}}", "values": "{{parameters.columns}}" },
+  "response": { "output": "{{body}}" }
+}

@@ -1,0 +1,198 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "hours_bank",
+  "format_version": 2,
+  "existing_board_id": "5103597813",
+  "name": "בנק שעות",
+  "description": "שם: \"לקוח — חבילה — תאריך\". יתרה < 20% ⇒ סטטוס נמוך + הזדמנות \"חידוש בנק שעות\" + WhatsApp ללקוח (MCP).",
+  "board_kind": "public",
+  "folder": "02",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xpe6s",
+      "title": "פעיל",
+      "color": "forest"
+    },
+    {
+      "id": "group_mm6x39zm",
+      "title": "לא פעיל",
+      "color": "yellow"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6xamy",
+      "title": "שעות שנרכשו",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "date_mm6xq65q",
+      "title": "תוקף",
+      "type": "date",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x2qxv",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "נמוך",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "פעיל",
+            "color": "forest",
+            "index": 0
+          },
+          {
+            "id": 2,
+            "label": "אזל",
+            "color": "crimson",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "פג",
+            "color": "gray",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "board_relation_mm6xy31v",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x8kj1",
+      "title": "הצעה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597804"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xf420",
+      "title": "חשבונית",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597806"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x9zyy",
+      "title": "כרטיסי תמיכה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597817"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xydd7",
+      "title": "פרויקטים",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xw8pa",
+      "title": "משימות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597820"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "lookup_mm6xk39b",
+      "title": "שעות שנוצלו",
+      "type": "mirror",
+      "description": "סכום \"בפועל (שעות)\" של המשימות המקושרות לחבילה",
+      "settings": {
+        "relation_column_id": "board_relation_mm6xw8pa",
+        "source_column_id": "numeric_mm6xt4hn",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "formula_mm6x86cp",
+      "title": "יתרה",
+      "type": "formula",
+      "description": null,
+      "settings": {
+        "formula": "{numeric_mm6xamy}-{lookup_mm6xk39b}"
+      }
+    },
+    {
+      "id": "formula_mm6x1kqh",
+      "title": "נמוך?",
+      "type": "formula",
+      "description": "עזר: 1 כשהיתרה מתחת ל-20%",
+      "settings": {
+        "formula": "IF({numeric_mm6xamy}>0,IF(({numeric_mm6xamy}-{lookup_mm6xk39b})/{numeric_mm6xamy}<0.2,1,0),0)"
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": []
+}

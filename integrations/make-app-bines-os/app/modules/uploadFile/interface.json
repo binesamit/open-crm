@@ -1,0 +1,6 @@
+[
+  { "name": "id", "label": "File ID", "type": "text" },
+  { "name": "name", "label": "Name", "type": "text" },
+  { "name": "size", "label": "Size", "type": "number" },
+  { "name": "mime", "label": "Content type", "type": "text" }
+]

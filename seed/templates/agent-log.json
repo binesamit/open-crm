@@ -1,0 +1,233 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "agent_log",
+  "format_version": 2,
+  "existing_board_id": "5103597825",
+  "name": "לוג סוכן AI",
+  "description": "כל כלי כתיבה ב-MCP מייצר שורה (Middleware). שמירה 90 יום בבורד, ארכיון למסד נתונים חיצוני.",
+  "board_kind": "public",
+  "folder": "06",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xz9gd",
+      "title": "פתוח",
+      "color": "blue"
+    },
+    {
+      "id": "group_mm6xrm21",
+      "title": "סגור",
+      "color": "yellow"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "text_mm6xj41n",
+      "title": "run_id",
+      "type": "text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xjbj3",
+      "title": "סוכן",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "סוכן WhatsApp",
+            "color": "forest",
+            "index": 2
+          },
+          {
+            "id": 3,
+            "label": "סוכן AI",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "סוכן פורטל",
+            "color": "purple",
+            "index": 1
+          },
+          {
+            "id": 9,
+            "label": "סוכן אפיון",
+            "color": "yellow",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6xs47k",
+      "title": "סוג פעולה",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "התראה",
+            "color": "yellow",
+            "index": 3
+          },
+          {
+            "id": 2,
+            "label": "שגיאה",
+            "color": "crimson",
+            "index": 4
+          },
+          {
+            "id": 3,
+            "label": "כתיבה",
+            "color": "blue",
+            "index": 1
+          },
+          {
+            "id": 4,
+            "label": "הצעה",
+            "color": "purple",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "קריאה",
+            "color": "gray",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "text_mm6x13as",
+      "title": "בורד יעד",
+      "type": "text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "link_mm6xkdmk",
+      "title": "אייטם יעד",
+      "type": "link",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6xszdd",
+      "title": "קלט",
+      "type": "long_text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6xd5xs",
+      "title": "פלט",
+      "type": "long_text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6x5ve",
+      "title": "טוקנים",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xvj42",
+      "title": "עלות",
+      "type": "numbers",
+      "description": "$",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "boolean_mm6x9neq",
+      "title": "דרש אישור",
+      "type": "checkbox",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "multiple_person_mm6x2v03",
+      "title": "אושר ע\"י",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "color_mm6xszcv",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "ממתין לאישור",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "בוצע",
+            "color": "forest",
+            "index": 0,
+            "is_done": true
+          },
+          {
+            "id": 2,
+            "label": "נדחה",
+            "color": "crimson",
+            "index": 2
+          },
+          {
+            "id": 11,
+            "label": "נכשל",
+            "color": "plum",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "board_relation_mm6xwes4",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "view_comment",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": []
+}

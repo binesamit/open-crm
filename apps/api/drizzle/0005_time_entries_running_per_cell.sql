@@ -1,0 +1,2 @@
+DROP INDEX "ux_time_entries_running";--> statement-breakpoint
+CREATE UNIQUE INDEX "ux_time_entries_running_cell" ON "time_entries" USING btree ("item_id","column_id","user_id") WHERE "time_entries"."ended_at" is null and "time_entries"."deleted_at" is null;

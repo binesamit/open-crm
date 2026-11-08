@@ -1,0 +1,36 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "columnId",
+          "label": "Subitem column",
+          "type": "select",
+          "help": "Leave empty for any column of the subitems.",
+          "options": "rpc://listColumns?subitems=true"
+        }
+      ]
+    }
+  },
+  {
+    "name": "includeItem",
+    "label": "Include the item",
+    "type": "boolean",
+    "default": true,
+    "advanced": true,
+    "help": "Each event carries the item with its column values (no second call needed)."
+  },
+  {
+    "name": "verifySignature",
+    "label": "Verify signature",
+    "type": "boolean",
+    "default": true,
+    "advanced": true,
+    "help": "Accept only deliveries signed by Bines OS with this webhook's secret (HMAC-SHA256)."
+  }
+]

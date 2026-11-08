@@ -1,0 +1,436 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "projects",
+  "format_version": 2,
+  "existing_board_id": "5103597819",
+  "name": "פרויקטים",
+  "description": "project_id = PRJ-YYYY-NNN. נוצר מהצעה מאושרת דרך תבנית (MCP project.createFromTemplate). כל המשימות הושלמו ⇒ QA (A7).",
+  "board_kind": "public",
+  "folder": "03",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 2,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xhwbk",
+      "title": "פעילים",
+      "color": "purple"
+    },
+    {
+      "id": "group_mm6x5ves",
+      "title": "לא פעילים",
+      "color": "purple"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "pulse_id_mm6y98m6",
+      "title": "project_id",
+      "type": "item_id",
+      "description": null,
+      "settings": {
+        "display": "id"
+      }
+    },
+    {
+      "id": "color_mm6xzzdn",
+      "title": "סוג",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "אינטגרציה",
+            "color": "yellow",
+            "index": 4
+          },
+          {
+            "id": 1,
+            "label": "בוט WhatsApp",
+            "color": "forest",
+            "index": 1
+          },
+          {
+            "id": 3,
+            "label": "אוטומציה",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "Voice AI",
+            "color": "purple",
+            "index": 2
+          },
+          {
+            "id": 7,
+            "label": "ERP",
+            "color": "blue",
+            "index": 3
+          },
+          {
+            "id": 9,
+            "label": "ייעוץ",
+            "color": "yellow",
+            "index": 5
+          },
+          {
+            "id": 14,
+            "label": "סדנה",
+            "color": "purple",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6x6akt",
+      "title": "שלב",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "פיתוח",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "הושלם",
+            "color": "forest",
+            "index": 5,
+            "is_done": true
+          },
+          {
+            "id": 3,
+            "label": "אפיון",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "QA",
+            "color": "purple",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "מוקפא",
+            "color": "gray",
+            "index": 6
+          },
+          {
+            "id": 6,
+            "label": "תחזוקה",
+            "color": "forest",
+            "index": 4
+          },
+          {
+            "id": 7,
+            "label": "השקה",
+            "color": "blue",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple_person_mm6xcqj9",
+      "title": "מנהל",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "timerange_mm6x61vw",
+      "title": "התחלה / יעד",
+      "type": "timeline",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "file_mm6ys712",
+      "title": "מסמכים",
+      "type": "file",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "text_mm6xs0ng",
+      "title": "אבני דרך",
+      "type": "text",
+      "description": "או סאב-אייטמים אם הפרויקט גדול",
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6xaewq",
+      "title": "שעות מתוכננות",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "boolean_mm6x4eyj",
+      "title": "ציבורי ללקוח",
+      "type": "checkbox",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6x8rmc",
+      "title": "עדכון אחרון ללקוח",
+      "type": "long_text",
+      "description": "[agent-write] מה שהלקוח רואה בפורטל",
+      "settings": {}
+    },
+    {
+      "id": "formula_mm6x6q4e",
+      "title": "פעיל?",
+      "type": "formula",
+      "description": "עזר לספירה בבורד לקוחות",
+      "settings": {
+        "formula": "IF(OR({color_mm6x6akt}=\"הושלם\",{color_mm6x6akt}=\"מוקפא\"),0,1)"
+      }
+    },
+    {
+      "id": "board_relation_mm6x6t4w",
+      "title": "הצעה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597804"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x37j6",
+      "title": "כרטיסי תמיכה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597817"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x9vct",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xpw4s",
+      "title": "משימות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597820"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x6n5m",
+      "title": "בנק שעות",
+      "type": "board_relation",
+      "description": "אם מחויב מבנק",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597813"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xr61z",
+      "title": "תבנית מקור",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597821"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xd673",
+      "title": "אוטומציות שנוצרו",
+      "type": "board_relation",
+      "description": "תוצרי הפרויקט",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597829"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "lookup_mm6xgw3p",
+      "title": "התקדמות",
+      "type": "mirror",
+      "description": "אחוז המשימות שהושלמו",
+      "settings": {
+        "relation_column_id": "board_relation_mm6xpw4s",
+        "source_column_id": "color_mm6x1j95"
+      }
+    },
+    {
+      "id": "lookup_mm6xwc28",
+      "title": "שעות בפועל",
+      "type": "mirror",
+      "description": null,
+      "settings": {
+        "relation_column_id": "board_relation_mm6xpw4s",
+        "source_column_id": "numeric_mm6xt4hn",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "formula_mm6x18c1",
+      "title": "חריגה",
+      "type": "formula",
+      "description": "בפועל − מתוכנן",
+      "settings": {
+        "formula": "{lookup_mm6xwc28}-{numeric_mm6xaewq}"
+      }
+    },
+    {
+      "id": "long_text_mm76jq91",
+      "title": "סיכונים פתוחים",
+      "type": "long_text",
+      "description": "סיכונים פתוחים מהאפיון",
+      "settings": {}
+    },
+    {
+      "id": "color_mm76mkq4",
+      "title": "גל נוכחי",
+      "type": "status",
+      "description": "גל העבודה הנוכחי של הפרויקט",
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "גל 1",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 2,
+            "label": "גל 0",
+            "color": "crimson",
+            "index": 0
+          },
+          {
+            "id": 7,
+            "label": "גל 2",
+            "color": "blue",
+            "index": 2
+          }
+        ]
+      }
+    }
+  ],
+  "add_columns": [
+    {
+      "id": "project_key",
+      "title": "project_key",
+      "type": "item_id",
+      "settings": {
+        "display": "custom_key",
+        "prefix": "PRJ-",
+        "padding": 3
+      }
+    },
+    {
+      "id": "client_status",
+      "title": "סטטוס ללקוח",
+      "type": "status",
+      "description": "העמודה שמשוכפלת לפורטל",
+      "settings": {
+        "labels": [
+          {
+            "id": 3,
+            "label": "בתכנון",
+            "color": "gray",
+            "index": 0
+          },
+          {
+            "id": 0,
+            "label": "בעבודה",
+            "color": "gray",
+            "index": 1
+          },
+          {
+            "id": 9,
+            "label": "ממתין לך",
+            "color": "gray",
+            "index": 2
+          },
+          {
+            "id": 1,
+            "label": "הושלם",
+            "color": "gray",
+            "index": 3,
+            "is_done": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "portal_item",
+      "title": "מקור בפורטל",
+      "type": "board_relation",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "@portals"
+        ],
+        "allow_multiple": false
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "long_text_mm6x8rmc": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

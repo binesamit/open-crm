@@ -1,0 +1,1 @@
+{ "url": "/items/{{parameters.itemId}}/outdent", "method": "POST", "body": {}, "response": { "output": "{{body}}" } }

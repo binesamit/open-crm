@@ -1,0 +1,5 @@
+[
+  { "name": "updateId", "label": "Update ID", "type": "text", "required": true },
+  { "name": "index", "label": "Check box number", "type": "uinteger", "required": true, "default": 1 },
+  { "name": "checked", "label": "Checked", "type": "boolean", "default": true }
+]

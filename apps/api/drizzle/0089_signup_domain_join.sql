@@ -1,0 +1,2 @@
+ALTER TABLE "signup_requests" ADD COLUMN "join_account_id" varchar(26);--> statement-breakpoint
+ALTER TABLE "signup_requests" ADD CONSTRAINT "signup_requests_join_account_id_accounts_id_fk" FOREIGN KEY ("join_account_id") REFERENCES "public"."accounts"("id") ON DELETE cascade ON UPDATE no action;

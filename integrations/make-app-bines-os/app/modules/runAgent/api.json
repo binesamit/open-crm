@@ -1,0 +1,6 @@
+{
+  "url": "/agents/{{parameters.agentId}}/runs",
+  "method": "POST",
+  "body": { "prompt": "{{parameters.prompt}}", "item_id": "{{parameters.itemId}}", "dry_run": "{{parameters.dryRun}}" },
+  "response": { "output": "{{body}}" }
+}

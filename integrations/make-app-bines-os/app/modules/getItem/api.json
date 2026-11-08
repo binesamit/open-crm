@@ -1,0 +1,1 @@
+{ "url": "/items/{{parameters.itemId}}", "qs": { "format": "flat" }, "response": { "output": "{{body}}" } }

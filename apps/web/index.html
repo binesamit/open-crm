@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+    />
+    <title></title>
+    <!-- The phone app (PWA): the platform's manifest and icons; inside an account the app points them at the
+         account's (src/pwa/PwaHosts.tsx). Names, colours and icons come from the settings, served by the API.
+         The title and the iOS app title are left empty here: the API fills them with the product name when it
+         serves this page (apps/api/src/web.ts), and the app keeps the title current (src/lib/branding.ts). -->
+    <link rel="manifest" href="/api/v1/public/pwa/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/api/v1/public/pwa/icon/apple-180.png" />
+    <!-- The tab's icon: the built-in app icon (public/, apps/api/scripts/gen-favicons.ts), so a tab has one before sign-in;
+         inside an account the app swaps it for the account's own icon, the home-screen one drawn small
+         (src/pwa/favicon.ts). -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <meta name="theme-color" content="#0d3b35" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;600;700;800&family=Rubik:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

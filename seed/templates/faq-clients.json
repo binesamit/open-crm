@@ -1,0 +1,134 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "faq_clients",
+  "format_version": 2,
+  "existing_board_id": "5103597824",
+  "name": "שו\"ת ללקוחות",
+  "description": "נוצר מטיקטים שנפתרו (הסוכן מנסח, אדם מאשר). מוצג בפורטל רק כשמאושר לפרסום.",
+  "board_kind": "public",
+  "folder": "05",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6x5n0m",
+      "title": "פעיל",
+      "color": "purple"
+    },
+    {
+      "id": "group_mm6xmdja",
+      "title": "לא פעיל",
+      "color": "forest"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6xkwg3",
+      "title": "תשובה",
+      "type": "long_text",
+      "description": "[agent-write] הסוכן מנסח, אדם מאשר",
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x5vg2",
+      "title": "קטגוריה",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "תמיכה",
+            "color": "yellow",
+            "index": 2
+          },
+          {
+            "id": 3,
+            "label": "כללי",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "אוטומציות",
+            "color": "purple",
+            "index": 3
+          },
+          {
+            "id": 7,
+            "label": "פורטל",
+            "color": "blue",
+            "index": 4
+          },
+          {
+            "id": 9,
+            "label": "חיוב ותשלומים",
+            "color": "yellow",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "boolean_mm6xbt0b",
+      "title": "מאושר לפרסום",
+      "type": "checkbox",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6xqcaf",
+      "title": "צפיות בפורטל",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "board_relation_mm6xsf0c",
+      "title": "רלוונטי ל",
+      "type": "board_relation",
+      "description": "ריק = כולם",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xjkcr",
+      "title": "מקור",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597817"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "long_text_mm6xkwg3": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

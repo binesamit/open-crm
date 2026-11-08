@@ -1,0 +1,26 @@
+{
+  "name": "make-app-bines-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Bines OS custom app for Make (make.com): instant triggers, actions, searches and RPCs as JSON (built-in IML only), a build step and a push script for Make's SDK-apps API.",
+  "license": "MIT",
+  "author": {
+    "name": "Amit Bines"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "build": "node src/build.ts",
+    "push": "node scripts/push.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "prettier": "^3.9.0",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.0"
+  }
+}

@@ -1,0 +1,4 @@
+[
+  { "name": "boardId", "type": "text", "label": "Board", "required": true },
+  { "name": "subitems", "type": "boolean", "label": "Subitem columns" }
+]

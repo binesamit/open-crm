@@ -1,0 +1,128 @@
+[
+  {
+    "key": "guides",
+    "name": "מדריכים מעשיים",
+    "name_en": "Practical guides",
+    "icon": "play",
+    "position": 0
+  },
+  {
+    "key": "getting-started",
+    "name": "תחילת עבודה",
+    "name_en": "Getting started",
+    "icon": "home",
+    "position": 1
+  },
+  {
+    "key": "boards-groups-and-items",
+    "name": "בורדים, קבוצות ופריטים",
+    "name_en": "Boards, groups & items",
+    "icon": "board",
+    "position": 2
+  },
+  {
+    "key": "columns",
+    "name": "עמודות",
+    "name_en": "Columns",
+    "icon": "table",
+    "position": 3
+  },
+  {
+    "key": "views",
+    "name": "תצוגות",
+    "name_en": "Views",
+    "icon": "kanban",
+    "position": 4
+  },
+  {
+    "key": "search-filter-and-sort",
+    "name": "חיפוש, פילטר ומיון",
+    "name_en": "Search, filter & sort",
+    "icon": "filter",
+    "position": 5
+  },
+  {
+    "key": "item-card-and-collaboration",
+    "name": "כרטיס הפריט ושיתוף פעולה",
+    "name_en": "Item card & collaboration",
+    "icon": "chat",
+    "position": 6
+  },
+  {
+    "key": "docs-and-forms",
+    "name": "מסמכים וטפסים",
+    "name_en": "Docs & forms",
+    "icon": "form",
+    "position": 7
+  },
+  {
+    "key": "dashboards",
+    "name": "דשבורדים",
+    "name_en": "Dashboards",
+    "icon": "dashboard",
+    "position": 8
+  },
+  {
+    "key": "automations",
+    "name": "אוטומציות",
+    "name_en": "Automations",
+    "icon": "bolt",
+    "position": 9
+  },
+  {
+    "key": "integrations-api-and-extensions",
+    "name": "חיבורים, API ותוספות",
+    "name_en": "Integrations, API & extensions",
+    "icon": "link",
+    "position": 10
+  },
+  {
+    "key": "ai-and-agents",
+    "name": "AI וסוכנים",
+    "name_en": "AI & agents",
+    "icon": "sparkle",
+    "position": 11
+  },
+  {
+    "key": "my-work-inbox-and-notifications",
+    "name": "העבודה שלי, עדכונים והתראות",
+    "name_en": "My work, inbox & notifications",
+    "icon": "bell",
+    "position": 12
+  },
+  {
+    "key": "mobile-and-app",
+    "name": "טלפון ואפליקציה",
+    "name_en": "Mobile & app",
+    "icon": "mobile",
+    "position": 13
+  },
+  {
+    "key": "permissions-and-sharing",
+    "name": "הרשאות ושיתוף",
+    "name_en": "Permissions & sharing",
+    "icon": "lock",
+    "position": 14
+  },
+  {
+    "key": "account-administration",
+    "name": "ניהול החשבון",
+    "name_en": "Account administration",
+    "icon": "gear",
+    "position": 15
+  },
+  {
+    "key": "import-export-archive-and-trash",
+    "name": "ייבוא, ייצוא, ארכיון וסל",
+    "name_en": "Import, export, archive & trash",
+    "icon": "archive",
+    "position": 16
+  },
+  {
+    "key": "help-and-support",
+    "name": "עזרה ותמיכה",
+    "name_en": "Help & support",
+    "icon": "info",
+    "position": 17
+  }
+]

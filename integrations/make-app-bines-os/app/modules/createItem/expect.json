@@ -1,0 +1,16 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        { "name": "groupId", "label": "Group", "type": "select", "required": false, "options": "rpc://listGroups" },
+        "rpc://columnFields"
+      ]
+    }
+  },
+  { "name": "name", "label": "Name", "type": "text", "required": true }
+]

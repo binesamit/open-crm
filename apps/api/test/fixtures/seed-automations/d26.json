@@ -1,0 +1,121 @@
+{
+  "automations": [
+    {
+      "id": "L3",
+      "board": "leads",
+      "recipe": "When סטטוס changes to זכינו, and only if לקוח is empty, create an item in לקוחות and connect it",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6x5rvw",
+        "labels": ["זכינו"]
+      },
+      "conditions": [
+        {
+          "column": "board_relation_mm6x36x0",
+          "operator": "is_empty",
+          "text": "only if לקוח is empty"
+        }
+      ],
+      "actions": [
+        {
+          "type": "create_item",
+          "board": "accounts",
+          "name": "{item name}",
+          "mapping": {
+            "text_mm6xsb4a": "text_mm6xfhf6",
+            "phone_mm6x1hps": "phone_mm6xspyq",
+            "email_mm6xjg69": "email_mm6xp2w0"
+          },
+          "connect_column": "board_relation_mm6x36x0",
+          "connect_back_column": "board_relation_mm6xwczf",
+          "text": "create item in לקוחות (contact, phone, email) and connect it as לקוח"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: built from built-in actions (was a webhook to MCP lead.convert)"
+    },
+    {
+      "id": "Q1",
+      "board": "quotes",
+      "recipe": "When סטטוס changes to אושרה, send a webhook",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6xbq8z",
+        "labels": ["אושרה"]
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "webhook",
+          "url": "{{N8N_URL}}/quote.approve",
+          "text": "send a webhook to n8n quote.approve (Morning)"
+        }
+      ],
+      "kind": "integration",
+      "note": "D26: stays a webhook to n8n (Morning). Paste the n8n webhook URL in the builder — {{N8N_URL}} is a placeholder."
+    },
+    {
+      "id": "T1",
+      "board": "tasks",
+      "recipe": "When פרויקט changes, set לקוח (קישור) from the לקוח of the linked פרויקט",
+      "trigger": {
+        "type": "column_changed",
+        "column": "board_relation_mm6x61vz"
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "copy_from_linked",
+          "relation": "board_relation_mm6x61vz",
+          "source": "board_relation_mm6x9vct",
+          "column": "account",
+          "text": "set לקוח (קישור) = לקוח of פרויקט"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: built from built-in actions (was mcp:task.inherit_account). Runs when the project is set — also right after a task is created with one."
+    },
+    {
+      "id": "S3c",
+      "board": "support_tickets",
+      "recipe": "When עדיפות changes to P1 השבתה, set SLA יעד to now plus 4 hours",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6xv88q",
+        "labels": ["P1 השבתה"]
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "set_date",
+          "column": "date_mm6xzz5f",
+          "value": "now+4h",
+          "text": "set SLA יעד to now + 4 hours"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: built from built-in actions (was a webhook to MCP ticket.sla); P2 is S3d"
+    },
+    {
+      "id": "S3d",
+      "board": "support_tickets",
+      "recipe": "When עדיפות changes to P2 פגיעה, set SLA יעד to now plus 24 hours",
+      "trigger": {
+        "type": "status_changed",
+        "column": "color_mm6xv88q",
+        "labels": ["P2 פגיעה"]
+      },
+      "conditions": [],
+      "actions": [
+        {
+          "type": "set_date",
+          "column": "date_mm6xzz5f",
+          "value": "now+24h",
+          "text": "set SLA יעד to now + 24 hours"
+        }
+      ],
+      "kind": "automation",
+      "note": "D26: the P2 half of the old S3c webhook"
+    }
+  ]
+}

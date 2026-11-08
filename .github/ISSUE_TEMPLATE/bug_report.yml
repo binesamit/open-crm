@@ -1,0 +1,67 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! **Security problems must not be reported here** — see `SECURITY.md` for private reporting.
+        Please remove real customer data, tokens and passwords from anything you paste.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, and what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a board ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: The release tag or the commit you run (`git rev-parse --short HEAD`).
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Boards and items
+        - Automations
+        - Docs and files
+        - Dashboards
+        - AI agents / MCP server
+        - Forms
+        - Extensions / SDK
+        - Integrations (Make, n8n)
+        - Installation / deployment
+        - Other
+  - type: dropdown
+    id: language
+    attributes:
+      label: Interface language
+      options:
+        - Hebrew (RTL)
+        - English
+        - Both
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: How you run it (docker compose, Node version, OS, database), and the browser for UI bugs.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Server logs, browser console errors, screenshots. Remove secrets and personal data first.
+      render: text

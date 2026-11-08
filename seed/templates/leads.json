@@ -1,0 +1,392 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "leads",
+  "format_version": 2,
+  "existing_board_id": "5103597799",
+  "name": "לידים",
+  "description": "לידים נכנסים. סטטוס \"זכינו\" ⇒ MCP lead.convert יוצר לקוח ב-Morning ובבורד לקוחות.",
+  "board_kind": "public",
+  "folder": "01",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 2,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xd2ac",
+      "title": "פתוחים",
+      "color": "forest"
+    },
+    {
+      "id": "group_mm6xtvsb",
+      "title": "סגורים",
+      "color": "purple"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "text_mm6xfhf6",
+      "title": "איש קשר",
+      "type": "text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "phone_mm6xspyq",
+      "title": "טלפון",
+      "type": "phone",
+      "description": null,
+      "settings": {
+        "default_country": "IL"
+      }
+    },
+    {
+      "id": "email_mm6xp2w0",
+      "title": "אימייל",
+      "type": "email",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xht75",
+      "title": "מקור",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "הפניה",
+            "color": "forest",
+            "index": 2
+          },
+          {
+            "id": 3,
+            "label": "קמפיין FB",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "טופס באתר",
+            "color": "purple",
+            "index": 1
+          },
+          {
+            "id": 5,
+            "label": "אחר",
+            "color": "gray",
+            "index": 6
+          },
+          {
+            "id": 6,
+            "label": "WhatsApp",
+            "color": "forest",
+            "index": 5
+          },
+          {
+            "id": 7,
+            "label": "לינקדאין",
+            "color": "blue",
+            "index": 4
+          },
+          {
+            "id": 9,
+            "label": "NFC",
+            "color": "yellow",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6x5rvw",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "נוצר קשר",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "זכינו",
+            "color": "forest",
+            "index": 6,
+            "is_done": true
+          },
+          {
+            "id": 2,
+            "label": "אבד",
+            "color": "crimson",
+            "index": 7
+          },
+          {
+            "id": 3,
+            "label": "חדש",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "נקבעה פגישה",
+            "color": "purple",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "",
+            "color": "gray",
+            "index": 9
+          },
+          {
+            "id": 6,
+            "label": "אין מענה",
+            "color": "pink",
+            "index": 4
+          },
+          {
+            "id": 7,
+            "label": "הצעה נשלחה",
+            "color": "blue",
+            "index": 3
+          },
+          {
+            "id": 8,
+            "label": "פולואפ שלישי",
+            "color": "plum",
+            "index": 5
+          },
+          {
+            "id": 9,
+            "label": "מעקב",
+            "color": "turquoise",
+            "index": 8
+          }
+        ]
+      }
+    },
+    {
+      "id": "numeric_mm6xphfk",
+      "title": "ציון התאמה",
+      "type": "numbers",
+      "description": "[agent-write] 1–10, מחושב על ידי סוכן AI מטופס האתר",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "long_text_mm6x7fdn",
+      "title": "סיכום אפיון",
+      "type": "long_text",
+      "description": "[agent-write] תוצר הסוכן משיחת האפיון",
+      "settings": {}
+    },
+    {
+      "id": "dropdown_mm6x971b",
+      "title": "פלטפורמות קיימות",
+      "type": "dropdown",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "Make"
+          },
+          {
+            "id": 2,
+            "label": "n8n"
+          },
+          {
+            "id": 3,
+            "label": "ManyChat"
+          },
+          {
+            "id": 5,
+            "label": "Fireberry"
+          },
+          {
+            "id": 6,
+            "label": "iCount"
+          },
+          {
+            "id": 7,
+            "label": "Morning"
+          },
+          {
+            "id": 8,
+            "label": "WhatsApp"
+          },
+          {
+            "id": 9,
+            "label": "אחר"
+          }
+        ]
+      }
+    },
+    {
+      "id": "numeric_mm6x6bda",
+      "title": "תקציב משוער",
+      "type": "numbers",
+      "description": "₪",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "multiple_person_mm6xr34v",
+      "title": "בעלים",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "date_mm6xbb3h",
+      "title": "מעקב הבא",
+      "type": "date",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "board_relation_mm6x36x0",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": "[agent-write] מתמלא באוטומציה כשזכינו (lead.convert)",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xp3t1",
+      "title": "הצעה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597804"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "text_mm6ytnk8",
+      "title": "סונכרן עד (WA)",
+      "type": "text",
+      "description": "[agent-write] חותמת הזמן של ההודעה האחרונה שסונכרנה מוואטסאפ (unix). ריק = טרם סונכרן. מחיקה של הערך תגרום לסנכרון מחדש של כל ההיסטוריה.",
+      "settings": {}
+    },
+    {
+      "id": "pulse_log_mm6zxepq",
+      "title": "Creation log",
+      "type": "creation_log",
+      "description": null,
+      "settings": {
+        "mode": "both"
+      }
+    },
+    {
+      "id": "text_mm70yvqa",
+      "title": "תווית אחרונה (WA)",
+      "type": "text",
+      "description": "[agent-write] התווית שממנה נגזר הסטטוס בסריקה האחרונה. הסנכרון פועל רק כשהיא משתנה בוואטסאפ, כדי לא לדרוס שינוי ידני במערכת.",
+      "settings": {}
+    }
+  ],
+  "add_columns": [
+    {
+      "id": "lead_key",
+      "title": "lead_key",
+      "type": "item_id",
+      "description": "מזהה קבוע L-0001",
+      "settings": {
+        "display": "custom_key",
+        "prefix": "L-",
+        "padding": 4
+      }
+    },
+    {
+      "id": "contact_ref",
+      "title": "איש קשר (קישור)",
+      "type": "board_relation",
+      "description": "מחליף את שדה הטקסט 'איש קשר'",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "@contacts"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "numeric_mm6xphfk": [
+        "@owner"
+      ],
+      "long_text_mm6x7fdn": [
+        "@owner"
+      ],
+      "board_relation_mm6x36x0": [
+        "@owner"
+      ],
+      "text_mm6ytnk8": [
+        "@owner"
+      ],
+      "text_mm70yvqa": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": [
+    {
+      "name": "Kanban לפי סטטוס",
+      "type": "kanban",
+      "settings": {
+        "column": "color_mm6x5rvw"
+      }
+    },
+    {
+      "name": "מעקב היום",
+      "type": "table",
+      "filter": {
+        "rules": [
+          {
+            "column_id": "date_mm6xbb3h",
+            "operator": "lower_than_or_equal",
+            "compare_value": [
+              "TODAY"
+            ]
+          },
+          {
+            "column_id": "color_mm6x5rvw",
+            "operator": "not_any_of",
+            "compare_value": [
+              1,
+              2
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

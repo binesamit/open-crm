@@ -1,0 +1,29 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "columnId",
+          "label": "Files column",
+          "type": "select",
+          "required": true,
+          "options": "rpc://listColumns?kind=files"
+        }
+      ]
+    }
+  },
+  { "name": "itemId", "label": "Item ID", "type": "text", "required": true },
+  {
+    "name": "url",
+    "label": "URL",
+    "type": "text",
+    "required": true,
+    "help": "An http(s) address; \"example.com\" gets https://."
+  },
+  { "name": "name", "label": "Link name", "type": "text", "help": "Shown instead of the address." }
+]

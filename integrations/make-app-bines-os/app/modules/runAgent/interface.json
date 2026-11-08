@@ -1,0 +1,7 @@
+[
+  { "name": "id", "label": "Run ID", "type": "text" },
+  { "name": "agent_id", "label": "Agent ID", "type": "text" },
+  { "name": "status", "label": "Status", "type": "text" },
+  { "name": "final_text", "label": "Answer", "type": "text" },
+  { "name": "error", "label": "Error", "type": "text" }
+]

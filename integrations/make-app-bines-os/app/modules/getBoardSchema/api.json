@@ -1,0 +1,1 @@
+{ "url": "/boards/{{parameters.boardId}}/schema", "response": { "output": "{{body}}" } }

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "columnId",
+          "label": "Timer column",
+          "type": "select",
+          "required": true,
+          "options": "rpc://listColumns?kind=time_tracking",
+          "help": "For a subitem, choose its parent board and map the subitem timer column’s ID."
+        }
+      ]
+    }
+  },
+  { "name": "itemId", "label": "Item ID", "type": "text", "required": true },
+  { "name": "startedAt", "label": "Started at", "type": "date", "required": true },
+  { "name": "minutes", "label": "Minutes", "type": "uinteger", "required": true },
+  { "name": "note", "label": "Note", "type": "text" }
+]

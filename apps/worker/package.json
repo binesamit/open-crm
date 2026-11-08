@@ -1,0 +1,37 @@
+{
+  "name": "@bines/worker",
+  "version": "1.0.0",
+  "license": "AGPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tasks": "./src/tasks/index.ts"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1144.0",
+    "@bines/server-crypto": "workspace:*",
+    "@bines/server-mail": "workspace:*",
+    "@bines/server-monitoring": "workspace:*",
+    "@bines/shared": "workspace:*",
+    "@sentry/node": "^11.4.0",
+    "graphile-worker": "^0.18.0",
+    "nodemailer": "^10.0.10",
+    "web-push": "^3.6.7",
+    "zod": "^4.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/web-push": "^3.6.4",
+    "tsup": "^8.5.0",
+    "tsx": "^4.23.0",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.0"
+  }
+}

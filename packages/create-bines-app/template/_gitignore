@@ -1,0 +1,4 @@
+node_modules
+dist
+# The extension server's credentials (from the `installed` call) — never commit them.
+.data

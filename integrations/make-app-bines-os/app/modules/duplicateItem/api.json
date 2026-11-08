@@ -1,0 +1,7 @@
+{
+  "url": "/items/{{parameters.itemId}}/duplicate",
+  "method": "POST",
+  "qs": { "format": "flat" },
+  "body": { "with_updates": "{{parameters.withUpdates}}" },
+  "response": { "output": "{{body}}" }
+}

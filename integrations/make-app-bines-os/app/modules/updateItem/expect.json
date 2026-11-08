@@ -1,0 +1,11 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board",
+    "type": "select",
+    "required": true,
+    "options": { "store": "rpc://listBoards", "nested": ["rpc://columnFields"] }
+  },
+  { "name": "itemId", "label": "Item ID", "type": "text", "required": true },
+  { "name": "name", "label": "New name", "type": "text", "help": "Leave empty to keep the name." }
+]

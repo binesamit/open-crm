@@ -1,0 +1,61 @@
+{
+  "$comment": "Dependency license policy for scripts/check-licenses.mjs (open-source preparation, stage ק4). 'allowed': licenses any production dependency may use. 'denied': patterns that always fail (source-available terms, or copyleft incompatible with the AGPL-3.0) — unless the package is listed in 'exceptions'. 'allowed' is checked first, so BSL-1.0 (Boost, permissive) passes while BSL/BUSL (Business Source) fail. Anything neither allowed nor denied is 'unknown' and fails too. An exception is per package name + exact license string, with a reason; a new version under the same license stays allowed, a license change fails again.",
+  "allowed": [
+    "MIT",
+    "MIT-0",
+    "ISC",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "0BSD",
+    "Unlicense",
+    "CC0-1.0",
+    "BlueOak-1.0.0",
+    "Python-2.0",
+    "AFL-2.1",
+    "Zlib",
+    "BSL-1.0",
+    "MPL-2.0",
+    "CC-BY-4.0",
+    "OFL-1.1",
+    "AGPL-3.0-only",
+    "AGPL-3.0-or-later",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later",
+    "LGPL-2.1-only",
+    "LGPL-2.1-or-later",
+    "LGPL-3.0-only",
+    "LGPL-3.0-or-later"
+  ],
+  "denied": [
+    "GPL",
+    "AGPL",
+    "LGPL",
+    "SSPL",
+    "BSL",
+    "BUSL",
+    "FSL",
+    "Elastic",
+    "Commons-Clause",
+    "CC-BY-NC",
+    "UNLICENSED"
+  ],
+  "exceptions": [
+    {
+      "package": "sentry",
+      "license": "FSL-1.1-Apache-2.0",
+      "reason": "Sentry's CLI. It is only reachable through @sentry/node -> @sentry/bundler-plugins (core/cli.js, source-map upload at build time), which is loaded only from @sentry/node's ./vite|./rollup|./webpack|./esbuild subpath exports. The platform imports none of them (only the main @sentry/node and @sentry/react entries), so this package is installed but never loaded at runtime, and we build no product that competes with Sentry (the only FSL restriction). It becomes Apache-2.0 two years after each release."
+    }
+  ],
+  "bundled": [
+    {
+      "name": "Rubik Regular (font)",
+      "version": "2.300",
+      "license": "OFL-1.1",
+      "homepage": "https://github.com/googlefonts/rubik",
+      "path": "apps/api/assets/fonts",
+      "files": ["OFL.txt"],
+      "use": "The Regular (wght 400) instance of Rubik[wght].ttf from github.com/google/fonts (ofl/rubik), made with fontTools varLib.instancer; embedded (subset) in interactive-document PDFs (apps/api/src/modules/idocs/idocs.pdf.ts)."
+    }
+  ]
+}

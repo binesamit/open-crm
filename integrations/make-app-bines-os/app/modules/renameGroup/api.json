@@ -1,0 +1,6 @@
+{
+  "url": "/boards/{{parameters.boardId}}/groups/{{parameters.groupId}}",
+  "method": "PATCH",
+  "body": { "title": "{{parameters.title}}" },
+  "response": { "output": "{{body}}" }
+}

@@ -1,0 +1,1 @@
+ALTER TYPE "public"."board_view_items" ADD VALUE 'by_client';

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Board summary</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <p class="muted" id="status" data-testid="bs-status">…</p>
+    <div class="cards">
+      <div class="card"><span class="muted" id="l-items"></span><b id="items" data-testid="bs-items">–</b></div>
+      <div class="card"><span class="muted" id="l-done"></span><b id="done" data-testid="bs-done">–</b></div>
+      <div class="card">
+        <span class="muted" id="l-overdue"></span><b id="overdue" class="warn" data-testid="bs-overdue">–</b>
+      </div>
+      <div class="card"><span class="muted" id="l-groups"></span><b id="groups" data-testid="bs-groups">–</b></div>
+    </div>
+    <div class="section" id="by-status" data-testid="bs-by-status"></div>
+    <div class="section" id="by-group" data-testid="bs-by-group"></div>
+    <div class="section" id="by-person" data-testid="bs-by-person"></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

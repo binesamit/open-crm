@@ -1,0 +1,19 @@
+{
+  "name": "__APP_ID__",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "node server/lifecycle.mjs"
+  },
+  "dependencies": {
+    "@bines/ext-sdk": "__SDK__"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0"
+  }
+}

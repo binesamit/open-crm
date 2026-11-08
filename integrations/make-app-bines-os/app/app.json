@@ -1,0 +1,528 @@
+{
+  "name": "bines-os",
+  "label": "Bines OS",
+  "description": "Boards, items, subitems, updates, files and AI agents of Bines OS: instant triggers that register their own webhooks, actions and searches with each board's columns.",
+  "language": "en",
+  "theme": "#5b5bd6",
+  "version": 1,
+  "connections": { "binesOs": { "label": "Bines OS", "type": "apikey" } },
+  "webhooks": {
+    "watchItemsCreated": { "label": "Bines OS: Items Created", "type": "web", "connection": "binesOs" },
+    "watchColumnValueChanged": { "label": "Bines OS: Column Value Changed", "type": "web", "connection": "binesOs" },
+    "watchStatusChanged": { "label": "Bines OS: Status Changed", "type": "web", "connection": "binesOs" },
+    "watchAnyColumnChanged": { "label": "Bines OS: Any Column Changed", "type": "web", "connection": "binesOs" },
+    "watchItemsRenamed": { "label": "Bines OS: Items Renamed", "type": "web", "connection": "binesOs" },
+    "watchUpdates": { "label": "Bines OS: Updates", "type": "web", "connection": "binesOs" },
+    "watchItemsMovedToGroup": { "label": "Bines OS: Items Moved to a Group", "type": "web", "connection": "binesOs" },
+    "watchItemsMovedToAnyGroup": {
+      "label": "Bines OS: Items Moved to Any Group",
+      "type": "web",
+      "connection": "binesOs"
+    },
+    "watchItemsArchived": { "label": "Bines OS: Archived Items", "type": "web", "connection": "binesOs" },
+    "watchItemsDeleted": { "label": "Bines OS: Deleted Items", "type": "web", "connection": "binesOs" },
+    "watchItemsRestored": { "label": "Bines OS: Restored Items", "type": "web", "connection": "binesOs" },
+    "watchItemsMovedToBoard": {
+      "label": "Bines OS: Items Moved to This Board",
+      "type": "web",
+      "connection": "binesOs"
+    },
+    "watchUpdatesEdited": { "label": "Bines OS: Edited Updates", "type": "web", "connection": "binesOs" },
+    "watchUpdatesDeleted": { "label": "Bines OS: Deleted Updates", "type": "web", "connection": "binesOs" },
+    "watchFilesAdded": { "label": "Bines OS: Files Added", "type": "web", "connection": "binesOs" },
+    "watchGroupsCreated": { "label": "Bines OS: Groups Created", "type": "web", "connection": "binesOs" },
+    "watchColumnsCreated": { "label": "Bines OS: Columns Created", "type": "web", "connection": "binesOs" },
+    "watchColumnTypeChanged": { "label": "Bines OS: Column Type Changed", "type": "web", "connection": "binesOs" },
+    "watchSubitemsCreated": { "label": "Bines OS: Subitems Created", "type": "web", "connection": "binesOs" },
+    "watchSubitemColumnChanged": {
+      "label": "Bines OS: Subitem Column Changed",
+      "type": "web",
+      "connection": "binesOs"
+    },
+    "watchSubitemStatusChanged": {
+      "label": "Bines OS: Subitem Status Changed",
+      "type": "web",
+      "connection": "binesOs"
+    },
+    "watchSubitemsRenamed": { "label": "Bines OS: Subitems Renamed", "type": "web", "connection": "binesOs" },
+    "watchSubitemsArchived": { "label": "Bines OS: Archived Subitems", "type": "web", "connection": "binesOs" },
+    "watchSubitemsDeleted": { "label": "Bines OS: Deleted Subitems", "type": "web", "connection": "binesOs" },
+    "watchSubitemUpdates": { "label": "Bines OS: Subitem Updates", "type": "web", "connection": "binesOs" },
+    "watchAutomationSends": { "label": "Bines OS: \"Send to Integrations\"", "type": "web", "connection": "binesOs" }
+  },
+  "rpcs": {
+    "listBoards": { "label": "List boards", "connection": "binesOs" },
+    "listGroups": { "label": "List groups", "connection": "binesOs" },
+    "listColumns": { "label": "List columns", "connection": "binesOs" },
+    "listLabels": { "label": "List status labels", "connection": "binesOs" },
+    "listValues": { "label": "List the values of a column", "connection": "binesOs" },
+    "listUsers": { "label": "List users", "connection": "binesOs" },
+    "listAgents": { "label": "List AI agents", "connection": "binesOs" },
+    "listItemTemplates": { "label": "List item templates", "connection": "binesOs" },
+    "columnFields": { "label": "Column value fields", "connection": "binesOs" }
+  },
+  "modules": {
+    "watchItemsCreated": {
+      "typeId": 10,
+      "label": "Watch Items Created",
+      "description": "An item was added to the board.",
+      "connection": null,
+      "webhook": "watchItemsCreated"
+    },
+    "watchColumnValueChanged": {
+      "typeId": 10,
+      "label": "Watch Column Value Changed",
+      "description": "A value of the chosen column changed.",
+      "connection": null,
+      "webhook": "watchColumnValueChanged"
+    },
+    "watchStatusChanged": {
+      "typeId": 10,
+      "label": "Watch Status Changed",
+      "description": "A status column changed — optionally only one column, or only to one label.",
+      "connection": null,
+      "webhook": "watchStatusChanged"
+    },
+    "watchAnyColumnChanged": {
+      "typeId": 10,
+      "label": "Watch Any Column Changed",
+      "description": "Any value of the board changed.",
+      "connection": null,
+      "webhook": "watchAnyColumnChanged"
+    },
+    "watchItemsRenamed": {
+      "typeId": 10,
+      "label": "Watch Items Renamed",
+      "description": "An item got a new name.",
+      "connection": null,
+      "webhook": "watchItemsRenamed"
+    },
+    "watchUpdates": {
+      "typeId": 10,
+      "label": "Watch Updates",
+      "description": "An update (comment) was posted on an item.",
+      "connection": null,
+      "webhook": "watchUpdates"
+    },
+    "watchItemsMovedToGroup": {
+      "typeId": 10,
+      "label": "Watch Items Moved to a Group",
+      "description": "An item moved into the chosen group.",
+      "connection": null,
+      "webhook": "watchItemsMovedToGroup"
+    },
+    "watchItemsMovedToAnyGroup": {
+      "typeId": 10,
+      "label": "Watch Items Moved to Any Group",
+      "description": "An item moved between groups.",
+      "connection": null,
+      "webhook": "watchItemsMovedToAnyGroup"
+    },
+    "watchItemsArchived": {
+      "typeId": 10,
+      "label": "Watch Archived Items",
+      "description": "An item was archived.",
+      "connection": null,
+      "webhook": "watchItemsArchived"
+    },
+    "watchItemsDeleted": {
+      "typeId": 10,
+      "label": "Watch Deleted Items",
+      "description": "An item was moved to the trash.",
+      "connection": null,
+      "webhook": "watchItemsDeleted"
+    },
+    "watchItemsRestored": {
+      "typeId": 10,
+      "label": "Watch Restored Items",
+      "description": "An item came back from the trash or the archive.",
+      "connection": null,
+      "webhook": "watchItemsRestored"
+    },
+    "watchItemsMovedToBoard": {
+      "typeId": 10,
+      "label": "Watch Items Moved to This Board",
+      "description": "An item moved here from another board.",
+      "connection": null,
+      "webhook": "watchItemsMovedToBoard"
+    },
+    "watchUpdatesEdited": {
+      "typeId": 10,
+      "label": "Watch Edited Updates",
+      "description": "An update (comment) on an item was edited.",
+      "connection": null,
+      "webhook": "watchUpdatesEdited"
+    },
+    "watchUpdatesDeleted": {
+      "typeId": 10,
+      "label": "Watch Deleted Updates",
+      "description": "An update (comment) on an item was deleted.",
+      "connection": null,
+      "webhook": "watchUpdatesDeleted"
+    },
+    "watchFilesAdded": {
+      "typeId": 10,
+      "label": "Watch Files Added",
+      "description": "A file was added to a files column or an update.",
+      "connection": null,
+      "webhook": "watchFilesAdded"
+    },
+    "watchGroupsCreated": {
+      "typeId": 10,
+      "label": "Watch Groups Created",
+      "description": "A group was added to the board.",
+      "connection": null,
+      "webhook": "watchGroupsCreated"
+    },
+    "watchColumnsCreated": {
+      "typeId": 10,
+      "label": "Watch Columns Created",
+      "description": "A column was added to the board.",
+      "connection": null,
+      "webhook": "watchColumnsCreated"
+    },
+    "watchColumnTypeChanged": {
+      "typeId": 10,
+      "label": "Watch Column Type Changed",
+      "description": "A column's type was changed.",
+      "connection": null,
+      "webhook": "watchColumnTypeChanged"
+    },
+    "watchSubitemsCreated": {
+      "typeId": 10,
+      "label": "Watch Subitems Created",
+      "description": "A subitem was added under an item.",
+      "connection": null,
+      "webhook": "watchSubitemsCreated"
+    },
+    "watchSubitemColumnChanged": {
+      "typeId": 10,
+      "label": "Watch Subitem Column Changed",
+      "description": "A value of a subitem changed — optionally only one subitem column.",
+      "connection": null,
+      "webhook": "watchSubitemColumnChanged"
+    },
+    "watchSubitemStatusChanged": {
+      "typeId": 10,
+      "label": "Watch Subitem Status Changed",
+      "description": "A status column of a subitem changed — optionally only one column, or only to one label.",
+      "connection": null,
+      "webhook": "watchSubitemStatusChanged"
+    },
+    "watchSubitemsRenamed": {
+      "typeId": 10,
+      "label": "Watch Subitems Renamed",
+      "description": "A subitem got a new name.",
+      "connection": null,
+      "webhook": "watchSubitemsRenamed"
+    },
+    "watchSubitemsArchived": {
+      "typeId": 10,
+      "label": "Watch Archived Subitems",
+      "description": "A subitem was archived.",
+      "connection": null,
+      "webhook": "watchSubitemsArchived"
+    },
+    "watchSubitemsDeleted": {
+      "typeId": 10,
+      "label": "Watch Deleted Subitems",
+      "description": "A subitem was moved to the trash.",
+      "connection": null,
+      "webhook": "watchSubitemsDeleted"
+    },
+    "watchSubitemUpdates": {
+      "typeId": 10,
+      "label": "Watch Subitem Updates",
+      "description": "An update (comment) was posted on a subitem.",
+      "connection": null,
+      "webhook": "watchSubitemUpdates"
+    },
+    "watchAutomationSends": {
+      "typeId": 10,
+      "label": "Watch \"Send to Integrations\"",
+      "description": "A Bines OS automation ran its \"send to integrations\" action (any trigger, any conditions).",
+      "connection": null,
+      "webhook": "watchAutomationSends"
+    },
+    "createItem": {
+      "typeId": 4,
+      "label": "Create an Item",
+      "description": "Creates an item with column values.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "updateItem": {
+      "typeId": 4,
+      "label": "Update an Item",
+      "description": "Changes an item’s name and column values. Empty fields leave the column unchanged.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "getItem": {
+      "typeId": 4,
+      "label": "Get an Item",
+      "description": "Returns an item with its column values.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "archiveItem": {
+      "typeId": 4,
+      "label": "Archive an Item",
+      "description": "Archives an item.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "deleteItem": {
+      "typeId": 4,
+      "label": "Delete an Item",
+      "description": "Moves an item to the trash (restorable for 30 days).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "duplicateItem": {
+      "typeId": 4,
+      "label": "Duplicate an Item",
+      "description": "Duplicates an item, optionally with its updates.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "moveItemToGroup": {
+      "typeId": 4,
+      "label": "Move an Item to a Group",
+      "description": "Moves an item to another group of its board.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "moveItemToBoard": {
+      "typeId": 4,
+      "label": "Move an Item to a Board",
+      "description": "Moves an item to another board. Columns are matched by type and title (else the only column of that type), as the move dialog proposes.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "createSubitem": {
+      "typeId": 4,
+      "label": "Create a Subitem",
+      "description": "Creates a subitem under an item, with the sub-board’s column values.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "updateSubitem": {
+      "typeId": 4,
+      "label": "Update a Subitem",
+      "description": "Changes a subitem’s name and column values.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "moveSubitem": {
+      "typeId": 4,
+      "label": "Move a Subitem",
+      "description": "Moves a subitem (with its own subitems) under another item or subitem of the same board.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "archiveSubitem": {
+      "typeId": 4,
+      "label": "Archive a Subitem",
+      "description": "Archives a subitem.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "deleteSubitem": {
+      "typeId": 4,
+      "label": "Delete a Subitem",
+      "description": "Moves a subitem to the trash (restorable for 30 days).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "createUpdate": {
+      "typeId": 4,
+      "label": "Create an Update",
+      "description": "Posts an update (comment) on an item.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "replyToUpdate": {
+      "typeId": 4,
+      "label": "Reply to an Update",
+      "description": "Replies to an update.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "uploadFile": {
+      "typeId": 4,
+      "label": "Upload a File",
+      "description": "Uploads a file to a files column of an item.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "createGroup": {
+      "typeId": 4,
+      "label": "Create a Group",
+      "description": "Adds a group to a board.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "applyItemTemplate": {
+      "typeId": 4,
+      "label": "Create an Item From a Template",
+      "description": "A new item with its subitems from one of the board’s item templates — or the template’s subitems under an existing item. One undo for all of it.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "moveSubitemUp": {
+      "typeId": 4,
+      "label": "Move a Subitem Up a Level",
+      "description": "Moves a subitem under its grandparent; a first-level subitem becomes an item of the board.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "tickUpdateTask": {
+      "typeId": 4,
+      "label": "Tick a Check Box of an Update",
+      "description": "Ticks or clears one check box of an update or reply (counted from 1, in the text’s order).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "addFileLink": {
+      "typeId": 4,
+      "label": "Add a Link to a Files Column",
+      "description": "Adds a web link to a files column of an item, beside its files.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "startTimer": {
+      "typeId": 4,
+      "label": "Start a Timer",
+      "description": "Starts the token owner’s timer on a timer column of an item.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "stopTimer": {
+      "typeId": 4,
+      "label": "Stop a Timer",
+      "description": "Stops the token owner’s timer on a timer column of an item.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "addTimeEntry": {
+      "typeId": 4,
+      "label": "Log Time",
+      "description": "Logs time by hand on a timer column (at most 24 hours, not in the future).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "renameGroup": {
+      "typeId": 4,
+      "label": "Rename a Group",
+      "description": "Gives a group of a board a new title.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "deleteGroup": {
+      "typeId": 4,
+      "label": "Delete a Group",
+      "description": "Deletes a group of a board (its items go to the trash with it).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "createColumn": {
+      "typeId": 4,
+      "label": "Create a Column",
+      "description": "Adds a column to a board. A title the board already has gets the next free number. Types that need settings (formula, mirror, connected boards) are made with Make an API Call.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "runAgent": {
+      "typeId": 4,
+      "label": "Run an AI Agent",
+      "description": "Runs an AI agent now with a prompt. The token needs the agents:run scope.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "getBoardSchema": {
+      "typeId": 4,
+      "label": "Get a Board Schema",
+      "description": "Returns a board’s groups and columns (type, options, value schema).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "searchItems": {
+      "typeId": 9,
+      "label": "Search Items",
+      "description": "Lists a board’s items matching free text and column filters (all pages).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "findItems": {
+      "typeId": 9,
+      "label": "Find Items by Column Value",
+      "description": "Finds items by a column value: phone numbers match by digits, emails and text ignore case. Use the column \"name\" for the item name.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "getSubitems": {
+      "typeId": 9,
+      "label": "Get Subitems of an Item",
+      "description": "Lists the subitems right under an item (or under a subitem), in their order.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "searchSubitems": {
+      "typeId": 9,
+      "label": "Search Subitems",
+      "description": "Lists the subitems of a board matching free text and subitem column filters (all pages).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "findSubitems": {
+      "typeId": 9,
+      "label": "Find Subitems by Column Value",
+      "description": "Finds subitems by a value of a subitem column (phone by digits, emails and text ignore case).",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "listUsers": {
+      "typeId": 9,
+      "label": "List Users",
+      "description": "Lists the active members of the account.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "getTimeEntries": {
+      "typeId": 9,
+      "label": "Get the Time Log of an Item",
+      "description": "Lists an item’s time entries, newest first.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "searchEverything": {
+      "typeId": 9,
+      "label": "Search Everything",
+      "description": "Items (name or values), boards, updates and people matching a text (2+ characters) that the token can see.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "listTeams": {
+      "typeId": 9,
+      "label": "List Teams",
+      "description": "Lists the account’s teams with their members.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "listBoards": {
+      "typeId": 9,
+      "label": "List Boards",
+      "description": "Lists the boards the token can open.",
+      "connection": "binesOs",
+      "webhook": null
+    },
+    "makeApiCall": {
+      "typeId": 12,
+      "label": "Make an API Call",
+      "description": "Any Bines OS REST call with this connection (see /api/docs on your instance).",
+      "connection": "binesOs",
+      "webhook": null
+    }
+  }
+}

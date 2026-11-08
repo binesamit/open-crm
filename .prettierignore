@@ -1,0 +1,10 @@
+pnpm-lock.yaml
+dist
+coverage
+reference
+design-guide
+seed
+docs
+*.md
+apps/api/drizzle/meta
+.claude/

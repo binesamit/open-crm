@@ -1,0 +1,10 @@
+{
+  "url": "/boards/{{parameters.boardId}}/schema",
+  "response": {
+    "iterate": {
+      "container": "{{if(parameters.subitems, body.subitems.columns, body.columns)}}",
+      "condition": "{{if(parameters.kind, if(parameters.kind == 'files', item.value_model == 'files', item.type == parameters.kind), true)}}"
+    },
+    "output": { "label": "{{item.title}} ({{item.type}})", "value": "{{item.id}}" }
+  }
+}

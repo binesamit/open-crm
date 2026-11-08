@@ -1,0 +1,4 @@
+[
+  { "name": "itemId", "label": "Item ID", "type": "text", "required": true },
+  { "name": "body", "label": "Text", "type": "text", "required": true, "multiline": true }
+]

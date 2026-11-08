@@ -1,0 +1,6 @@
+{
+  "url": "/boards/{{parameters.boardId}}/groups",
+  "method": "POST",
+  "body": { "title": "{{parameters.title}}" },
+  "response": { "output": "{{body}}" }
+}

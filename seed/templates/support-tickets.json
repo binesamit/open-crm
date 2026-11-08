@@ -1,0 +1,434 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "support_tickets",
+  "format_version": 2,
+  "existing_board_id": "5103597817",
+  "name": "כרטיסי תמיכה",
+  "description": "ticket_id = TK-YYYY-NNNN (MCP ticket.create). SLA לפי עדיפות: P1 4h, P2 24h, P3 72h, P4 5d. נפתר + פתרון ⇒ הצעת שו\"ת.",
+  "board_kind": "public",
+  "folder": "02",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xxv11",
+      "title": "פתוחים",
+      "color": "purple"
+    },
+    {
+      "id": "group_mm6xmx1b",
+      "title": "סגורים",
+      "color": "blue"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "text_mm6x76va",
+      "title": "ticket_id",
+      "type": "text",
+      "description": "[agent-write] TK-YYYY-NNNN, נוצר ב-MCP",
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xba72",
+      "title": "ערוץ",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "WhatsApp",
+            "color": "forest",
+            "index": 1
+          },
+          {
+            "id": 3,
+            "label": "פורטל",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "טלפון",
+            "color": "purple",
+            "index": 3
+          },
+          {
+            "id": 7,
+            "label": "אימייל",
+            "color": "blue",
+            "index": 2
+          },
+          {
+            "id": 19,
+            "label": "מוניטור",
+            "color": "crimson",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6xv88q",
+      "title": "עדיפות",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "P2 פגיעה",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 2,
+            "label": "P1 השבתה",
+            "color": "crimson",
+            "index": 0
+          },
+          {
+            "id": 3,
+            "label": "P3 בקשה",
+            "color": "blue",
+            "index": 2
+          },
+          {
+            "id": 5,
+            "label": "P4 שאלה",
+            "color": "gray",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6xrcv7",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "בטיפול",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "נפתר",
+            "color": "forest",
+            "index": 3,
+            "is_done": true
+          },
+          {
+            "id": 3,
+            "label": "חדש",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 5,
+            "label": "סגור",
+            "color": "gray",
+            "index": 4,
+            "is_done": true
+          },
+          {
+            "id": 9,
+            "label": "ממתין ללקוח",
+            "color": "yellow",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple_person_mm6xwkc4",
+      "title": "מטפל",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "long_text_mm6xbxtz",
+      "title": "תיאור",
+      "type": "long_text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6xm7pj",
+      "title": "פתרון",
+      "type": "long_text",
+      "description": "מזין את השו\"ת",
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6x2n8q",
+      "title": "שעות",
+      "type": "numbers",
+      "description": "מחויב מבנק שעות אם רלוונטי",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "date_mm6xzz5f",
+      "title": "SLA יעד",
+      "type": "date",
+      "description": "לפי עדיפות (אוטומציה A4)",
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xr03w",
+      "title": "נוצר ע\"י",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 3,
+            "label": "אדם",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "סוכן",
+            "color": "purple",
+            "index": 1
+          },
+          {
+            "id": 19,
+            "label": "מוניטור",
+            "color": "crimson",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "boolean_mm6xv9vq",
+      "title": "ציבורי ללקוח",
+      "type": "checkbox",
+      "description": "מוצג בפורטל",
+      "settings": {}
+    },
+    {
+      "id": "formula_mm6xwkcw",
+      "title": "פתוח?",
+      "type": "formula",
+      "description": "עזר לספירה בבורד לקוחות",
+      "settings": {
+        "formula": "IF(OR({color_mm6xrcv7}=\"חדש\",{color_mm6xrcv7}=\"בטיפול\",{color_mm6xrcv7}=\"ממתין ללקוח\"),1,0)"
+      }
+    },
+    {
+      "id": "formula_mm6xhg98",
+      "title": "SLA חריגה",
+      "type": "formula",
+      "description": null,
+      "settings": {
+        "formula": "IF(AND({color_mm6xrcv7}<>\"נפתר\",{color_mm6xrcv7}<>\"סגור\",{date_mm6xzz5f}<>\"\",{date_mm6xzz5f}<TODAY()),\"חריגה\",\"\")"
+      }
+    },
+    {
+      "id": "board_relation_mm6x28q0",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xan37",
+      "title": "אוטומציה קשורה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597829"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xre84",
+      "title": "פרויקט קשור",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xqdnr",
+      "title": "בנק שעות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597813"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xca3p",
+      "title": "משימות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597820"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xx5re",
+      "title": "שו\"ת",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597824"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [
+    {
+      "id": "ticket_key",
+      "title": "ticket_key",
+      "type": "item_id",
+      "description": "TK-0001, מחליף את ticket_id הטקסטואלי",
+      "settings": {
+        "display": "custom_key",
+        "prefix": "TK-",
+        "padding": 4
+      }
+    },
+    {
+      "id": "portal_item",
+      "title": "מקור בפורטל",
+      "type": "board_relation",
+      "description": "האייטם שהלקוח רואה בבורד הפורטל שלו",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "@portals"
+        ],
+        "allow_multiple": false
+      }
+    },
+    {
+      "id": "requester",
+      "title": "איש קשר פונה",
+      "type": "board_relation",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "@contacts"
+        ],
+        "allow_multiple": false
+      }
+    },
+    {
+      "id": "opened_at",
+      "title": "נפתח ב",
+      "type": "creation_log",
+      "settings": {
+        "mode": "both"
+      }
+    },
+    {
+      "id": "resolved_at",
+      "title": "נפתר ב",
+      "type": "date",
+      "description": "מתמלא באוטומציה S5",
+      "settings": {}
+    },
+    {
+      "id": "ttr_hours",
+      "title": "זמן פתרון (שעות)",
+      "type": "formula",
+      "settings": {
+        "formula": "ROUND(HOURS_DIFF({resolved_at},{opened_at}),1)"
+      }
+    },
+    {
+      "id": "category",
+      "title": "קטגוריה",
+      "type": "dropdown",
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "תקלה"
+          },
+          {
+            "id": 2,
+            "label": "שינוי"
+          },
+          {
+            "id": 3,
+            "label": "שאלה"
+          },
+          {
+            "id": 4,
+            "label": "חיוב"
+          },
+          {
+            "id": 5,
+            "label": "גישה"
+          }
+        ]
+      }
+    },
+    {
+      "id": "files",
+      "title": "קבצים",
+      "type": "file",
+      "settings": {}
+    }
+  ],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "text_mm6x76va": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

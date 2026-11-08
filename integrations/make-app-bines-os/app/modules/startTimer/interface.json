@@ -1,0 +1,9 @@
+[
+  { "name": "id", "label": "Entry ID", "type": "text" },
+  { "name": "item_id", "label": "Item ID", "type": "text" },
+  { "name": "column_id", "label": "Column ID", "type": "text" },
+  { "name": "started_at", "label": "Started at", "type": "date" },
+  { "name": "ended_at", "label": "Ended at", "type": "date" },
+  { "name": "duration_s", "label": "Seconds", "type": "number" },
+  { "name": "note", "label": "Note", "type": "text" }
+]

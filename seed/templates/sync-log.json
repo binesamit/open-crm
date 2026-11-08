@@ -1,0 +1,178 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "sync_log",
+  "format_version": 2,
+  "existing_board_id": "5103597834",
+  "name": "לוג סנכרון",
+  "description": "פערים בפיוס Morning ↔ המערכת (Poll יומי 06:00): כל מסמך מ-30 יום קיים במערכת עם אותם סכומים. מפתח: morning_doc_id.",
+  "board_kind": "public",
+  "folder": "06",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xfz6s",
+      "title": "פתוח",
+      "color": "gray"
+    },
+    {
+      "id": "group_mm6xc1e0",
+      "title": "סגור",
+      "color": "forest"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "text_mm6xpthm",
+      "title": "morning_doc_id",
+      "type": "text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xp1kh",
+      "title": "סוג פער",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "חסר ב-Morning",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 2,
+            "label": "חסר ב-CRM",
+            "color": "crimson",
+            "index": 0
+          },
+          {
+            "id": 3,
+            "label": "אחר",
+            "color": "blue",
+            "index": 4
+          },
+          {
+            "id": 4,
+            "label": "שורה ללא התאמה",
+            "color": "purple",
+            "index": 3
+          },
+          {
+            "id": 9,
+            "label": "סכום שונה",
+            "color": "yellow",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "numeric_mm6x6vpa",
+      "title": "סכום ב-CRM",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xe7fz",
+      "title": "סכום ב-Morning",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "long_text_mm6xp6w5",
+      "title": "פירוט",
+      "type": "long_text",
+      "description": "[agent-write] ",
+      "settings": {}
+    },
+    {
+      "id": "date_mm6xayt6",
+      "title": "זוהה",
+      "type": "date",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xrpwc",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "פתוח",
+            "color": "yellow",
+            "index": 0
+          },
+          {
+            "id": 1,
+            "label": "טופל",
+            "color": "forest",
+            "index": 1
+          },
+          {
+            "id": 5,
+            "label": "התעלמות",
+            "color": "gray",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "board_relation_mm6xyscz",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xncnm",
+      "title": "חשבונית",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597806"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "view_comment",
+    "restrict_column_editing": {
+      "long_text_mm6xp6w5": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {}
+  },
+  "views": []
+}

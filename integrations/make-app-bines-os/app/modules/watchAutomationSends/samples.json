@@ -1,0 +1,32 @@
+{
+  "type": "automation_sent",
+  "boardId": "01JBBOARD000000000000000",
+  "boardName": "Leads",
+  "groupId": "topics",
+  "groupName": "New",
+  "itemId": "01JBITEM0000000000000000",
+  "itemName": "Dana Levi",
+  "parentItemId": null,
+  "channel": "new-lead",
+  "automationId": "01JBAUTOMATION0000000000",
+  "actor": { "kind": "user", "id": "01JBUSER0000000000000000", "name": "Dana" },
+  "item": {
+    "id": "01JBITEM0000000000000000",
+    "name": "Dana Levi",
+    "board_id": "01JBBOARD000000000000000",
+    "group_id": "topics",
+    "parent_item_id": null,
+    "key": null,
+    "column_values": { "Status": "Done", "Phone": "050-1234567" },
+    "cells": {
+      "status": { "value": { "index": 1 }, "text": "Done" },
+      "phone": { "value": { "phone": "050-1234567" }, "text": "050-1234567" }
+    },
+    "created_at": "2026-10-06T09:30:00.000Z",
+    "updated_at": "2026-10-06T09:30:00.000Z"
+  },
+  "triggerTime": "2026-10-06T09:30:00.000Z",
+  "eventId": "01JBEVENT000000000000000",
+  "subscriptionId": "01JBHOOK0000000000000000",
+  "deliveryId": "01JBDELIVERY000000000000"
+}

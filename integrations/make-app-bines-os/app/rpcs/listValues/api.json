@@ -1,0 +1,11 @@
+{
+  "url": "/boards/{{parameters.boardId}}/columns/{{parameters.column_id}}/choices",
+  "qs": { "subitems": "{{if(parameters.subitems, 'true', 'false')}}" },
+  "response": {
+    "iterate": "{{body.data}}",
+    "output": {
+      "label": "{{item.text}}{{if(item.hint, ' (' + item.hint + ')', '')}}",
+      "value": "{{if(parameters.purpose == 'find', item.text, ifempty(item.id, item.text))}}"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+[
+  { "name": "id", "label": "Item ID", "type": "text" },
+  { "name": "name", "label": "Name", "type": "text" },
+  { "name": "board_id", "label": "Board ID", "type": "text" },
+  { "name": "group_id", "label": "Group ID", "type": "text" },
+  { "name": "parent_item_id", "label": "Parent item ID", "type": "text" },
+  { "name": "key", "label": "Key", "type": "text" },
+  { "name": "column_values", "label": "Column values (text)", "type": "any" },
+  { "name": "cells", "label": "Cells (stored values by column id)", "type": "any" },
+  { "name": "created_at", "label": "Created at", "type": "date" },
+  { "name": "updated_at", "label": "Updated at", "type": "date" }
+]

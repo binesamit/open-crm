@@ -1,0 +1,8 @@
+{
+  "url": "/users",
+  "qs": { "status": "active" },
+  "response": {
+    "iterate": "{{body.data}}",
+    "output": { "label": "{{item.name}} <{{item.email}}>", "value": "{{item.user_id}}" }
+  }
+}

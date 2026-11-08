@@ -1,0 +1,6 @@
+packages:
+  - apps/*
+  - packages/*
+  - integrations/*
+  # Extensions with their own server and tests (the static sample extensions next to it are not packages).
+  - extensions/calendar-sync

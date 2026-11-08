@@ -1,0 +1,2 @@
+DROP INDEX "ux_notification_settings";--> statement-breakpoint
+CREATE UNIQUE INDEX "ux_notification_settings" ON "notification_settings" USING btree ("account_id","user_id","channel","type",coalesce("board_id", ''));

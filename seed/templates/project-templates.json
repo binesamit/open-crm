@@ -1,0 +1,173 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "project_templates",
+  "format_version": 2,
+  "existing_board_id": "5103597821",
+  "name": "תבניות",
+  "description": "סאב-אייטמים = משימות התבנית (שם, סדר, הערכה, תלות). ה-MCP מעתיק אותן לאייטמים בבורד משימות. לא משתמשים ב-Duplicate board.",
+  "board_kind": "public",
+  "folder": "03",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 2,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xpje0",
+      "title": "פעילות",
+      "color": "gray"
+    },
+    {
+      "id": "group_mm6xe602",
+      "title": "לא פעילות",
+      "color": "crimson"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6x5mnc",
+      "title": "סוג פרויקט",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "אינטגרציה",
+            "color": "yellow",
+            "index": 4
+          },
+          {
+            "id": 1,
+            "label": "בוט WhatsApp",
+            "color": "forest",
+            "index": 1
+          },
+          {
+            "id": 3,
+            "label": "אוטומציה",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "Voice AI",
+            "color": "purple",
+            "index": 2
+          },
+          {
+            "id": 7,
+            "label": "ERP",
+            "color": "blue",
+            "index": 3
+          },
+          {
+            "id": 9,
+            "label": "ייעוץ",
+            "color": "yellow",
+            "index": 5
+          },
+          {
+            "id": 14,
+            "label": "סדנה",
+            "color": "purple",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "color_mm6xsjp6",
+      "title": "סוג לקוח",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 3,
+            "label": "ישיר",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "White-label",
+            "color": "purple",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "numeric_mm6xyy59",
+      "title": "שעות בסיס",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xcxy6",
+      "title": "מחיר בסיס",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "long_text_mm6xd046",
+      "title": "תיאור",
+      "type": "long_text",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "boolean_mm6xveg4",
+      "title": "פעיל",
+      "type": "checkbox",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "board_relation_mm6xa5cp",
+      "title": "הצעות מחיר",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597804"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x966s",
+      "title": "פרויקטים",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597819"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": []
+}

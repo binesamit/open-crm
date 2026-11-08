@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample kit</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1f2a24;
+        --muted: #66736b;
+        --card: #f4f6f4;
+        --line: #dfe5e0;
+        --accent: #1f5c46;
+      }
+      :root.dark {
+        --bg: #121614;
+        --fg: #e8eee9;
+        --muted: #9aa69e;
+        --card: #1c221f;
+        --line: #2a322e;
+        --accent: #8fd3b5;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      body {
+        padding: 12px;
+        box-sizing: border-box;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          14px/1.5 system-ui,
+          sans-serif;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .big {
+        display: block;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      button,
+      input {
+        margin-top: 8px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--fg);
+        border-radius: 10px;
+        padding: 6px 12px;
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="muted" id="status" data-testid="kit-status">…</p>
+
+    <!-- item_view: the item as context -->
+    <section data-page="item" hidden>
+      <span class="muted">פריט</span>
+      <b class="big" id="item-name" data-testid="kit-item-name">–</b>
+      <button type="button" id="item-note" data-testid="kit-item-note">הוסף עדכון מהתוסף</button>
+      <p id="item-result" data-testid="kit-item-result"></p>
+    </section>
+
+    <!-- board_menu_action / batch_action: a modal frame with the selection -->
+    <section data-page="action" hidden>
+      <span class="muted">פריטים מסומנים</span>
+      <b class="big" id="sel-count" data-testid="kit-selection-count">–</b>
+      <button type="button" id="sel-apply" data-testid="kit-apply">כתוב עדכון לכל אחד וסגור</button>
+      <p id="sel-result" data-testid="kit-action-result"></p>
+    </section>
+
+    <!-- dashboard_widget: only the boards the viewer may see -->
+    <section data-page="widget" hidden>
+      <span class="muted">פריטים בלוחות של הדשבורד</span>
+      <b class="big" id="w-count" data-testid="kit-widget-count">–</b>
+      <span class="muted" id="w-boards" data-testid="kit-widget-boards"></span>
+    </section>
+
+    <!-- account_settings_page: storage per installation -->
+    <section data-page="settings" hidden>
+      <label>
+        <span class="muted">ברכה</span>
+        <input id="greeting" data-testid="kit-greeting" disabled />
+      </label>
+      <button type="button" id="save" data-testid="kit-save" disabled>שמור</button>
+      <p id="saved" data-testid="kit-saved"></p>
+    </section>
+
+    <script type="module" src="./kit.js"></script>
+  </body>
+</html>

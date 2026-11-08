@@ -1,0 +1,286 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "invoices",
+  "format_version": 2,
+  "existing_board_id": "5103597806",
+  "name": "חשבוניות",
+  "description": "לוג בלבד — המקור: מערכת החשבוניות (invoice.sync). מפתח: morning_doc_id. סאב-אייטמים = הקצאות לקופות. חשבונית לא עוברת ל\"שולמה\" אם \"לא מוקצה\" ≠ 0.",
+  "board_kind": "public",
+  "folder": "04",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 2,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xwp02",
+      "title": "פתוחות",
+      "color": "gray"
+    },
+    {
+      "id": "group_mm6x3b5s",
+      "title": "סגורות",
+      "color": "blue"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "text_mm6x4bhx",
+      "title": "morning_doc_id",
+      "type": "text",
+      "description": "ייחודי, מפתח לסנכרון",
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xjqmf",
+      "title": "סוג מסמך",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "קבלה",
+            "color": "forest",
+            "index": 2
+          },
+          {
+            "id": 3,
+            "label": "חשבונית מס",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "זיכוי",
+            "color": "purple",
+            "index": 3
+          },
+          {
+            "id": 7,
+            "label": "חשבונית עסקה",
+            "color": "blue",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "date_mm6xzcgb",
+      "title": "תאריך",
+      "type": "date",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "numeric_mm6x81n",
+      "title": "סכום לפני מע\"מ",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xm43j",
+      "title": "מע\"מ",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xh4pq",
+      "title": "סה\"כ",
+      "type": "numbers",
+      "description": null,
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "numeric_mm6xg399",
+      "title": "שולם",
+      "type": "numbers",
+      "description": "[agent-write] מסונכרן מ-Morning",
+      "settings": {
+        "footer": "sum"
+      }
+    },
+    {
+      "id": "color_mm6x124z",
+      "title": "סטטוס",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "שולמה חלקית",
+            "color": "yellow",
+            "index": 1
+          },
+          {
+            "id": 1,
+            "label": "שולמה",
+            "color": "forest",
+            "index": 2,
+            "is_done": true
+          },
+          {
+            "id": 2,
+            "label": "באיחור",
+            "color": "crimson",
+            "index": 3
+          },
+          {
+            "id": 3,
+            "label": "פתוחה",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 5,
+            "label": "בוטלה",
+            "color": "gray",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "date_mm6xw3rd",
+      "title": "תאריך יעד",
+      "type": "date",
+      "description": "אוטומציה A3: עבר יעד ולא שולמה ⇒ באיחור",
+      "settings": {}
+    },
+    {
+      "id": "formula_mm6x9sy8",
+      "title": "יתרה לתשלום",
+      "type": "formula",
+      "description": null,
+      "settings": {
+        "formula": "{numeric_mm6xh4pq}-{numeric_mm6xg399}"
+      }
+    },
+    {
+      "id": "formula_mm6xhchq",
+      "title": "סכום באיחור",
+      "type": "formula",
+      "description": "עזר לבריאות הלקוח",
+      "settings": {
+        "formula": "IF({color_mm6x124z}=\"באיחור\",{numeric_mm6xh4pq}-{numeric_mm6xg399},0)"
+      }
+    },
+    {
+      "id": "board_relation_mm6xfvgz",
+      "title": "הצעה",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597804"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x9z81",
+      "title": "לקוח",
+      "type": "board_relation",
+      "description": "לפי client_id",
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6xtvt4",
+      "title": "בנק שעות",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597813"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "board_relation_mm6x7q8w",
+      "title": "לוג סנכרון",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597834"
+        ],
+        "allow_multiple": true
+      }
+    },
+    {
+      "id": "lookup_mm6x3s3q",
+      "title": "הוקצה לקופות",
+      "type": "mirror",
+      "description": "סכום הסאב-אייטמים",
+      "settings": {
+        "relation_column_id": "subtasks_mm6xqgkw",
+        "source_column_id": "numeric_mm6xxrp6",
+        "aggregate": "sum"
+      }
+    },
+    {
+      "id": "formula_mm6x4m0k",
+      "title": "לא מוקצה",
+      "type": "formula",
+      "description": "חשבונית לא עוברת ל\"שולמה\" אם ≠ 0 (נאכף ב-MCP invoice.allocate)",
+      "settings": {
+        "formula": "{numeric_mm6xh4pq}-{lookup_mm6x3s3q}"
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {
+      "numeric_mm6xg399": [
+        "@owner"
+      ]
+    },
+    "restrict_column_view": {
+      "numeric_mm6x81n": [
+        "@owner"
+      ],
+      "numeric_mm6xm43j": [
+        "@owner"
+      ],
+      "numeric_mm6xh4pq": [
+        "@owner"
+      ],
+      "formula_mm6x9sy8": [
+        "@owner"
+      ],
+      "formula_mm6xhchq": [
+        "@owner"
+      ],
+      "formula_mm6x4m0k": [
+        "@owner"
+      ]
+    }
+  },
+  "views": []
+}

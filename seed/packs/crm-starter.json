@@ -1,0 +1,26 @@
+{
+  "manifest_version": 1,
+  "id": "crm-starter",
+  "name": "ערכת CRM",
+  "name_en": "CRM starter",
+  "description": "חבילת נתונים: מרחב עבודה \"CRM\" עם לוחות לידים, אנשי קשר, לקוחות והזדמנויות — מחוברים זה לזה, עם הסטטוסים והעמודות של התבניות המובנות. לא מריצה קוד.",
+  "description_en": "A data pack: a \"CRM\" workspace with Leads, Contacts, Accounts and Opportunities boards — connected to each other, with the built-in templates' statuses and columns. Runs no code.",
+  "version": "1.0.0",
+  "icon": "🤝",
+  "publisher": { "name": "Bines" },
+  "permissions": [],
+  "origins": [],
+  "features": [],
+  "data": {
+    "starter_kit": {
+      "workspace_name": "CRM",
+      "folders": ["מכירות", "לקוחות"],
+      "boards": [
+        { "template": "leads", "folder": "מכירות" },
+        { "template": "opportunities", "folder": "מכירות" },
+        { "template": "contacts", "folder": "לקוחות" },
+        { "template": "accounts", "folder": "לקוחות" }
+      ]
+    }
+  }
+}

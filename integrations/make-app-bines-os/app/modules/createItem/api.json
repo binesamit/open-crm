@@ -1,0 +1,7 @@
+{
+  "url": "/boards/{{parameters.boardId}}/items",
+  "method": "POST",
+  "qs": { "format": "flat" },
+  "body": { "name": "{{parameters.name}}", "group_id": "{{parameters.groupId}}", "values": "{{parameters.columns}}" },
+  "response": { "output": "{{body}}" }
+}

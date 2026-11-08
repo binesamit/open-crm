@@ -1,0 +1,11 @@
+[
+  {
+    "name": "boardId",
+    "label": "Board of the parent item",
+    "type": "select",
+    "required": true,
+    "options": { "store": "rpc://listBoards", "nested": ["rpc://columnFields?subitems=true"] }
+  },
+  { "name": "itemId", "label": "Parent item ID", "type": "text", "required": true },
+  { "name": "name", "label": "Name", "type": "text", "required": true }
+]

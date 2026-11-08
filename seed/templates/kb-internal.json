@@ -1,0 +1,189 @@
+{
+  "$schema": "../schema/board.schema.json",
+  "key": "kb_internal",
+  "format_version": 2,
+  "existing_board_id": "5103597822",
+  "name": "מרכז מידע פנימי",
+  "description": "ידע פנימי. הסוכן מצטט רק אייטמים עם \"הסוכן רשאי לצטט\" (kb.search).",
+  "board_kind": "public",
+  "folder": "05",
+  "hierarchy_type": "classic",
+  "hierarchy_depth_max": 1,
+  "item_terminology": "item",
+  "groups": [
+    {
+      "id": "group_mm6xmf4g",
+      "title": "פעיל",
+      "color": "gray"
+    },
+    {
+      "id": "group_mm6xyqw8",
+      "title": "לא פעיל",
+      "color": "purple"
+    }
+  ],
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "color_mm6xkeg5",
+      "title": "קטגוריה",
+      "type": "status",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 0,
+            "label": "מכירות",
+            "color": "yellow",
+            "index": 4
+          },
+          {
+            "id": 1,
+            "label": "לקוחות",
+            "color": "forest",
+            "index": 2
+          },
+          {
+            "id": 3,
+            "label": "נהלים",
+            "color": "blue",
+            "index": 0
+          },
+          {
+            "id": 4,
+            "label": "טכני",
+            "color": "purple",
+            "index": 1
+          },
+          {
+            "id": 7,
+            "label": "HR",
+            "color": "blue",
+            "index": 5
+          },
+          {
+            "id": 9,
+            "label": "כספים",
+            "color": "yellow",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "tag_mm6xcc7c",
+      "title": "תגיות",
+      "type": "tags",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "long_text_mm6xc776",
+      "title": "תוכן",
+      "type": "long_text",
+      "description": "Markdown",
+      "settings": {}
+    },
+    {
+      "id": "dropdown_mm6xjbp7",
+      "title": "פלטפורמה",
+      "type": "dropdown",
+      "description": null,
+      "settings": {
+        "labels": [
+          {
+            "id": 1,
+            "label": "Make"
+          },
+          {
+            "id": 2,
+            "label": "n8n"
+          },
+          {
+            "id": 3,
+            "label": "ManyChat"
+          },
+          {
+            "id": 5,
+            "label": "Fireberry"
+          },
+          {
+            "id": 6,
+            "label": "iCount"
+          },
+          {
+            "id": 7,
+            "label": "Morning"
+          },
+          {
+            "id": 8,
+            "label": "WhatsApp"
+          },
+          {
+            "id": 9,
+            "label": "אחר"
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple_person_mm6x6e39",
+      "title": "מחבר",
+      "type": "people",
+      "description": null,
+      "settings": {
+        "max_people": 0,
+        "notify_on_assign": true
+      }
+    },
+    {
+      "id": "pulse_updated_mm6x254b",
+      "title": "עודכן",
+      "type": "last_updated",
+      "description": null,
+      "settings": {
+        "mode": "ago"
+      }
+    },
+    {
+      "id": "date_mm6xew60",
+      "title": "תוקף",
+      "type": "date",
+      "description": "לבדיקה תקופתית",
+      "settings": {}
+    },
+    {
+      "id": "boolean_mm6xv5ed",
+      "title": "הסוכן רשאי לצטט",
+      "type": "checkbox",
+      "description": null,
+      "settings": {}
+    },
+    {
+      "id": "board_relation_mm6xk4me",
+      "title": "לקוח קשור",
+      "type": "board_relation",
+      "description": null,
+      "settings": {
+        "board_ids": [],
+        "board_refs": [
+          "5103597801"
+        ],
+        "allow_multiple": true
+      }
+    }
+  ],
+  "add_columns": [],
+  "permissions": {
+    "set": "edit_everything",
+    "restrict_column_editing": {},
+    "restrict_column_view": {}
+  },
+  "views": []
+}

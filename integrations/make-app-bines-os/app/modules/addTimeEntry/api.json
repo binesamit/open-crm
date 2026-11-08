@@ -1,0 +1,11 @@
+{
+  "url": "/items/{{parameters.itemId}}/time/entries",
+  "method": "POST",
+  "body": {
+    "column_id": "{{parameters.columnId}}",
+    "started_at": "{{formatDate(parameters.startedAt, \"YYYY-MM-DDTHH:mm:ss.SSSZ\")}}",
+    "duration_s": "{{parameters.minutes * 60}}",
+    "note": "{{ifempty(parameters.note, omit)}}"
+  },
+  "response": { "output": "{{body}}" }
+}

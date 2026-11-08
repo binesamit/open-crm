@@ -1,0 +1,56 @@
+name: Self-host
+
+# Open-source ק3: both installs keep working.
+# - quickstart: the one-minute install (`docker run` with no configuration — standalone mode, embedded database):
+#   first-run setup, password sign-in, a board, an item and a file, a restart. See scripts/quickstart-smoke.sh.
+# - compose: docker-compose.prod.yml from a fresh .env (secrets generated in the job; no repository secrets are used),
+#   /api/v1/health = 200, the release and the worker. See scripts/selfhost-smoke.sh.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - 'docker/**'
+      - 'docker-compose.prod.yml'
+      - '.env.example'
+      - 'scripts/selfhost-smoke.sh'
+      - 'scripts/quickstart-smoke.sh'
+      - '.github/workflows/selfhost.yml'
+      - 'pnpm-lock.yaml'
+      - 'apps/**/package.json'
+      - 'packages/**/package.json'
+      - 'apps/api/src/env.ts'
+      - 'apps/api/src/db/**'
+      - 'apps/api/src/standalone.ts'
+      - 'apps/api/src/serve.ts'
+      - 'apps/api/src/lib/disk-storage.ts'
+      - 'apps/api/src/modules/setup/**'
+      - 'apps/api/drizzle/**'
+      - 'packages/server-mail/**'
+  workflow_dispatch:
+
+concurrency:
+  group: selfhost-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  compose:
+    name: Docker image + compose smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Smoke test
+        run: bash scripts/selfhost-smoke.sh
+
+  quickstart:
+    name: One-minute install (docker run) smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Smoke test
+        run: bash scripts/quickstart-smoke.sh
