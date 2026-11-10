@@ -48,7 +48,11 @@ jobs:
       - run: pnpm db:migrate
       - run: pnpm db:seed
       - run: pnpm exec playwright install --with-deps chromium
+      # The seed creates the demo account but no user, so the app opens the first-run owner screen and the specs'
+      # sign-in never appears: global-setup.ts creates the owner first (as run-stacks.mjs does).
       - name: Scan
+        env:
+          E2E_FIRST_RUN_SETUP: '1'
         run: pnpm e2e a11y-scan.spec.ts
       - name: Failure screenshots
         if: failure()
