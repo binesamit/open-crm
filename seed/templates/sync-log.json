@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597834",
   "name": "לוג סנכרון",
-  "description": "פערים בפיוס Morning ↔ המערכת (Poll יומי 06:00): כל מסמך מ-30 יום קיים במערכת עם אותם סכומים. מפתח: morning_doc_id.",
+  "description": "יומן פיוס בין מערכת החשבוניות לבין המערכת: כל מסמך מ-30 הימים האחרונים צריך להופיע בשתיהן עם אותם סכומים.",
   "board_kind": "public",
   "folder": "06",
   "hierarchy_type": "classic",
@@ -32,7 +32,7 @@
     },
     {
       "id": "text_mm6xpthm",
-      "title": "morning_doc_id",
+      "title": "מזהה מסמך חיצוני",
       "type": "text",
       "description": null,
       "settings": {}
@@ -46,7 +46,7 @@
         "labels": [
           {
             "id": 0,
-            "label": "חסר ב-Morning",
+            "label": "חסר במערכת החשבוניות",
             "color": "yellow",
             "index": 1
           },
@@ -88,7 +88,7 @@
     },
     {
       "id": "numeric_mm6xe7fz",
-      "title": "סכום ב-Morning",
+      "title": "סכום במערכת החשבוניות",
       "type": "numbers",
       "description": null,
       "settings": {

@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597825",
   "name": "לוג סוכן AI",
-  "description": "כל כלי כתיבה ב-MCP מייצר שורה (Middleware). שמירה 90 יום בבורד, ארכיון למסד נתונים חיצוני.",
+  "description": "יומן פעולות של סוכני AI: כל פעולת כתיבה של סוכן או כלי MCP נרשמת כאן. מומלץ לשמור 90 יום ולהעביר לארכיון חיצוני.",
   "board_kind": "public",
   "folder": "06",
   "hierarchy_type": "classic",

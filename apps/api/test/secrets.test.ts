@@ -64,7 +64,7 @@ let itemId: string;
 const SECRET = 'pwd';
 const TEXT = 'note';
 
-// ---- TOTP (RFC 6238) from the otpauth:// URI, as in sec2-two-factor.test.ts ----
+// ---- TOTP (RFC 6238) from the otpauth:// URI, as in two-factor.test.ts ----
 const base32 = (s: string) => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
   let bits = '';
@@ -1080,7 +1080,7 @@ describe('never leaks', () => {
   });
 
   it('forms, mirror and formula', async () => {
-    // a form may ask for a secret (written encrypted onto the new item only — secrets-oct27.test.ts).
+    // a form may ask for a secret (written encrypted onto the new item only — secrets-verify-window.test.ts).
     expect(formQuestionAllowed('secret')).toBe(true);
     expect(formUnsupportedReason('secret')).toBeNull();
     await as(admin).post(`/boards/${boardId}/columns`, {

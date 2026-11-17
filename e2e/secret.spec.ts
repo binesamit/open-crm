@@ -10,7 +10,7 @@ import { enrol, totp } from './two-factor';
  * The owner (no 2FA) sets a value into an empty cell (Enter saves); replacing it asks for 2FA first (the column's
  * "replace / clear needs a code", on by default); with that setting off the owner replaces and clears, and sets from the
  * item card. The teammate verifies with ONE code and Enter, and replaces a value with Enter.
- * The TOTP is computed here from the otpauth:// URI (as in sec2.spec.ts). The owner never turns 2FA on.
+ * The TOTP is computed here from the otpauth:// URI (as in two-factor-sign-in.spec.ts). The owner never turns 2FA on.
  * any change to a secret column's settings takes a fresh code — the owner (no 2FA) is told to turn 2FA
  * on; a teammate with 2FA is asked for the code in the settings dialog, then the settings are saved. A column created
  * with "replace / clear needs a code" off (creating a column takes no code) shows the owner's replace and clear.

@@ -37,7 +37,7 @@ test('account admin: email sender, Reply-To, SMS sender and API limits', async (
   const { headers } = await ownerContext(page);
   const original = (await (await page.request.get('/api/v1/accounts/me', { headers })).json()) as Detail;
   // S-46: custom senders wait for the owner's approval — this test checks the fields, so approval is off meanwhile
-  // (e2e/sec2.spec.ts covers the approval flow).
+  // (e2e/two-factor-sign-in.spec.ts covers the approval flow).
   const platform = (await (await page.request.get('/api/v1/platform/settings')).json()) as {
     settings: { senders?: { require_approval?: boolean } };
   };

@@ -10,7 +10,7 @@ import { SERIAL_SPECS } from './serial-specs';
  * A new spec that touches the real clipboard goes here. A synthetic paste (`new ClipboardEvent('paste', …)`) does not
  * — it never reaches the machine's clipboard.
  */
-export const CLIPBOARD_SPECS = ['bulk-edit', 'bulk-subitems', 'm45-grid', 'r15misc', 's37-market-docs', 'secret'];
+export const CLIPBOARD_SPECS = ['bulk-edit', 'bulk-subitems', 'keyboard-grid', 'doc-code-blocks', 'developer-guide', 'secret'];
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const files = (names: string[]) => new RegExp(`[\\\\/](?:${names.map(escape).join('|')})\\.spec\\.ts$`);

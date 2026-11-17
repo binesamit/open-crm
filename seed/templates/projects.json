@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597819",
   "name": "פרויקטים",
-  "description": "project_id = PRJ-YYYY-NNN. נוצר מהצעה מאושרת דרך תבנית (MCP project.createFromTemplate). כל המשימות הושלמו ⇒ QA (A7).",
+  "description": "פרויקטים. project_id = PRJ-YYYY-NNN. פרויקט נפתח מהצעת מחיר מאושרת לפי תבנית; כשכל המשימות הושלמו הוא עובר ל-QA.",
   "board_kind": "public",
   "folder": "03",
   "hierarchy_type": "classic",

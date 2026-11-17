@@ -280,4 +280,4 @@ rows). E2E coverage: `e2e/windowed.spec.ts` (a 30k board through the API).
   `apps/api/test/query.test.ts`, `apps/web/src/features/board/use-board-live.ts`,
   `apps/web/src/features/item/ItemCard.tsx`, `apps/web/src/app/router.tsx`, `apps/api/package.json` (`perf:seed`),
   `.gitignore` (`perf/.perf-*.json`, `perf/results/`).
-- The row-based live refresh (§5.1) is covered by API and shared tests and by `e2e/m4-realtime.spec.ts`.
+- The row-based live refresh (§5.1) is covered by API and shared tests and by `e2e/realtime.spec.ts`.

@@ -4,7 +4,7 @@ import { expect, type Page } from '@playwright/test';
 
 /**
  * Two-factor authentication in E2E (secret columns, secret updates): the TOTP is computed here from the otpauth:// URI
- * (as in sec2.spec.ts), and a teammate turns 2FA on in the profile.
+ * (as in two-factor-sign-in.spec.ts), and a teammate turns 2FA on in the profile.
  */
 const PASSWORD = 'a-very-good-password'; // helpers.newTeammate
 
@@ -27,7 +27,7 @@ export const totp = (uri: string) => {
   return String(n % 1_000_000).padStart(6, '0');
 };
 
-/** Profile → כניסה ואבטחה: turn 2FA on (as sec2.spec.ts); returns the otpauth URI. */
+/** Profile → כניסה ואבטחה: turn 2FA on (as two-factor-sign-in.spec.ts); returns the otpauth URI. */
 export const enrol = async (mate: Page) => {
   await mate.goto('/a/demo/profile?tab=security');
   await mate.getByTestId('two-factor-enable').click();

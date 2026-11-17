@@ -5,7 +5,7 @@ import { forbidNativeDialogs, ownerContext, signIn } from './helpers';
 /**
  * r26 —
  * 1.: on a phone, a board / sub-board whose item name is computed (name source) adds with one tap — no name
- *    field, no keyboard; the server names it (r27: the card no longer opens — e2e/r27.spec.ts).
+ *    field, no keyboard; the server names it (r27: the card no longer opens — e2e/mobile-quick-add.spec.ts).
  * 2.: a timeline whose end date has passed is red (the overdue red), unless its linked status column
  *    (column settings) is on a done label; the setting can turn the red off.
  */

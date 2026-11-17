@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597804",
   "name": "הצעות מחיר",
-  "description": "שם: \"לקוח — נושא — QYYYY-NNN\". סטטוס אושרה ⇒ MCP quote.approve יוצר פרויקט מהתבנית + לקוח אם לא קיים + ליד → זכינו.",
+  "description": "הצעות מחיר. שם מומלץ: \"לקוח — נושא — QYYYY-NNN\". הצעה מאושרת יכולה לפתוח פרויקט מתבנית ולעדכן את הליד ל\"זכינו\".",
   "board_kind": "public",
   "folder": "01",
   "hierarchy_type": "classic",

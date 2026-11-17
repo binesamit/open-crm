@@ -166,7 +166,7 @@ test.describe('phones', () => {
     await page.waitForTimeout(200);
     const rtl = await page.evaluate(() => getComputedStyle(document.documentElement).direction === 'rtl');
     const after = (await nameCell.boundingBox())!;
-    // r25: it stays pinned at the inline-start edge (it narrows as it scrolls — see r25.spec.ts).
+    // r25: it stays pinned at the inline-start edge (it narrows as it scrolls — see mobile-polish.spec.ts).
     const edge = (b: { x: number; width: number }) => (rtl ? b.x + b.width : b.x);
     expect(Math.abs(edge(after) - edge(before))).toBeLessThan(2);
   });

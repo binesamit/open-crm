@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597799",
   "name": "לידים",
-  "description": "לידים נכנסים. סטטוס \"זכינו\" ⇒ MCP lead.convert יוצר לקוח ב-Morning ובבורד לקוחות.",
+  "description": "לידים נכנסים. כשסטטוס משתנה ל\"זכינו\" אפשר להפוך את הליד ללקוח בלוח הלקוחות (באוטומציה או דרך ה-API).",
   "board_kind": "public",
   "folder": "01",
   "hierarchy_type": "classic",

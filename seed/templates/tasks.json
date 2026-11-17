@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597820",
   "name": "משימות",
-  "description": "\"בפועל (שעות)\" = מקור אמת לחיוב (MCP task.logHours). סאב-אייטמים = צ'קליסט טכני (לא מחויב בנפרד).",
+  "description": "משימות. \"בפועל (שעות)\" הוא מקור האמת לחיוב. סאב-אייטמים = צ'קליסט טכני שלא מחויב בנפרד.",
   "board_kind": "public",
   "folder": "03",
   "hierarchy_type": "classic",
@@ -299,7 +299,7 @@
       "id": "account",
       "title": "לקוח (קישור)",
       "type": "board_relation",
-      "description": "מתמלא ב-MCP מהפרויקט (T1); מאפשר פילטר ב-API",
+      "description": "מתמלא מהפרויקט; מאפשר סינון לפי לקוח",
       "settings": {
         "board_ids": [],
         "board_refs": [

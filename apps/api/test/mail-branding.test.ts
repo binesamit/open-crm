@@ -35,7 +35,7 @@ const userId = async (cookie: string) => (await body(await t.api(cookie).get('/a
 beforeAll(async () => {
   t = await createTestContext();
   owner = (await t.signInWithMagicLink(OWNER_EMAIL)).cookie!;
-  // S-46: custom senders apply at once here (sec2-senders.test.ts covers the owner's approval).
+  // S-46: custom senders apply at once here (custom-email-senders.test.ts covers the owner's approval).
   await t.api(owner).patch('/platform/settings', { senders: { require_approval: false } });
   acmeId = (
     await body(

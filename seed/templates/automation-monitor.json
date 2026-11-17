@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597829",
   "name": "מוניטור אוטומציות",
-  "description": "הזנה: Error handlers ב-Make/n8n → webhook → MCP monitor.upsert + Poll יומי. תקלה ⇒ טיקט P2 + WhatsApp למנהל תיק. תקלה > 48 שעות ⇒ הלקוח אדום.",
+  "description": "מעקב אחרי אוטומציות חיצוניות (Make, n8n ודומיהן): כל שגיאה נכנסת כאן דרך webhook. אפשר לפתוח ממנה טיקט ולהתריע לאחראי.",
   "board_kind": "public",
   "folder": "06",
   "hierarchy_type": "classic",

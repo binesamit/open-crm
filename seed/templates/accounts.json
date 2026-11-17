@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597801",
   "name": "לקוחות",
-  "description": "מרכז הכובד. כל בורד אחר מקושר לכאן ב-Connect Boards; תיק הלקוח נבנה מ-Mirror. client_id = מזהה במערכת החשבוניות.",
+  "description": "מרכז הכובד: כל לוח אחר מקושר ללקוח בעמודת קישור, ותיק הלקוח נבנה מעמודות Mirror. client_id = מזהה הלקוח במערכת החשבוניות שלכם.",
   "board_kind": "public",
   "folder": "02",
   "hierarchy_type": "classic",
@@ -47,7 +47,7 @@
       "id": "text_mm6xhz21",
       "title": "client_id",
       "type": "text",
-      "description": "מזהה הלקוח ב-Morning. חובה, ייחודי.",
+      "description": "מזהה הלקוח במערכת החשבוניות. חובה, ייחודי.",
       "settings": {}
     },
     {
@@ -497,7 +497,7 @@
       "id": "formula_mm6x19ze",
       "title": "בריאות",
       "type": "formula",
-      "description": "אדום: חשבונית באיחור / אוטומציה בתקלה. צהוב: טיקט פתוח / בנק שעות נמוך. ספי הזמן (טיקט > 5 ימים, תקלה > 48 שעות) נאכפים ב-MCP client.health",
+      "description": "אדום: חשבונית באיחור או אוטומציה בתקלה. צהוב: טיקט פתוח או בנק שעות נמוך.",
       "settings": {
         "formula": "IF(OR({lookup_mm6xf1br}>0,{lookup_mm6xk7pe}>0),\"🔴 אדום\",IF(OR({lookup_mm6xwq5g}>0,{lookup_mm6xce5v}>0),\"🟡 צהוב\",\"🟢 ירוק\"))"
       }
