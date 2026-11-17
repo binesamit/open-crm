@@ -43,8 +43,8 @@ const boards: Record<string, unknown> = {
 };
 const search: Record<string, unknown[]> = {
   b1: [
-    { id: 'a', name: 'אביב מור', board_id: 'b1', group_id: 'g2' },
-    { id: 'b', name: 'בועז שובל', board_id: 'b1', group_id: 'g1' },
+    { id: 'a', name: 'דנה כהן', board_id: 'b1', group_id: 'g2' },
+    { id: 'b', name: 'יוסי לוי', board_id: 'b1', group_id: 'g1' },
   ],
   b2: [{ id: 'p', name: 'Acme Projects', board_id: 'b2', group_id: 'p1' }],
 };
@@ -110,7 +110,7 @@ describe('relation picker over several boards', () => {
     expect(all('relation-board-header').map((h) => h.textContent)).toEqual(['לקוחות', 'פרויקטים']);
     expect(all('relation-group-header').map((h) => h.textContent)).toEqual(['פעילים', 'ארכיון', 'בעבודה']);
     const names = [...document.querySelectorAll('[role="listbox"] label')].map((l) => l.textContent);
-    expect(names).toEqual(['בועז שובל', 'אביב מור', 'Acme Projects']);
+    expect(names).toEqual(['יוסי לוי', 'דנה כהן', 'Acme Projects']);
   });
 
   it('a chip browses one board, and that board loads more', async () => {
@@ -119,7 +119,7 @@ describe('relation picker over several boards', () => {
     expect(all('relation-board-chip')[1]!.getAttribute('aria-pressed')).toBe('true');
     expect(all('relation-board-header')).toHaveLength(0);
     let names = [...document.querySelectorAll('[role="listbox"] label')].map((l) => l.textContent);
-    expect(names).toEqual(['בועז שובל', 'אביב מור']);
+    expect(names).toEqual(['יוסי לוי', 'דנה כהן']);
     await click(document.querySelector<HTMLElement>('[data-testid="relation-load-more"]')!);
     expect(get).toHaveBeenCalledWith('/boards/b1/items/search?q=&offset=30');
     names = [...document.querySelectorAll('[role="listbox"] label')].map((l) => l.textContent);

@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597806",
   "name": "חשבוניות",
-  "description": "לוג בלבד — המקור: מערכת החשבוניות (invoice.sync). מפתח: morning_doc_id. סאב-אייטמים = הקצאות לקופות. חשבונית לא עוברת ל\"שולמה\" אם \"לא מוקצה\" ≠ 0.",
+  "description": "יומן חשבוניות שמסונכרן ממערכת החשבוניות שלכם. מפתח: מזהה המסמך החיצוני. סאב-אייטמים = הקצאות לקופות. חשבונית לא עוברת ל\"שולמה\" כל עוד יש סכום לא מוקצה.",
   "board_kind": "public",
   "folder": "04",
   "hierarchy_type": "classic",
@@ -32,7 +32,7 @@
     },
     {
       "id": "text_mm6x4bhx",
-      "title": "morning_doc_id",
+      "title": "מזהה מסמך חיצוני",
       "type": "text",
       "description": "ייחודי, מפתח לסנכרון",
       "settings": {}
@@ -109,7 +109,7 @@
       "id": "numeric_mm6xg399",
       "title": "שולם",
       "type": "numbers",
-      "description": "[agent-write] מסונכרן מ-Morning",
+      "description": "[agent-write] מסונכרן ממערכת החשבוניות",
       "settings": {
         "footer": "sum"
       }
@@ -247,7 +247,7 @@
       "id": "formula_mm6x4m0k",
       "title": "לא מוקצה",
       "type": "formula",
-      "description": "חשבונית לא עוברת ל\"שולמה\" אם ≠ 0 (נאכף ב-MCP invoice.allocate)",
+      "description": "חשבונית לא עוברת ל\"שולמה\" כל עוד הערך ≠ 0",
       "settings": {
         "formula": "{numeric_mm6xh4pq}-{lookup_mm6x3s3q}"
       }

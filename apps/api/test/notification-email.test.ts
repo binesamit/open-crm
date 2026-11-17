@@ -60,7 +60,7 @@ const setting = (row: { type?: string; boardId?: string; enabled?: boolean; dige
 beforeAll(async () => {
   t = await createTestContext();
   const owner = (await t.signInWithMagicLink(OWNER_EMAIL)).cookie!;
-  // S-46: custom senders apply at once here (sec2-senders.test.ts covers the owner's approval).
+  // S-46: custom senders apply at once here (custom-email-senders.test.ts covers the owner's approval).
   await t.api(owner).patch('/platform/settings', { senders: { require_approval: false } });
   acmeId = (
     await body(

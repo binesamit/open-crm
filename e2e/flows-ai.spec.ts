@@ -5,7 +5,7 @@ import { forbidNativeDialogs, ownerContext, signIn } from './helpers';
 /**
  * (automations on external flows; a flow notification opens the flow here) and (operate /
  * edit flows with the AI). No real platform answers: the connection points at an invalid address and the flows /
- * runs calls are answered by `page.route` — the API tests (apps/api/test/flows2.test.ts) cover the platform side.
+ * runs calls are answered by `page.route` — the API tests (apps/api/test/flows-automations.test.ts) cover the platform side.
  */
 const api = (path: string) => `/api/v1${path}`;
 type Json = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any

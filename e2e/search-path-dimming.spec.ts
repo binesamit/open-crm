@@ -115,7 +115,7 @@ test('2: the subitems table and the items run to the same width, both ways', asy
 });
 
 test('3: on a 360px phone the views are a dropdown under the bar, in every view', async ({ page }) => {
-  // f9 views: the chips row became one dropdown (e2e/f9-views.spec.ts covers it in full).
+  // f9 views: the chips row became one dropdown (e2e/mobile-views.spec.ts covers it in full).
   const { api, board, tag } = await setup(page, 'r18 תצוגות');
   await api('post', `/boards/${board.id}/items`, { name: `Row ${tag}` });
   await api('post', `/boards/${board.id}/views`, { name: `קנבן ${tag}`, type: 'kanban' });

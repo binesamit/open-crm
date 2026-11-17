@@ -15,8 +15,8 @@ const projects: PickerBoard = { id: 'b2', name: 'פרויקטים', groups: [{ i
 const hits = [
   { id: 'x', name: 'linked beyond the page', board_id: '' },
   { id: 'p', name: 'Acme Projects', board_id: 'b2', group_id: 'p1' },
-  { id: 'a', name: 'אביב מור', board_id: 'b1', group_id: 'g2' },
-  { id: 'b', name: 'בועז שובל', board_id: 'b1', group_id: 'g1' },
+  { id: 'a', name: 'דנה כהן', board_id: 'b1', group_id: 'g2' },
+  { id: 'b', name: 'יוסי לוי', board_id: 'b1', group_id: 'g1' },
   { id: 'c', name: 'old group', board_id: 'b1', group_id: 'gone' },
 ];
 const shape = (s: ReturnType<typeof pickerSections>) =>

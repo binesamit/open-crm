@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597811",
   "name": "קופות",
-  "description": "חלוקת כל חשבונית לקופות לפי אחוזי ברירת מחדל (סכום האחוזים = 100). הקצאה מעל ₪20,000 דורשת אישור אדם.",
+  "description": "חלוקת הכנסות לקופות לפי אחוזי ברירת מחדל (סכום האחוזים = 100). אפשר לדרוש אישור אדם להקצאות גדולות.",
   "board_kind": "public",
   "folder": "04",
   "hierarchy_type": "classic",
@@ -72,7 +72,7 @@
       "id": "numeric_mm6xe668",
       "title": "הוקצה החודש",
       "type": "numbers",
-      "description": "[agent-write] מחושב ע\"י MCP fund.summary לחודש הנוכחי (Mirror לא תומך בסינון לפי חודש)",
+      "description": "[agent-write] מחושב לחודש הנוכחי (באוטומציה או דרך ה-API)",
       "settings": {
         "footer": "sum"
       }
@@ -81,7 +81,7 @@
       "id": "numeric_mm6xyhsz",
       "title": "הוצא",
       "type": "numbers",
-      "description": "ידני / Morning הוצאות (שלב 2)",
+      "description": "ידני, או מסונכרן ממערכת החשבוניות",
       "settings": {
         "footer": "sum"
       }

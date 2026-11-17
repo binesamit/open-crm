@@ -65,7 +65,7 @@ export default defineConfig({
     },
   ],
   // reducedMotion (r16motion): the app's animations default to "by device" = reduced — fades only, no exit ghosts —
-  // so no test waits on (or meets a copy of) a closing dialog / menu. r16motion.spec.ts picks "full" itself.
+  // so no test waits on (or meets a copy of) a closing dialog / menu. animations.spec.ts picks "full" itself.
   use: { baseURL: WEB_URL, locale: 'he-IL', screenshot: 'only-on-failure', reducedMotion: 'reduce' },
   webServer: [
     {

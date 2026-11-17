@@ -5,7 +5,7 @@ import { forbidNativeDialogs, ownerContext, signIn } from './helpers';
 /**
  * s4f-auto — "date arrives" on a "last updated" column: the trigger's column picker offers last-updated columns
  * (of chosen columns too, r23ui) next to the date columns, and the saved automation reads that column's time (the
- * schedule logic itself is covered by apps/api/test/s4f-auto-date-last-updated.test.ts).
+ * schedule logic itself is covered by apps/api/test/date-arrives-trigger.test.ts).
  */
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
 

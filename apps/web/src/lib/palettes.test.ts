@@ -6,7 +6,7 @@ import { CONTRAST_PAIRS, contrastRatio, PALETTES, paletteCss, type Tokens } from
 
 /**
  * Round 12: every colour theme passes WCAG AA in light AND dark — the token pairs the app draws text and controls
- * with, over the real base values in tokens.css (the page-level audit of each theme is e2e/r12-ui.spec.ts).
+ * with, over the real base values in tokens.css (the page-level audit of each theme is e2e/error-screens.spec.ts).
  */
 const css = readFileSync(new URL('../../../../packages/ui/src/tokens.css', import.meta.url), 'utf8');
 const blockOf = (selector: string): Tokens => {

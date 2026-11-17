@@ -4,7 +4,7 @@
   "format_version": 2,
   "existing_board_id": "5103597817",
   "name": "כרטיסי תמיכה",
-  "description": "ticket_id = TK-YYYY-NNNN (MCP ticket.create). SLA לפי עדיפות: P1 4h, P2 24h, P3 72h, P4 5d. נפתר + פתרון ⇒ הצעת שו\"ת.",
+  "description": "טיקטים של תמיכה. ticket_id = TK-YYYY-NNNN. SLA לפי עדיפות: P1 4h, P2 24h, P3 72h, P4 5d. טיקט שנפתר יכול להפוך לשאלה בשו\"ת.",
   "board_kind": "public",
   "folder": "02",
   "hierarchy_type": "classic",
@@ -34,7 +34,7 @@
       "id": "text_mm6x76va",
       "title": "ticket_id",
       "type": "text",
-      "description": "[agent-write] TK-YYYY-NNNN, נוצר ב-MCP",
+      "description": "[agent-write] TK-YYYY-NNNN, נוצר אוטומטית",
       "settings": {}
     },
     {

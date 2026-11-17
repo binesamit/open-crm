@@ -4,7 +4,7 @@
   "template": true,
   "existing_board_id": null,
   "name": "פורטל — {client_name}",
-  "description": "בורד Shareable אחד לכל לקוח. הלקוח רואה רק את הבורד הזה. אייטם בקבוצת 'בקשות תמיכה' ⇒ טיקט פנימי (S1).",
+  "description": "לוח משותף אחד לכל לקוח: הלקוח רואה רק את הלוח הזה. בקשה בקבוצת 'בקשות תמיכה' יכולה לפתוח טיקט פנימי.",
   "board_kind": "share",
   "folder": "07",
   "hierarchy_type": "classic",
