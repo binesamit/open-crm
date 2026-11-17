@@ -5,6 +5,33 @@ calendar, Gantt and more), automations, dashboards, docs, forms, a client portal
 many isolated accounts in one installation. The UI is Hebrew-first (RTL) with English; the defaults are Israeli
 (ILS, 18% VAT, the Hebrew calendar) and every one of them is a setting.
 
+## Screenshots
+
+**Boards with typed columns** - status, people, dates, numbers, dropdowns and summaries per group.
+
+![A leads board in the table view](docs/screenshots/board-table.jpg)
+
+**Every board, many views** - the same items as a kanban by status, a Gantt chart, a calendar and more.
+
+![The leads board as a kanban by status](docs/screenshots/board-kanban.jpg)
+
+![Projects on a Gantt chart](docs/screenshots/projects-gantt.jpg)
+
+![A tasks board with owners, priorities and due dates](docs/screenshots/tasks-table.jpg)
+
+**Automations** - every rule across your boards, with its runs and errors over the last 30 days.
+
+![The automations center](docs/screenshots/automations.jpg)
+
+**AI agents** - digital workers with a role, instructions, a model, tools and boards; every step is logged and can
+wait for approval.
+
+![The AI agents page](docs/screenshots/agents.jpg)
+
+**Flows** - your n8n, Make and Zapier workflows in one place: what is on, when it last ran and what failed.
+
+![Connected n8n flows](docs/screenshots/flows.jpg)
+
 ## Install in one command
 
 ```sh
